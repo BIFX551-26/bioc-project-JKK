@@ -5,6 +5,12 @@ editor: visual
 authors: Kate Kruczynski, Jessica Joe, Kardam Kiranbhai Patel
 ---
 
+# **Introduction:**
+
+This file contains an example analysis of using the RNA123 workflow package from BioConductor. The authors of this pipeline, the vignette, and the code used in this example are Charity Law, Monther Alhamdoosh, Shian Su, Xeuyi Dong, Luyi Tian, Gordon Smyth, and Matthew Ritchie. Their code has been reproduced here for the purpose of an academic exercise. The authors of this academic exercise do not claim any authorship of the code, but only of the academic exercise.
+
+The vignette outlines a workflow for the processing and analysis of RNA-seq data, starting with a file of raw gene-level counts. The workflow makes use of the pre-processing and statistical functions in the edgeR and limma packages as well as the interactive graphics of the Glimma package. The experimental data used is from the study " A pooled shRNA screen for regulators of primary mammary stem and progenitor cells identifies roles for Asap1 and Prox1" by Sheridan et al. Total RNA samples were extracted from the mammary glands of female virgin mice with cells sorted into basal, progenitor luminal, and mature luminal groups. Cells of the mammary gland are very useful for RNA research as they are highly regenerative and can give insights into the action of stem cells and mechanics of cancers. Variation in gene counts identifies genes that are up or down regulated in different cell types or due to certain stimuli.
+
 Prepare Environment for analysis:
 
 Install RNA123 package in RGui as recommended by BioConductor instructions.
