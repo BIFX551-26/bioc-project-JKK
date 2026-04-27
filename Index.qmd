@@ -1,0 +1,19 @@
+---
+---
+title: "RNA-seq analysis with RNASeq123 workflow"
+author: "Kate, Jessica, Kardam"
+bibliography: references.bib
+format:
+  gfm:
+    output-file: README.md
+    execute:
+      echo: false
+      eval: true
+  revealjs:
+    slide-level: 4
+    execute:
+      echo: false
+      eval: true
+---
+---
+
