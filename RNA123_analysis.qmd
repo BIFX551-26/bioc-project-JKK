@@ -7,22 +7,38 @@ authors: Kate Kruczynski, Jessica Joe, Kardam Kiranbhai Patel
 
 # **Introduction:**
 
-This file contains an example analysis of using the RNA123 workflow package from BioConductor. The authors of this pipeline, the vignette, and the code used in this example are Charity Law, Monther Alhamdoosh, Shian Su, Xeuyi Dong, Luyi Tian, Gordon Smyth, and Matthew Ritchie. Their code has been reproduced here for the purpose of an academic exercise. The authors of this academic exercise do not claim any authorship of the code, but only of the academic exercise.
+This file contains an example analysis of using the RNAseq123 workflow package from BioConductor. The authors of this pipeline, the vignette, and the code used in this example are Charity Law, Monther Alhamdoosh, Shian Su, Xeuyi Dong, Luyi Tian, Gordon Smyth, and Matthew Ritchie. Their code has been reproduced here for the purpose of an academic exercise. The authors of this academic exercise do not claim any authorship of the code, but only of the academic exercise.
 
 The vignette outlines a workflow for the processing and analysis of RNA-seq data, starting with a file of raw gene-level counts. The workflow makes use of the pre-processing and statistical functions in the edgeR and limma packages as well as the interactive graphics of the Glimma package. The experimental data used is from the study " A pooled shRNA screen for regulators of primary mammary stem and progenitor cells identifies roles for Asap1 and Prox1" by Sheridan et al. Total RNA samples were extracted from the mammary glands of female virgin mice with cells sorted into basal, progenitor luminal, and mature luminal groups. Cells of the mammary gland are very useful for RNA research as they are highly regenerative and can give insights into the action of stem cells and mechanics of cancers. Variation in gene counts identifies genes that are up or down regulated in different cell types or due to certain stimuli.
 
 Prepare Environment for analysis:
 
-Install RNA123 package in RGui as recommended by BioConductor instructions.
+Install RNAseq123 in RGui as recommended by BioConductor instructions. The heatmap section also requires the CRAN package **gplots**.
 
 Load needed packages:
 
-```{r}
+```{r message=FALSE, warning=FALSE}
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+  install.packages("BiocManager", repos = "https://cloud.r-project.org")
+}
+
+if (!requireNamespace("RNAseq123", quietly = TRUE)) {
+  BiocManager::install("RNAseq123", ask = FALSE, update = FALSE)
+}
+
+if (!requireNamespace("gplots", quietly = TRUE)) {
+  install.packages("gplots", repos = "https://cloud.r-project.org")
+}
+
 library(limma)
 library(Glimma)
 library(edgeR)
 library(Mus.musculus)
+library(gplots)
+library(RNAseq123)
 ```
+
+# Experimental Data
 
 Load in test case data:
 
@@ -312,15 +328,14 @@ glMDPlot(tfit, coef=1, status=dt, main=colnames(tfit)[1],
 
 Heat maps are very useful for visualizing portions of DE data. The **heatmap.2** function from the gplots package is used here to create a heatmap of the top 100 DE genes from the basal vs LP contrast analysis.
 
-```{r}
-library(gplots)
+```{r, fig.width=10, fig.height=14}
 basal.vs.lp.topgenes <- basal.vs.lp$ENTREZID[1:100]
 i <- which(v$genes$ENTREZID %in% basal.vs.lp.topgenes)
 mycol <- colorpanel(1000,"blue","white","red")
 heatmap.2(lcpm[i,], scale="row",
    labRow=v$genes$SYMBOL[i], labCol=group, 
    col=mycol, trace="none", density.info="none", 
-   margin=c(8,6), lhei=c(2,10), dendrogram="column")
+   margin=c(6,4), cexRow=0.6, lhei=c(2,10), dendrogram="column")
 ```
 
 Gene set testing with camera
