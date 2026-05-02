@@ -10,7 +10,7 @@ format:
     theme: [default, simple]
 execute:
   echo: false
-  output: false
+  output: true
   warning: false
   message: false
 ---
@@ -84,6 +84,10 @@ Goal: Demonstrate the RNAseq123 Bioconductor workflow
   Bioconductor RNA-seq workflow.
 
 ```{r}
+ #| output: true
+ #| fig-cap: "Overview of the RNA-seq workflow."
+ #| fig-align: center
+ #| out-width: 85%
 # Define steps
 steps <- tibble(
     from = c("Set-up", "Data Packaging", "Data pre-processing", "Differential expression analysis"),
@@ -162,6 +166,7 @@ Preprocessing removes uninformative genes, corrects library-size effects, and ch
 overall sample quality before modeling.
 
 ```{r}
+#| include: false
 x <- readDGE(files, columns=c(1,3))
 class(x)
 
@@ -169,11 +174,13 @@ dim(x)
 ```
 
 ```{r}
+#| include: false
 samplenames <- substring(colnames(x), 12, nchar(colnames(x)))
 samplenames
 ```
 
 ```{r}
+#| include: false
 colnames(x) <- samplenames
 group <- as.factor(c("LP", "ML", "Basal", "Basal", "ML", "LP", 
                      "Basal", "ML", "LP"))
@@ -185,6 +192,7 @@ x$samples
 
 
 ```{r}
+#| include: false
 geneid <- rownames(x)
 genes <- select(Mus.musculus, keys=geneid, columns=c("SYMBOL", "TXCHROM"), 
                 keytype="ENTREZID")
@@ -193,20 +201,24 @@ head(genes)
 
 
 ```{r}
+#| include: false
 genes <- genes[!duplicated(genes$ENTREZID),]
 ```
 
 ```{r}
+#| include: false
 x$genes <- genes
 x
 ```
 
 ```{r}
+#| include: false
 cpm <- cpm(x)
 lcpm <- cpm(x, log=TRUE)
 ```
 
 ```{r}
+#| include: false
 L <- mean(x$samples$lib.size) * 1e-6
 M <- median(x$samples$lib.size) * 1e-6
 c(L, M)
@@ -215,16 +227,19 @@ summary(lcpm)
 ```
 
 ```{r}
+#| include: false
 table(rowSums(x$counts==0)==9)
 ```
 
 ```{r}
+#| include: false
 keep.exprs <- filterByExpr(x, group=group)
 x <- x[keep.exprs,, keep.lib.sizes=FALSE]
 dim(x)
 ```
 
 ```{r}
+#| include: false
 lcpm.cutoff <- log2(10/M + 2/L)
 library(RColorBrewer)
 nsamples <- ncol(x)
@@ -251,11 +266,13 @@ legend("topright", samplenames, text.col=col, bty="n")
 
 
 ```{r}
+#| include: false
 x <- calcNormFactors(x, method = "TMM")
 x$samples$norm.factors
 ```
 
 ```{r}
+#| include: false
 x2 <- x
 x2$samples$norm.factors <- 1
 x2$counts[,1] <- ceiling(x2$counts[,1]*0.05)
@@ -278,6 +295,7 @@ title(main="B. Example: Normalised data",ylab="Log-cpm")
 ```
 
 ```{r}
+#| include: false
 lcpm <- cpm(x, log=TRUE)
 par(mfrow=c(1,2))
 col.group <- group
@@ -293,6 +311,7 @@ title(main="B. Sequencing lanes")
 ```
 
 ```{r}
+#| include: false
 glMDSPlot(lcpm, labels=paste(group, lane, sep="_"), 
           groups=x$samples[,c(2,5)], launch=FALSE)
 ```
