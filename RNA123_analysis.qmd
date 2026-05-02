@@ -200,16 +200,30 @@ title(main="B. Example: Normalised data",ylab="Log-cpm")
 An unsupervised clustering analysis can be performed to take a quick look at the magnitude of differential expression that we can expect to find in further analyses. It can also call out possible issues such as sample switches if any replicates or samples of the same grouping are far from each other. The limma function **plotMDS** can be used a create multi-dimensional scaling plots.
 
 ```{r}
+#| include: false
 lcpm <- cpm(x, log=TRUE)
-par(mfrow=c(1,2))
 col.group <- group
 levels(col.group) <-  brewer.pal(nlevels(col.group), "Set1")
 col.group <- as.character(col.group)
 col.lane <- lane
 levels(col.lane) <-  brewer.pal(nlevels(col.lane), "Set2")
 col.lane <- as.character(col.lane)
+```
+
+```{r}
+#| fig-width: 10
+#| fig-height: 8
+#| out-width: 100%
+par(mar=c(6.5, 4.5, 4, 2) + 0.1)
 plotMDS(lcpm, labels=group, col=col.group)
 title(main="A. Sample groups")
+```
+
+```{r}
+#| fig-width: 10
+#| fig-height: 8
+#| out-width: 100%
+par(mar=c(6.5, 4.5, 4, 2) + 0.1)
 plotMDS(lcpm, labels=lane, col=col.lane, dim=c(3,4))
 title(main="B. Sequencing lanes")
 ```

@@ -61,8 +61,10 @@ a standard Bioconductor RNA-seq workflow
   and sequencing lane. We also used Mus.musculus to attach gene
   annotations, including gene symbols and chromosome information
 
-Data packaging converts separate raw files into one structured,
-analysis-ready dataset
+<!-- -->
+
+- Data packaging converts separate raw files into one structured,
+  analysis-ready dataset
 
 ## Data Pre-Processing
 
@@ -86,13 +88,39 @@ analysis-ready dataset
 
 - We then used MDS plots to check whether samples clustered by biology
   rather than technical artifacts
-
+- limma::plotMDS is used as an unsupervised quality control step
 - This preprocessing step reduces noise, improves comparability across
   samples, and helps confirm that the data are ready for differential
   expression testing
 
-Preprocessing removes uninformative genes, corrects library-size
-effects, and checks overall sample quality before modeling
+<!-- -->
+
+- MDS plots show samples cluster by biological group (Basal, LP, ML) and
+  not by sequencing lane
+- This suggests the main signal is biological and technical effects are
+  limited
+
+<div class="columns">
+
+<div class="column" width="50%">
+
+<img src="Index_files/figure-commonmark/unnamed-chunk-22-1.png"
+style="width:100.0%" />
+
+</div>
+
+<div class="column" width="50%">
+
+<img src="Index_files/figure-commonmark/unnamed-chunk-23-1.png"
+style="width:100.0%" />
+
+</div>
+
+</div>
+
+- Preprocessing removes uninformative genes, corrects library-size
+  effects, and checks overall sample quality before modeling
+- Primarily performed with edgeR, and limma is used for QC
 
 ## Differential Gene Analysis
 
@@ -246,7 +274,7 @@ effects, and checks overall sample quality before modeling
     $span
     [1] 0.4010438
 
-![](Index_files/figure-commonmark/unnamed-chunk-25-1.png)
+![](Index_files/figure-commonmark/unnamed-chunk-27-1.png)
 
 Means (x-axis) and variances (y-axis) of each gene are plotted to show
 the dependence between the two before voom is applied to the data (left
@@ -308,7 +336,11 @@ threshold
 - Glimma option allows brower viewing option - convenient for including
   them as linked files from an Rmarkdown
 
-![](Index_files/figure-commonmark/unnamed-chunk-32-1.png)
+![](Index_files/figure-commonmark/unnamed-chunk-34-1.png)
+
+## Results
+
+Placeholder for our results slide
 
 ## Conclusion
 
