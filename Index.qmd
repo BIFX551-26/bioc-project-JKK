@@ -280,7 +280,6 @@ x2$counts[,2] <- x2$counts[,2]*5
 ```
 
 ```{r}
-#| include: false
 par(mfrow=c(1,2))
 lcpm <- cpm(x2, log=TRUE)
 boxplot(lcpm, las=2, col=col, main="")
@@ -290,7 +289,6 @@ x2$samples$norm.factors
 ```
 
 ```{r}
-#| include: false
 lcpm <- cpm(x2, log=TRUE)
 boxplot(lcpm, las=2, col=col, main="")
 title(main="B. Example: Normalised data",ylab="Log-cpm")

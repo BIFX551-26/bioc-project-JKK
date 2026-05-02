@@ -81,6 +81,13 @@ analysis-ready dataset.
 Preprocessing removes uninformative genes, corrects library-size
 effects, and checks overall sample quality before modeling.
 
+    [1] 0.05770899 6.08287835 1.22023972 1.16478991 1.19661094 1.04659233 1.15048074
+    [8] 1.25431164 1.10901983
+
+![](Index_files/figure-commonmark/unnamed-chunk-18-1.png)
+
+![](Index_files/figure-commonmark/unnamed-chunk-19-1.png)
+
 ## Differential Gene Analysis
 
 - To determine which genes are expressed at different levels between
