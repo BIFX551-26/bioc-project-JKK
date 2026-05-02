@@ -92,18 +92,15 @@ analysis-ready dataset
   expression testing
 
 Preprocessing removes uninformative genes, corrects library-size
-<<<<<<< HEAD
-effects, and checks overall sample quality before modeling.
-=======
 effects, and checks overall sample quality before modeling
 
-## Differential Gene Analysis
+## Differential Gene Analysis:
 
 - To determine which genes are expressed at different levels between
-  three cell population profiled
+  three cell population profiled.
 - linear model fitting (assuming normally distributed data)
-- Intercept act as anchor point for comparision against baseline
-- Without intercept, absolute expression levels can be determined
+- Intercept act as anchor point for comparision against baseline.
+- Without intercept, absolute expression levels can be determined.
 
 <!-- -->
 
@@ -126,13 +123,15 @@ effects, and checks overall sample quality before modeling
     attr(,"contrasts")$lane
     [1] "contr.treatment"
 
-- “makecontrast” function from limma package allows user to draw contrax
-  matrix for pairwise comparisions
+## Differential Gene Analysis:
 
-- limma provides duplicateCorrelation to deal with technical replicates
+- “makecontrast” function from limma package allows user to draw contrax
+  matrix for pairwise comparisions.
+
+- limma provides duplicateCorrelation to deal with technical replicates.
 
 - limma provides flexibility to perform interactive studies for ex.
-  testing drug reaction in Lane 6 and Lane 8
+  testing drug reaction in Lane 6 and Lane 8.
 
 <!-- -->
 
@@ -144,21 +143,25 @@ effects, and checks overall sample quality before modeling
       laneL006         0         0      0
       laneL008         0         0      0
 
+------------------------------------------------------------------------
+
 ## Heteroscedascity and Voom weights
 
 - Homoscedascity: In linear models, mean-variance relationship is
   assumed to be linear. Mean and variance changes equally. Exactly
-  opposite is ‘Heteroscedascity’
+  opposite is ‘Heteroscedascity’.
 
 - In RNA-Seq count data, the Negative Binomial distribution assumes
-  quadratic mean-variation relationship
+  quadratic mean-variation relationship.
 
 - Overdispersion observed due to large difference between house-keeping
   genes and highly expressed genes
 
-- In limma, linear modelling is carried out on log-CPM values
+- In limma, linear modelling is carried out on log-CPM values.
 
-<!-- -->
+------------------------------------------------------------------------
+
+## Heteroscedascity and Voom weights:
 
 - “voom” function act as link to bridge limma(built for microarrays) to
   expression data. It addresses scale problem (calculates into CPM) and
@@ -167,9 +170,9 @@ effects, and checks overall sample quality before modeling
 
 - “Voom weights” fixes the noise related to genes whereas
   Voomqualityweight addresses the noise generated from inter-sample
-  variation
+  variation.
 
-<!-- -->
+------------------------------------------------------------------------
 
     An object of class "EList"
     $genes
@@ -251,10 +254,14 @@ effects, and checks overall sample quality before modeling
 
 ![](Index_files/figure-commonmark/unnamed-chunk-25-1.png)
 
+![](Index_files/figure-commonmark/unnamed-chunk-26-1.png)
+
 Means (x-axis) and variances (y-axis) of each gene are plotted to show
 the dependence between the two before voom is applied to the data (left
 panel) and how the trend is removed after voom precision weights are
 applied to the data (right panel)
+
+------------------------------------------------------------------------
 
 ## Examining Differentially Expressed Genes:
 
@@ -265,24 +272,47 @@ Summary of Differentially expressed gene:
     NotSig      7118      7008  10953
     Up          4860      4680   2530
 
+## Examining Differentially Expressed Genes:
+
+------------------------------------------------------------------------
+
 Treat method - Method can be applied for stricter definition on
 significance based on t-statistics. This allows user to define a log-FC
-threshold
+threshold.
 
            BasalvsLP BasalvsML LPvsML
     Down        1633      1777    223
     NotSig     12977     12793  16211
     Up          2014      2054    190
 
+------------------------------------------------------------------------
+
+## Venn Diagram:
+
+Venn diagram showing the number of genes DE in the comparison between
+basal versus LP only (left), basal versus ML only (right), and the
+number of genes that are DE in both comparisons (center)
+
+The number of genes that are not DE in either comparison are marked in
+the bottom-right.
+
+![](Index_files/figure-commonmark/unnamed-chunk-29-1.png)
+
 ## Examining individual DE genes from top to bottom:
 
-- “topTreat”/ “topTable” - from toptreat or eBayes to list top DE genes
+- “topTreat”/ “topTable” - from toptreat or eBayes to list top DE genes.
 
 - toptreat arranges DE genes chronologically in increasing order using
   log-FC, average log-CPM, moderated t-statistics, raw and adjusted
   p-value for each gene
 
 - n=Inf -\> all genes
+
+------------------------------------------------------------------------
+
+- basal.vs.lp \<- topTreat(tfit, coef=1, n=Inf)
+- basal.vs.ml \<- topTreat(tfit, coef=2, n=Inf)
+- head(basal.vs.lp)
 
 <!-- -->
 
@@ -304,17 +334,29 @@ threshold
 ## Graphical representation of DE gene results:
 
 - Mean-difference plots are ideally utlized to display log-FC from
-  linear model fit against log-CPM values using “plotMD” function
+  linear model fit against log-CPM values using “plotMD” function.
 
-- Glimma package offer interactive interface for MDplot by “glMDPlot”
+- Glimma package offer interactive interface for MDplot by “glMDPlot”.
 
 - Glimma option allows brower viewing option - convenient for including
-  them as linked files from an Rmarkdown
+  them as linked files from an Rmarkdown.
 
-![](Index_files/figure-commonmark/unnamed-chunk-32-1.png)
+------------------------------------------------------------------------
 
-## Conclusion
+![](Index_files/figure-commonmark/unnamed-chunk-31-1.png)
 
-What interesting things / skills did you learn? What challenges did you
-come across? - Main result - Limitation - Next steps
->>>>>>> ffdc71dda86023b995c9be667f77c6f9572d752a
+------------------------------------------------------------------------
+
+## Graphical representation of DE gene results:
+
+- MDplot - allows user to visualize all genes or individual genes.
+
+- Heatmaps - Ideal option to visualize a subset of genes.
+
+- “heatmap.2” from gplots package allows user to create heatmap for
+  genes subset analysis.
+
+------------------------------------------------------------------------
+
+<img src="Index_files/figure-commonmark/unnamed-chunk-32-1.png"
+style="width:100.0%" />

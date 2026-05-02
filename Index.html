@@ -230,13 +230,16 @@ Kate, Jessica, Kardam
 <p>Preprocessing removes uninformative genes, corrects library-size effects, and checks overall sample quality before modeling</p>
 </section>
 <section id="differential-gene-analysis" class="slide level2">
-<h2>Differential Gene Analysis</h2>
+<h2>Differential Gene Analysis:</h2>
 <ul>
-<li>To determine which genes are expressed at different levels between three cell population profiled</li>
+<li>To determine which genes are expressed at different levels between three cell population profiled.</li>
 <li>linear model fitting (assuming normally distributed data)</li>
-<li>Intercept act as anchor point for comparision against baseline</li>
-<li>Without intercept, absolute expression levels can be determined</li>
+<li>Intercept act as anchor point for comparision against baseline.</li>
+<li>Without intercept, absolute expression levels can be determined.</li>
 </ul>
+</section>
+<section id="model-matrix" class="slide level2">
+<h2>Model Matrix:</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>  Basal LP ML laneL006 laneL008
@@ -261,12 +264,15 @@ attr(,"contrasts")$lane
 </div>
 </section>
 <section id="differential-gene-analysis-1" class="slide level2">
-<h2>Differential Gene Analysis</h2>
+<h2>Differential Gene Analysis:</h2>
 <ul>
-<li><p>“makecontrast” function from limma package allows user to draw contrax matrix for pairwise comparisions</p></li>
-<li><p>limma provides duplicateCorrelation to deal with technical replicates</p></li>
-<li><p>limma provides flexibility to perform interactive studies for ex. testing drug reaction in Lane 6 and Lane 8</p></li>
+<li><p>“makecontrast” function from limma package allows user to draw contrax matrix for pairwise comparisions.</p></li>
+<li><p>limma provides duplicateCorrelation to deal with technical replicates.</p></li>
+<li><p>limma provides flexibility to perform interactive studies for ex. testing drug reaction in Lane 6 and Lane 8.</p></li>
 </ul>
+</section>
+<section id="contrast-matrix" class="slide level2">
+<h2>Contrast Matrix:</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>          Contrasts
@@ -282,18 +288,21 @@ Levels     BasalvsLP BasalvsML LPvsML
 <section id="heteroscedascity-and-voom-weights" class="slide level2">
 <h2>Heteroscedascity and Voom weights</h2>
 <ul>
-<li><p>Homoscedascity: In linear models, mean-variance relationship is assumed to be linear. Mean and variance changes equally. Exactly opposite is ‘Heteroscedascity’</p></li>
-<li><p>In RNA-Seq count data, the Negative Binomial distribution assumes quadratic mean-variation relationship</p></li>
+<li><p>Homoscedascity: In linear models, mean-variance relationship is assumed to be linear. Mean and variance changes equally. Exactly opposite is ‘Heteroscedascity’.</p></li>
+<li><p>In RNA-Seq count data, the Negative Binomial distribution assumes quadratic mean-variation relationship.</p></li>
 <li><p>Overdispersion observed due to large difference between house-keeping genes and highly expressed genes</p></li>
-<li><p>In limma, linear modelling is carried out on log-CPM values</p></li>
+<li><p>In limma, linear modelling is carried out on log-CPM values.</p></li>
 </ul>
 </section>
 <section id="heteroscedascity-and-voom-weights-1" class="slide level2">
-<h2>Heteroscedascity and Voom weights</h2>
+<h2>Heteroscedascity and Voom weights:</h2>
 <ul>
 <li><p>“voom” function act as link to bridge limma(built for microarrays) to expression data. It addresses scale problem (calculates into CPM) and “normalize.method” argument to normalize library size and estimates mean-variance relationship (non-linear - overdispersion)</p></li>
-<li><p>“Voom weights” fixes the noise related to genes whereas Voomqualityweight addresses the noise generated from inter-sample variation</p></li>
+<li><p>“Voom weights” fixes the noise related to genes whereas Voomqualityweight addresses the noise generated from inter-sample variation.</p></li>
 </ul>
+</section>
+<section id="voom-mean-variance-trend" class="slide level2">
+<h2>Voom: Mean Variance Trend:</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>An object of class "EList"
@@ -374,28 +383,17 @@ attr(,"contrasts")$lane
 $span
 [1] 0.4010438</code></pre>
 </div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="Index_files/figure-revealjs/unnamed-chunk-25-1.png" width="960"></p>
-</figure>
+
 </div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="Index_files/figure-revealjs/unnamed-chunk-26-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Means (x-axis) and variances (y-axis) of each gene are plotted to show the dependence between the two before voom is applied to the data (left panel) and how the trend is removed after voom precision weights are applied to the data (right panel)</p>
+<img data-src="Index_files/figure-revealjs/unnamed-chunk-25-1.png" width="960" class="r-stretch"></section>
+<section id="final-model-mean-variance-trend" class="slide level2">
+<h2>Final model Mean-Variance trend:</h2>
+
+<img data-src="Index_files/figure-revealjs/unnamed-chunk-26-1.png" width="960" class="r-stretch"><p>Means (x-axis) and variances (y-axis) of each gene are plotted to show the dependence between the two before voom is applied to the data (left panel) and how the trend is removed after voom precision weights are applied to the data (right panel)</p>
 </section>
 <section id="examining-differentially-expressed-genes" class="slide level2">
 <h2>Examining Differentially Expressed Genes:</h2>
-<p>Summary of Differentially expressed gene:</p>
+<p>Summary of DEG:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>       BasalvsLP BasalvsML LPvsML
@@ -404,7 +402,10 @@ NotSig      7118      7008  10953
 Up          4860      4680   2530</code></pre>
 </div>
 </div>
-<p>Treat method - Method can be applied for stricter definition on significance based on t-statistics. This allows user to define a log-FC threshold</p>
+</section>
+<section id="examining-differentially-expressed-genes-1" class="slide level2">
+<h2>Examining Differentially Expressed Genes:</h2>
+<p>Treat method - Method can be applied for stricter definition on significance based on t-statistics. This allows user to define a log-FC threshold.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>       BasalvsLP BasalvsML LPvsML
@@ -413,37 +414,23 @@ NotSig     12977     12793  16211
 Up          2014      2054    190</code></pre>
 </div>
 </div>
-<p>Extracting DE genes:</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>       BasalvsLP BasalvsML LPvsML
-Down        1633      1777    223
-NotSig     12977     12793  16211
-Up          2014      2054    190</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2782</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] "Xkr4"          "Rgs20"         "Cpa6"          "A830018L16Rik"
- [5] "Sulf1"         "Eya1"          "Msc"           "Sbspon"       
- [9] "Pi15"          "Crispld1"      "Kcnq5"         "Rims1"        
-[13] "Khdrbs2"       "Ptpn18"        "Prss39"        "Arhgef4"      
-[17] "Cnga3"         "Cracdl"        "Aff3"          "Npas2"        </code></pre>
-</div>
-</div>
-<p>O - represents genes with levels unchanged 1 - Up regulated genes -1 - Down regulated genes</p>
+</section>
+<section id="venn-diagram" class="slide level2">
+<h2>Venn Diagram:</h2>
 <p>Venn diagram showing the number of genes DE in the comparison between basal versus LP only (left), basal versus ML only (right), and the number of genes that are DE in both comparisons (center)</p>
-<p>The number of genes that are not DE in either comparison are marked in the bottom-right</p>
+<p>The number of genes that are not DE in either comparison are marked in the bottom-right.</p>
 
-<img data-src="Index_files/figure-revealjs/unnamed-chunk-30-1.png" width="960" class="r-stretch"></section>
+<img data-src="Index_files/figure-revealjs/unnamed-chunk-29-1.png" width="960" class="r-stretch"></section>
 <section id="examining-individual-de-genes-from-top-to-bottom" class="slide level2">
 <h2>Examining individual DE genes from top to bottom:</h2>
 <ul>
-<li><p>“topTreat”/ “topTable” - from toptreat or eBayes to list top DE genes</p></li>
+<li><p>“topTreat”/ “topTable” - from toptreat or eBayes to list top DE genes.</p></li>
 <li><p>toptreat arranges DE genes chronologically in increasing order using log-FC, average log-CPM, moderated t-statistics, raw and adjusted p-value for each gene</p></li>
 <li><p>n=Inf -&gt; all genes</p></li>
 </ul>
+</section>
+<section id="examining-individual-de-genes-from-top-to-bottom-1" class="slide level2">
+<h2>Examining individual DE genes from top to bottom:</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>       ENTREZID SYMBOL TXCHROM     logFC  AveExpr         t      P.Value
@@ -466,37 +453,31 @@ Up          2014      2054    190</code></pre>
 <section id="graphical-representation-of-de-gene-results" class="slide level2">
 <h2>Graphical representation of DE gene results:</h2>
 <ul>
-<li><p>Mean-difference plots are ideally utlized to display log-FC from linear model fit against log-CPM values using “plotMD” function</p></li>
-<li><p>Glimma package offer interactive interface for MDplot by “glMDPlot”</p></li>
-<li><p>Glimma option allows brower viewing option - convenient for including them as linked files from an Rmarkdown</p></li>
+<li><p>Mean-difference plots are ideally utlized to display log-FC from linear model fit against log-CPM values using “plotMD” function.</p></li>
+<li><p>Glimma package offer interactive interface for MDplot by “glMDPlot”.</p></li>
+<li><p>Glimma option allows brower viewing option - convenient for including them as linked files from an Rmarkdown.</p></li>
 </ul>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="Index_files/figure-revealjs/unnamed-chunk-32-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>MDplot - allows user to visualize all genes or individual genes</p>
-<p>Heatmaps - Ideal option to visualize a subset of genes</p>
-<p>“heatmap.2” from gplots package allows user to create heatmap for genes subset analysis</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="Index_files/figure-revealjs/unnamed-chunk-33-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
 </section>
-<section id="conclusion" class="slide level2">
-<h2>Conclusion</h2>
-<p>What interesting things / skills did you learn? What challenges did you come across? - Main result - Limitation - Next steps</p>
+<section id="md-plot" class="slide level2">
+<h2>MD plot:</h2>
 
+<img data-src="Index_files/figure-revealjs/unnamed-chunk-31-1.png" width="960" class="r-stretch"></section>
+<section id="md-plot-by-glimma" class="slide level2">
+<h2>MD plot by Glimma:</h2>
 </section>
+<section id="graphical-representation-of-de-gene-results-1" class="slide level2">
+<h2>Graphical representation of DE gene results:</h2>
+<ul>
+<li><p>MDplot - allows user to visualize all genes or individual genes.</p></li>
+<li><p>Heatmaps - Ideal option to visualize a subset of genes.</p></li>
+<li><p>“heatmap.2” from gplots package allows user to create heatmap for genes subset analysis.</p></li>
+</ul>
+</section>
+<section id="heatmap" class="slide level2">
+<h2>Heatmap:</h2>
+
+
+<img data-src="Index_files/figure-revealjs/unnamed-chunk-33-1.png" style="width:100.0%" class="r-stretch"></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
@@ -713,42 +694,80 @@ Up          2014      2054    190</code></pre>
       });
     </script>
     
+
     <script>
+
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
       // slide changes (different for each slide format).
+
       (function () {
+
         // dispatch for htmlwidgets
+
         function fireSlideEnter() {
+
           const event = window.document.createEvent("Event");
+
           event.initEvent("slideenter", true, true);
+
           window.document.dispatchEvent(event);
+
         }
+
+    
 
         function fireSlideChanged(previousSlide, currentSlide) {
+
           fireSlideEnter();
 
+    
+
           // dispatch for shiny
+
           if (window.jQuery) {
+
             if (previousSlide) {
+
               window.jQuery(previousSlide).trigger("hidden");
+
             }
+
             if (currentSlide) {
+
               window.jQuery(currentSlide).trigger("shown");
+
             }
+
           }
+
         }
+
+    
 
         // hookup for slidy
+
         if (window.w3c_slidy) {
+
           window.w3c_slidy.add_observer(function (slide_num) {
+
             // slide_num starts at position 1
+
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
           });
+
         }
 
+    
+
       })();
+
     </script>
+
+    
 
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
