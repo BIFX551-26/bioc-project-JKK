@@ -135,6 +135,9 @@ representing Basal, LP, and ML mammary cell populations
 
 - Data packaging converts separate raw files into one structured, analysis-ready
 dataset
+- edgeR: combines the raw count files into a DGEList
+- Mus.musculus: adds mouse gene annotations like symbols and chromosome info
+- R.utils: unzips the downloaded .gz count files
 
 ```{r}
 url <- "https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE63310&format=file"
@@ -400,8 +403,6 @@ design <- model.matrix(~0+group+lane)
 colnames(design) <- gsub("group", "", colnames(design))
 design
 ```
-
-
 
 
 ::: {.content-visible when-format="revealjs"}
