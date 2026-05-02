@@ -468,15 +468,6 @@ Heatmaps - Ideal option to visualize a subset of genes.
 
 "heatmap.2"  from gplots package allows user to create heatmap for genes subset analysis.
 
-# library(gplots)
-# basal.vs.lp.topgenes <- basal.vs.lp$ENTREZID[1:100]
-# i <- which(v$genes$ENTREZID %in% basal.vs.lp.topgenes)
-# mycol <- colorpanel(1000,"blue","white","red")
-# heatmap.2(lcpm[i,],   scale="row",
-#  labRow=v$genes$SYMBOL[i], labCol=group, 
-#  col=mycol, trace="none", density.info="none", 
-# margin=c(8,6), lhei=c(2,10), dendrogram="column")
-
 :::
 
 ::: {.content-visible when-format="revealjs"}
