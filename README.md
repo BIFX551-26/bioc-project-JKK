@@ -71,6 +71,8 @@ analysis-ready dataset.
   expression, and normalized the libraries using TMM normalization with
   edgeR.
 
+![](Index_files/figure-commonmark/unnamed-chunk-18-1.png)
+
 - We then used MDS plots to check whether samples clustered by biology
   rather than technical artifacts.
 
@@ -80,13 +82,6 @@ analysis-ready dataset.
 
 Preprocessing removes uninformative genes, corrects library-size
 effects, and checks overall sample quality before modeling.
-
-    [1] 0.05770899 6.08287835 1.22023972 1.16478991 1.19661094 1.04659233 1.15048074
-    [8] 1.25431164 1.10901983
-
-![](Index_files/figure-commonmark/unnamed-chunk-18-1.png)
-
-![](Index_files/figure-commonmark/unnamed-chunk-19-1.png)
 
 ## Differential Gene Analysis
 
@@ -240,7 +235,7 @@ effects, and checks overall sample quality before modeling.
     $span
     [1] 0.4010438
 
-![](Index_files/figure-commonmark/unnamed-chunk-24-1.png)
+![](Index_files/figure-commonmark/unnamed-chunk-25-1.png)
 
 Means (x-axis) and variances (y-axis) of each gene are plotted to show
 the dependence between the two before voom is applied to the data (left
@@ -302,7 +297,7 @@ threshold.
 - Glimma option allows brower viewing option - convenient for including
   them as linked files from an Rmarkdown.
 
-![](Index_files/figure-commonmark/unnamed-chunk-31-1.png)
+![](Index_files/figure-commonmark/unnamed-chunk-32-1.png)
 
 ## Conclusion
 

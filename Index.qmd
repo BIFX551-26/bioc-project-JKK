@@ -152,18 +152,7 @@ for(i in paste(files, ".gz", sep=""))
 - Before comparing gene expression across groups, we transformed raw counts to CPM and log-CPM, filtered
 out genes with very low expression, and normalized the libraries using TMM normalization with edgeR.
 
-- We then used MDS plots to check whether samples clustered by biology rather than technical artifacts.
 
-- This preprocessing step reduces noise, improves comparability across samples, and helps confirm that the data are ready for differential expression testing.
-
-::: {.content-visible when-format="revealjs"}
-
-## Data Pre-Processing
-
-:::
-
-Preprocessing removes uninformative genes, corrects library-size effects, and checks
-overall sample quality before modeling.
 
 ```{r}
 #| include: false
@@ -280,18 +269,33 @@ x2$counts[,2] <- x2$counts[,2]*5
 ```
 
 ```{r}
-par(mfrow=c(1,2))
-lcpm <- cpm(x2, log=TRUE)
-boxplot(lcpm, las=2, col=col, main="")
-title(main="A. Example: Unnormalised data",ylab="Log-cpm")
-x2 <- calcNormFactors(x2)  
-x2$samples$norm.factors
+ #| results: "hide"
+ par(mfrow=c(1,2))
+ 
+ lcpm <- cpm(x2, log=TRUE)
+ boxplot(lcpm, las=2, col=col, main="")
+ title(main="A. Example: Unnormalised data", ylab="Log-cpm")
+ 
+ x2 <- calcNormFactors(x2)
+ lcpm <- cpm(x2, log=TRUE)
+ boxplot(lcpm, las=2, col=col, main="")
+ title(main="B. Example: Normalised data", ylab="Log-cpm")
 ```
 
 ```{r}
-lcpm <- cpm(x2, log=TRUE)
-boxplot(lcpm, las=2, col=col, main="")
-title(main="B. Example: Normalised data",ylab="Log-cpm")
+#combined this chunk and the one below it in the code block above
+#par(mfrow=c(1,2))
+#lcpm <- cpm(x2, log=TRUE)
+#boxplot(lcpm, las=2, col=col, main="")
+#title(main="A. Example: Unnormalised data",ylab="Log-cpm")
+#x2 <- calcNormFactors(x2)  
+#x2$samples$norm.factors
+```
+
+```{r}
+#lcpm <- cpm(x2, log=TRUE)
+#boxplot(lcpm, las=2, col=col, main="")
+#title(main="B. Example: Normalised data",ylab="Log-cpm")
 ```
 
 ```{r}
@@ -317,7 +321,24 @@ glMDSPlot(lcpm, labels=paste(group, lane, sep="_"),
 ```
 
 
+::: {.content-visible when-format="revealjs"}
 
+## Data Pre-Processing
+
+:::
+
+- We then used MDS plots to check whether samples clustered by biology rather than technical artifacts.
+
+- This preprocessing step reduces noise, improves comparability across samples, and helps confirm that the data are ready for differential expression testing.
+
+::: {.content-visible when-format="revealjs"}
+
+## Data Pre-Processing
+
+:::
+
+Preprocessing removes uninformative genes, corrects library-size effects, and checks
+overall sample quality before modeling.
 
 
 
