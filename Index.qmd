@@ -1,21 +1,18 @@
 ---
----
 title: "RNA-seq analysis with RNASeq123 workflow"
 author: "Kate, Jessica, Kardam"
 bibliography: References- BIFX 551 BioConductor Project.bib
 format:
   gfm:
     output-file: README.md
-    execute:
-      echo: false
-      eval: true
   revealjs:
     slide-level: 4
-    execute:
-      echo: false
-      eval: true
+execute:
+  echo: false
+  warning: false
+  message: false
 ---
----
+
 Load needed packages:
 
 
@@ -47,6 +44,9 @@ library(RNAseq123)
 Load Dependencies for flowchart
 
 ```{r}
+if (!requireNamespace("ggflowchart", quietly = TRUE)) {
+   install.packages("ggflowchart", repos = "https://cloud.r-project.org")
+ }
 require("ggflowchart")
 library(ggflowchart)
 library(tibble)
@@ -292,6 +292,7 @@ contr.matrix <- makeContrasts(
    levels = colnames(design))
 contr.matrix
 ```
+:::
 
 
 ## Heteroscedascity and Voom weights:
@@ -325,6 +326,7 @@ vfit <- contrasts.fit(vfit, contrasts=contr.matrix)
 efit <- eBayes(vfit)
 plotSA(efit, main="Final model: Mean-variance trend")
 ```
+:::
 
 Means (x-axis) and variances (y-axis) of each gene are plotted to show the dependence between the two before voom is applied to the data (left panel) and how the trend is removed after voom precision weights are applied to the data (right panel)
 
@@ -363,6 +365,7 @@ head(tfit$genes$SYMBOL[de.common], n=20)
  O - represents genes with levels unchanged
  1 - Up regulated genes
 -1 - Down regulated genes
+:::
 
 :::{.content-visible when-format="revealjs"}
 
@@ -375,6 +378,7 @@ vennDiagram(dt[,1:2], circle.col=c("turquoise", "salmon"))
 
 ```
 
+:::
 
 ## Examining individual DE genes from top to bottom:
 
@@ -422,6 +426,8 @@ Heatmaps - Ideal option to visualize a subset of genes.
 #  col=mycol, trace="none", density.info="none", 
 # margin=c(8,6), lhei=c(2,10), dendrogram="column")
 
+:::
+
 :::{.content-visible when-format="revealjs"}
 ```{r, fig.width=10, fig.height=14}
 library(gplots)
@@ -433,3 +439,5 @@ heatmap.2(lcpm[i,], scale="row",
    col=mycol, trace="none", density.info="none", 
    margin=c(8,6), lhei=c(2,10), dendrogram="column")
 ```
+
+:::
