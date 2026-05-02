@@ -16,11 +16,45 @@ format:
       eval: true
 ---
 ---
+Load Dependencies
+
+```{r}
+require("ggflowchart")
+library(ggflowchart)
+library(tibble)
+```
 
 
+## Indroduction
+
+RNAseq123 Workflow:
+
+```{r}
+# Define steps
+steps <- tibble(
+    from = c("Set-up", "Data Packaging", "Data pre-processing", "Differential expression analysis"),
+    to   = c("Data Packaging", "Data pre-processing", "Differential expression analysis", "Gene set testing with camera")
+  
+)
+
+# Draw flowchart
+ggflowchart(steps, colour = "green", family = "mono", text_size = 4, text_colour = "purple", arrow_colour = "orange", x_nudge = 0.35, y_nudge = 0.35)
+```
 
 
+## Experimental Data
 
+“A pooled shRNA screen for regulators of primary mammary stem and progenitor cells identifies roles for Asap1 and Prox1”
+
+This experiment used RNA-seq-based expression profiling in mouse mammary stem cell (MaSC)-enriched basal cells to look for candidate regulatory genes.
+
+Mammary stem cells are often used in RNA-seq analyses as they are highly proliferative and have a high capacity for differentiation.
+
+Regulatory genes produce proteins that turn expression on or off and are therefore important target genes for studying cancer as well as other developmental processes.
+
+Using retroviral aided knockdown experiments and RNA-seq, the researchers were able to propose that the Asap1 gene is a negative regulator. 
+
+The gene count file used in this analysis was created by aligning reads with the mouse reference genome using the align function (Rsubread) followed by gene-level summarization using featureCounts.
 
 
 
