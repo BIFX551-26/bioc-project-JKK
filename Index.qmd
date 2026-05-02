@@ -2,7 +2,7 @@
 ---
 title: "RNA-seq analysis with RNASeq123 workflow"
 author: "Kate, Jessica, Kardam"
-bibliography: references.bib
+bibliography: References- BIFX 551 BioConductor Project.bib
 format:
   gfm:
     output-file: README.md
@@ -16,7 +16,35 @@ format:
       eval: true
 ---
 ---
-Load Dependencies
+Load needed packages:
+
+
+```{r}
+
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+  install.packages("BiocManager", repos = "https://cloud.r-project.org")
+}
+
+if (!requireNamespace("RNAseq123", quietly = TRUE)) {
+  BiocManager::install("RNAseq123", ask = FALSE, update = FALSE)
+}
+
+if (!requireNamespace("gplots", quietly = TRUE)) {
+  install.packages("gplots", repos = "https://cloud.r-project.org")
+}
+
+library(limma)
+library(Glimma)
+library(edgeR)
+library(Mus.musculus)
+library(gplots)
+library(RNAseq123)
+```
+
+
+
+
+Load Dependencies for flowchart
 
 ```{r}
 require("ggflowchart")
@@ -56,27 +84,153 @@ Using retroviral aided knockdown experiments and RNA-seq, the researchers were a
 
 The gene count file used in this analysis was created by aligning reads with the mouse reference genome using the align function (Rsubread) followed by gene-level summarization using featureCounts.
 
+```{r}
+url <- "https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE63310&format=file"
+utils::download.file(url, destfile="GSE63310_RAW.tar", mode="wb") 
+utils::untar("GSE63310_RAW.tar", exdir = ".")
+files <- c("GSM1545535_10_6_5_11.txt", "GSM1545536_9_6_5_11.txt", "GSM1545538_purep53.txt",
+  "GSM1545539_JMS8-2.txt", "GSM1545540_JMS8-3.txt", "GSM1545541_JMS8-4.txt",
+  "GSM1545542_JMS8-5.txt", "GSM1545544_JMS9-P7c.txt", "GSM1545545_JMS9-P8c.txt")
+for(i in paste(files, ".gz", sep=""))
+  R.utils::gunzip(i, overwrite=TRUE)
+```
 
 
+```{r}
+x <- readDGE(files, columns=c(1,3))
+class(x)
+
+dim(x)
+```
+
+```{r}
+samplenames <- substring(colnames(x), 12, nchar(colnames(x)))
+samplenames
+```
+
+```{r}
+colnames(x) <- samplenames
+group <- as.factor(c("LP", "ML", "Basal", "Basal", "ML", "LP", 
+                     "Basal", "ML", "LP"))
+x$samples$group <- group
+lane <- as.factor(rep(c("L004","L006","L008"), c(3,4,2)))
+x$samples$lane <- lane
+x$samples
+```
 
 
+```{r}
+geneid <- rownames(x)
+genes <- select(Mus.musculus, keys=geneid, columns=c("SYMBOL", "TXCHROM"), 
+                keytype="ENTREZID")
+head(genes)
+```
 
 
+```{r}
+genes <- genes[!duplicated(genes$ENTREZID),]
+```
+
+```{r}
+x$genes <- genes
+x
+```
+
+```{r}
+cpm <- cpm(x)
+lcpm <- cpm(x, log=TRUE)
+```
+
+```{r}
+L <- mean(x$samples$lib.size) * 1e-6
+M <- median(x$samples$lib.size) * 1e-6
+c(L, M)
+
+summary(lcpm)
+```
+
+```{r}
+table(rowSums(x$counts==0)==9)
+```
+
+```{r}
+keep.exprs <- filterByExpr(x, group=group)
+x <- x[keep.exprs,, keep.lib.sizes=FALSE]
+dim(x)
+```
+
+```{r}
+lcpm.cutoff <- log2(10/M + 2/L)
+library(RColorBrewer)
+nsamples <- ncol(x)
+col <- brewer.pal(nsamples, "Paired")
+par(mfrow=c(1,2))
+plot(density(lcpm[,1]), col=col[1], lwd=2, ylim=c(0,0.26), las=2, main="", xlab="")
+title(main="A. Raw data", xlab="Log-cpm")
+abline(v=lcpm.cutoff, lty=3)
+for (i in 2:nsamples){
+den <- density(lcpm[,i])
+lines(den$x, den$y, col=col[i], lwd=2)
+}
+legend("topright", samplenames, text.col=col, bty="n")
+lcpm <- cpm(x, log=TRUE)
+plot(density(lcpm[,1]), col=col[1], lwd=2, ylim=c(0,0.26), las=2, main="", xlab="")
+title(main="B. Filtered data", xlab="Log-cpm")
+abline(v=lcpm.cutoff, lty=3)
+for (i in 2:nsamples){
+den <- density(lcpm[,i])
+lines(den$x, den$y, col=col[i], lwd=2)
+}
+legend("topright", samplenames, text.col=col, bty="n")
+```
 
 
+```{r}
+x <- calcNormFactors(x, method = "TMM")
+x$samples$norm.factors
+```
 
+```{r}
+x2 <- x
+x2$samples$norm.factors <- 1
+x2$counts[,1] <- ceiling(x2$counts[,1]*0.05)
+x2$counts[,2] <- x2$counts[,2]*5
+```
 
+```{r}
+par(mfrow=c(1,2))
+lcpm <- cpm(x2, log=TRUE)
+boxplot(lcpm, las=2, col=col, main="")
+title(main="A. Example: Unnormalised data",ylab="Log-cpm")
+x2 <- calcNormFactors(x2)  
+x2$samples$norm.factors
+```
 
+```{r}
+lcpm <- cpm(x2, log=TRUE)
+boxplot(lcpm, las=2, col=col, main="")
+title(main="B. Example: Normalised data",ylab="Log-cpm")
+```
 
+```{r}
+lcpm <- cpm(x, log=TRUE)
+par(mfrow=c(1,2))
+col.group <- group
+levels(col.group) <-  brewer.pal(nlevels(col.group), "Set1")
+col.group <- as.character(col.group)
+col.lane <- lane
+levels(col.lane) <-  brewer.pal(nlevels(col.lane), "Set2")
+col.lane <- as.character(col.lane)
+plotMDS(lcpm, labels=group, col=col.group)
+title(main="A. Sample groups")
+plotMDS(lcpm, labels=lane, col=col.lane, dim=c(3,4))
+title(main="B. Sequencing lanes")
+```
 
-
-
-
-
-
-
-
-
+```{r}
+glMDSPlot(lcpm, labels=paste(group, lane, sep="_"), 
+          groups=x$samples[,c(2,5)], launch=FALSE)
+```
 
 
 
@@ -156,7 +310,7 @@ contr.matrix
 
 
 ```{r}
-eval: FALSE
+#eval: FALSE
 par(mfrow=c(1,2))
 v <- voom(x, design, plot=TRUE)
 v
@@ -269,7 +423,7 @@ Heatmaps - Ideal option to visualize a subset of genes.
 # margin=c(8,6), lhei=c(2,10), dendrogram="column")
 
 :::{.content-visible when-format="revealjs"}
-```{r}
+```{r, fig.width=10, fig.height=14}
 library(gplots)
 basal.vs.lp.topgenes <- basal.vs.lp$ENTREZID[1:100]
 i <- which(v$genes$ENTREZID %in% basal.vs.lp.topgenes)
