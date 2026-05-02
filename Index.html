@@ -191,6 +191,9 @@ Kate, Jessica, Kardam
 <h2>Data Packaging Overview</h2>
 <ul>
 <li>Data packaging converts separate raw files into one structured, analysis-ready dataset</li>
+<li>edgeR: combines the raw count files into a DGEList</li>
+<li>Mus.musculus: adds mouse gene annotations like symbols and chromosome info</li>
+<li>R.utils: unzips the downloaded .gz count files</li>
 </ul>
 </section>
 <section id="data-pre-processing" class="slide level2">
@@ -473,7 +476,7 @@ Up          2014      2054    190</code></pre>
 
 <img data-src="Index_files/figure-revealjs/unnamed-chunk-32-1.png" width="960" class="r-stretch"></section>
 <section id="examining-individual-de-genes-from-top-to-bottom" class="slide level2">
-<h2>Examining individual DE genes from top to bottom:</h2>
+<h2>Examining Individual DE Genes from Top to Bottom:</h2>
 <ul>
 <li><p>“topTreat”/ “topTable” - from toptreat or eBayes to list top DE genes</p></li>
 <li><p>toptreat arranges DE genes chronologically in increasing order using log-FC, average log-CPM, moderated t-statistics, raw and adjusted p-value for each gene</p></li>
@@ -498,42 +501,43 @@ Up          2014      2054    190</code></pre>
 </div>
 </div>
 </section>
-<section id="graphical-representation-of-de-gene-results" class="slide level2">
-<h2>Graphical representation of DE gene results:</h2>
+<section id="useful-graphical-representations-of-differential-expression-results" class="slide level2">
+<h2>Useful Graphical Representations of Differential Expression Results</h2>
 <ul>
-<li><p>Mean-difference plots are ideally utlized to display log-FC from linear model fit against log-CPM values using “plotMD” function</p></li>
-<li><p>Glimma package offer interactive interface for MDplot by “glMDPlot”</p></li>
-<li><p>Glimma option allows brower viewing option - convenient for including them as linked files from an Rmarkdown</p></li>
+<li><p><code>plotMD()</code> summarizes all genes by plotting log-fold change against average log-CPM, with DE genes highlighted</p></li>
+<li><p><code>glMDPlot()</code> from <strong>Glimma</strong> adds an interactive MD plot so individual genes can be searched and inspected sample-by-sample</p></li>
 </ul>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="Index_files/figure-revealjs/unnamed-chunk-34-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>MDplot - allows user to visualize all genes or individual genes</p>
-<p>Heatmaps - Ideal option to visualize a subset of genes</p>
-<p>“heatmap.2” from gplots package allows user to create heatmap for genes subset analysis</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="Index_files/figure-revealjs/unnamed-chunk-35-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
 </section>
+<section id="useful-graphical-representations-of-differential-expression-results-1" class="slide level2">
+<h2>Useful Graphical Representations of Differential Expression Results</h2>
+
+<img data-src="Index_files/figure-revealjs/unnamed-chunk-34-1.png" width="960" class="r-stretch"></section>
+<section id="useful-graphical-representations-of-differential-expression-results-2" class="slide level2">
+<h2>Useful Graphical Representations of Differential Expression Results</h2>
+<ul>
+<li>A heatmap of the top 100 DE genes shows whether samples cluster by biology and whether related groups share expression patterns</li>
+<li>Focuses on the strongest DE genes and highlights sample clustering by cell type</li>
+</ul>
+</section>
+<section id="useful-graphical-representations-of-de-results" class="slide level2">
+<h2>Useful Graphical Representations of DE Results</h2>
+
+<img data-src="Index_files/figure-revealjs/unnamed-chunk-36-1.png" width="4800" class="r-stretch"></section>
 <section id="results" class="slide level2">
 <h2>Results</h2>
-<p>Placeholder for our results slide</p>
+<ul>
+<li>Placeholder for our results slide</li>
+</ul>
 </section>
 <section id="conclusion" class="slide level2">
 <h2>Conclusion</h2>
-<p>What interesting things / skills did you learn? What challenges did you come across? - Main result - Limitation - Next steps</p>
+<ul>
+<li>What interesting things / skills did you learn?</li>
+<li>What challenges did you come across?</li>
+<li>Main result</li>
+<li>Limitation</li>
+<li>Next steps</li>
+</ul>
 
 </section>
     </div>

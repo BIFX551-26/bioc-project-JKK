@@ -65,6 +65,10 @@ a standard Bioconductor RNA-seq workflow
 
 - Data packaging converts separate raw files into one structured,
   analysis-ready dataset
+- edgeR: combines the raw count files into a DGEList
+- Mus.musculus: adds mouse gene annotations like symbols and chromosome
+  info
+- R.utils: unzips the downloaded .gz count files
 
 ## Data Pre-Processing
 
@@ -299,7 +303,7 @@ threshold
     NotSig     12977     12793  16211
     Up          2014      2054    190
 
-## Examining individual DE genes from top to bottom:
+## Examining Individual DE Genes from Top to Bottom:
 
 - “topTreat”/ “topTable” - from toptreat or eBayes to list top DE genes
 
@@ -326,23 +330,31 @@ threshold
     228543 1.672259e-06
     70350  1.672259e-06
 
-## Graphical representation of DE gene results:
+## Useful Graphical Representations of Differential Expression Results
 
-- Mean-difference plots are ideally utlized to display log-FC from
-  linear model fit against log-CPM values using “plotMD” function
+- `plotMD()` summarizes all genes by plotting log-fold change against
+  average log-CPM, with DE genes highlighted
 
-- Glimma package offer interactive interface for MDplot by “glMDPlot”
-
-- Glimma option allows brower viewing option - convenient for including
-  them as linked files from an Rmarkdown
+- `glMDPlot()` from **Glimma** adds an interactive MD plot so individual
+  genes can be searched and inspected sample-by-sample
 
 ![](Index_files/figure-commonmark/unnamed-chunk-34-1.png)
 
+- A heatmap of the top 100 DE genes shows whether samples cluster by
+  biology and whether related groups share expression patterns
+- Focuses on the strongest DE genes and highlights sample clustering by
+  cell type
+
+![](Index_files/figure-commonmark/unnamed-chunk-36-1.png)
+
 ## Results
 
-Placeholder for our results slide
+- Placeholder for our results slide
 
 ## Conclusion
 
-What interesting things / skills did you learn? What challenges did you
-come across? - Main result - Limitation - Next steps
+- What interesting things / skills did you learn?
+- What challenges did you come across?
+- Main result
+- Limitation
+- Next steps

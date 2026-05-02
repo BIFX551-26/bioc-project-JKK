@@ -518,7 +518,7 @@ vennDiagram(dt[,1:2], circle.col=c("turquoise", "salmon"))
 
 :::
 
-## Examining individual DE genes from top to bottom:
+## Examining Individual DE Genes from Top to Bottom:
 
 - "topTreat"/ "topTable" - from toptreat or eBayes to list top DE genes
  
@@ -533,32 +533,41 @@ head(basal.vs.lp)
 ```
 
 
-## Graphical representation of DE gene results:
+## Useful Graphical Representations of Differential Expression Results
 
-- Mean-difference plots are ideally utlized to display log-FC from linear model fit against log-CPM values using "plotMD" function
+- `plotMD()` summarizes all genes by plotting log-fold change against average log-CPM, with DE genes highlighted
 
-- Glimma package offer interactive interface for MDplot by "glMDPlot"
+- `glMDPlot()` from **Glimma** adds an interactive MD plot so individual genes can be searched and inspected sample-by-sample
 
-- Glimma option allows brower viewing option - convenient for including them as linked files from an Rmarkdown
+::: {.content-visible when-format="revealjs"}
+
+## Useful Graphical Representations of Differential Expression Results
+
+:::
 
 ```{r}
 plotMD(tfit, column=1, status=dt[,1], main=colnames(tfit)[1], 
        xlim=c(-8,13))
 ```
 
+```{r}
+glMDPlot(tfit, coef=1, status=dt, main=colnames(tfit)[1],
+         side.main="ENTREZID", counts=lcpm, groups=group, launch=FALSE)
+```
+
 
 ::: {.content-visible when-format="revealjs"}
-
-MDplot - allows user to visualize all genes or individual genes
-
-Heatmaps - Ideal option to visualize a subset of genes
-
-"heatmap.2"  from gplots package allows user to create heatmap for genes subset analysis
-
+## Useful Graphical Representations of Differential Expression Results
 :::
 
+- A heatmap of the top 100 DE genes shows whether samples cluster by biology and whether related groups share expression patterns
+- Focuses on the strongest DE genes and highlights sample clustering by cell type
+
 ::: {.content-visible when-format="revealjs"}
-```{r, fig.width=10, fig.height=14}
+## Useful Graphical Representations of DE Results
+:::
+
+```{r, fig.width=50, fig.height=75}
 library(gplots)
 basal.vs.lp.topgenes <- basal.vs.lp$ENTREZID[1:100]
 i <- which(v$genes$ENTREZID %in% basal.vs.lp.topgenes)
@@ -566,10 +575,11 @@ mycol <- colorpanel(1000,"blue","white","red")
 heatmap.2(lcpm[i,], scale="row",
    labRow=v$genes$SYMBOL[i], labCol=group, 
    col=mycol, trace="none", density.info="none", 
-   margin=c(8,6), lhei=c(2,10), dendrogram="column")
+   margin=c(6,4), cexRow=0.6, lhei=c(2,10), dendrogram="column")
 ```
 
-:::
+
+
 ## Results
 - Placeholder for our results slide
 
