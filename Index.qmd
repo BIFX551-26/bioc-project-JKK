@@ -7,6 +7,7 @@ format:
     output-file: README.md
   revealjs:
     slide-level: 4
+    theme: [default, simple]
 execute:
   echo: false
   warning: false
@@ -53,7 +54,7 @@ library(tibble)
 ```
 
 
-## Indroduction
+## Introduction
 
 RNAseq123 Workflow:
 
@@ -84,6 +85,22 @@ Using retroviral aided knockdown experiments and RNA-seq, the researchers were a
 
 The gene count file used in this analysis was created by aligning reads with the mouse reference genome using the align function (Rsubread) followed by gene-level summarization using featureCounts.
 
+## Data Packaging 
+
+- We started with raw RNA-seq count files from GEO accession GSE63310 and selected 9 samples
+representing Basal, LP, and ML mammary cell populations.
+
+- Using edgeR, we combined the individual count files into a single DGEList object, then added sample metadata such as biological group and sequencing lane. We also used Mus.musculus to attach gene annotations, including gene symbols and chromosome information.
+
+::: {.content-visible when-format="revealjs"}
+
+## Data Packaging 
+
+:::
+
+Data packaging converts separate raw files into one structured, analysis-ready
+dataset.
+
 ```{r}
 url <- "https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE63310&format=file"
 utils::download.file(url, destfile="GSE63310_RAW.tar", mode="wb") 
@@ -95,6 +112,23 @@ for(i in paste(files, ".gz", sep=""))
   R.utils::gunzip(i, overwrite=TRUE)
 ```
 
+## Data pre-processing
+
+- Before comparing gene expression across groups, we transformed raw counts to CPM and log-CPM, filtered
+out genes with very low expression, and normalized the libraries using TMM normalization with edgeR.
+
+- We then used MDS plots to check whether samples clustered by biology rather than technical artifacts.
+
+- This preprocessing step reduces noise, improves comparability across samples, and helps confirm that the data are ready for differential expression testing.
+
+::: {.content-visible when-format="revealjs"}
+
+## Data pre-processing
+
+:::
+
+Preprocessing removes uninformative genes, corrects library-size effects, and checks
+overall sample quality before modeling.
 
 ```{r}
 x <- readDGE(files, columns=c(1,3))
@@ -231,29 +265,6 @@ title(main="B. Sequencing lanes")
 glMDSPlot(lcpm, labels=paste(group, lane, sep="_"), 
           groups=x$samples[,c(2,5)], launch=FALSE)
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -5,7 +5,7 @@ Load needed packages:
 
 Load Dependencies for flowchart
 
-## Indroduction
+## Introduction
 
 RNAseq123 Workflow:
 
@@ -34,6 +34,37 @@ regulator.
 The gene count file used in this analysis was created by aligning reads
 with the mouse reference genome using the align function (Rsubread)
 followed by gene-level summarization using featureCounts.
+
+## Data Packaging
+
+- We started with raw RNA-seq count files from GEO accession GSE63310
+  and selected 9 samples representing Basal, LP, and ML mammary cell
+  populations.
+
+- Using edgeR, we combined the individual count files into a single
+  DGEList object, then added sample metadata such as biological group
+  and sequencing lane. We also used Mus.musculus to attach gene
+  annotations, including gene symbols and chromosome information.
+
+Data packaging converts separate raw files into one structured,
+analysis-ready dataset.
+
+## Data pre-processing
+
+- Before comparing gene expression across groups, we transformed raw
+  counts to CPM and log-CPM, filtered out genes with very low
+  expression, and normalized the libraries using TMM normalization with
+  edgeR.
+
+- We then used MDS plots to check whether samples clustered by biology
+  rather than technical artifacts.
+
+- This preprocessing step reduces noise, improves comparability across
+  samples, and helps confirm that the data are ready for differential
+  expression testing.
+
+Preprocessing removes uninformative genes, corrects library-size
+effects, and checks overall sample quality before modeling.
 
     [1] "DGEList"
     attr(,"package")
