@@ -129,12 +129,15 @@ representing Basal, LP, and ML mammary cell populations
 
 ::: {.content-visible when-format="revealjs"}
 
-## Data Packaging 
+## Data Packaging Overview
 
 :::
 
-Data packaging converts separate raw files into one structured, analysis-ready
+- Data packaging converts separate raw files into one structured, analysis-ready
 dataset
+- edgeR: combines the raw count files into a DGEList
+- Mus.musculus: adds mouse gene annotations like symbols and chromosome info
+- R.utils: unzips the downloaded .gz count files
 
 ```{r}
 url <- "https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE63310&format=file"
@@ -316,28 +319,6 @@ x2$counts[,2] <- x2$counts[,2]*5
 #title(main="B. Example: Normalised data",ylab="Log-cpm")
 ```
 
-```{r}
-#| include: false
-lcpm <- cpm(x, log=TRUE)
-par(mfrow=c(1,2))
-col.group <- group
-levels(col.group) <-  brewer.pal(nlevels(col.group), "Set1")
-col.group <- as.character(col.group)
-col.lane <- lane
-levels(col.lane) <-  brewer.pal(nlevels(col.lane), "Set2")
-col.lane <- as.character(col.lane)
-plotMDS(lcpm, labels=group, col=col.group)
-title(main="A. Sample groups")
-plotMDS(lcpm, labels=lane, col=col.lane, dim=c(3,4))
-title(main="B. Sequencing lanes")
-```
-
-```{r}
-#| include: false
-glMDSPlot(lcpm, labels=paste(group, lane, sep="_"), 
-          groups=x$samples[,c(2,5)], launch=FALSE)
-```
-
 
 ::: {.content-visible when-format="revealjs"}
 
@@ -346,7 +327,7 @@ glMDSPlot(lcpm, labels=paste(group, lane, sep="_"),
 :::
 
 - We then used MDS plots to check whether samples clustered by biology rather than technical artifacts
-
+- limma::plotMDS is used as an unsupervised quality control step
 - This preprocessing step reduces noise, improves comparability across samples, and helps confirm that the data are ready for differential expression testing
 
 ::: {.content-visible when-format="revealjs"}
@@ -355,24 +336,68 @@ glMDSPlot(lcpm, labels=paste(group, lane, sep="_"),
 
 :::
 
-Preprocessing removes uninformative genes, corrects library-size effects, and checks
-overall sample quality before modeling
+- MDS plots show samples cluster by biological group (Basal, LP, ML) and not by sequencing lane
+- This suggests the main signal is biological and technical effects are limited
+
+```{r, include=FALSE}
+lcpm <- cpm(x, log=TRUE)
+col.group <- group
+levels(col.group) <- brewer.pal(nlevels(col.group), "Set1")
+col.group <- as.character(col.group)
+col.lane <- lane
+levels(col.lane) <- brewer.pal(nlevels(col.lane), "Set2")
+col.lane <- as.character(col.lane)
+```
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| fig-width: 7
+#| fig-height: 5
+#| out-width: 100%
+plotMDS(lcpm, labels=group, col=col.group)
+title(main="A. Sample groups")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-width: 7
+#| fig-height: 5
+#| out-width: 100%
+plotMDS(lcpm, labels=lane, col=col.lane, dim=c(3,4))
+title(main="B. Sequencing lanes")
+```
+:::
+::::
 
 
+```{r}
 
-## Differential Gene Analysis: 
-- To determine which genes are expressed at different levels between three cell population profiled.
-- linear model fitting (assuming normally distributed data)
-- Intercept act as anchor point for comparision against baseline. 
-- Without intercept, absolute expression levels can be determined.
+glMDSPlot(lcpm, labels=paste(group, lane, sep="_"), 
+          groups=x$samples[,c(2,5)], launch=FALSE)
+```
+
 
 
 
 ::: {.content-visible when-format="revealjs"}
 
-## Model Matrix:
+## Data Pre-Processing Overview
 
 :::
+
+- Preprocessing removes uninformative genes, corrects library-size effects, and checks
+overall sample quality before modeling
+- Primarily performed with edgeR, and limma is used for QC
+
+
+## Differential Gene Analysis
+- To determine which genes are expressed at different levels between three cell population profiled
+- linear model fitting (assuming normally distributed data)
+- Intercept act as anchor point for comparision against baseline
+- Without intercept, absolute expression levels can be determined
+
 ```{r}
 design <- model.matrix(~0+group+lane)
 colnames(design) <- gsub("group", "", colnames(design))
@@ -380,19 +405,17 @@ design
 ```
 
 
-## Differential Gene Analysis: 
-
-- "makecontrast" function from limma package allows user to draw contrax matrix for pairwise comparisions.
-
-- limma provides duplicateCorrelation to deal with technical replicates.
-
-- limma provides flexibility to perform interactive studies for ex. testing drug reaction in Lane 6 and Lane 8.
-
 ::: {.content-visible when-format="revealjs"}
 
-## Contrast Matrix:
+## Differential Gene Analysis
 
 :::
+
+- "makecontrast" function from limma package allows user to draw contrax matrix for pairwise comparisions
+
+- limma provides duplicateCorrelation to deal with technical replicates
+
+- limma provides flexibility to perform interactive studies for ex. testing drug reaction in Lane 6 and Lane 8
 
 ```{r}
 contr.matrix <- makeContrasts(
@@ -404,46 +427,36 @@ contr.matrix
 ```
 
 
----
-
 ## Heteroscedascity and Voom weights
 
-- Homoscedascity: In linear models, mean-variance relationship is assumed to be linear. Mean and variance changes equally. Exactly opposite is 'Heteroscedascity'. 
+- Homoscedascity: In linear models, mean-variance relationship is assumed to be linear. Mean and variance changes equally. Exactly opposite is 'Heteroscedascity'
 
-- In RNA-Seq count data, the Negative Binomial distribution assumes quadratic mean-variation relationship. 
+- In RNA-Seq count data, the Negative Binomial distribution assumes quadratic mean-variation relationship
 
 - Overdispersion observed due to large difference between house-keeping genes and highly expressed genes 
 
-- In limma, linear modelling is carried out on log-CPM values.
-
----
-
-## Heteroscedascity and Voom weights:
-
-- "voom" function act as link to bridge limma(built for microarrays) to expression data. It addresses scale problem (calculates into CPM) and "normalize.method" argument to normalize library size and estimates mean-variance relationship (non-linear - overdispersion) 
-
-- "Voom weights" fixes the noise related to genes whereas Voomqualityweight addresses the noise generated from inter-sample variation.
-
----
+- In limma, linear modelling is carried out on log-CPM values
 
 ::: {.content-visible when-format="revealjs"}
 
-## Voom: Mean Variance Trend:
+## Heteroscedascity and Voom weights
 
 :::
 
+- "voom" function act as link to bridge limma(built for microarrays) to expression data. It addresses scale problem (calculates into CPM) and "normalize.method" argument to normalize library size and estimates mean-variance relationship (non-linear - overdispersion) 
+
+- "Voom weights" fixes the noise related to genes whereas Voomqualityweight addresses the noise generated from inter-sample variation
+
+
 ```{r}
+#eval: FALSE
 par(mfrow=c(1,2))
 v <- voom(x, design, plot=TRUE)
 v
 ```
 
+
 ::: {.content-visible when-format="revealjs"}
-
-## Final model Mean-Variance trend:
-
-:::
-
 
 ```{r}
 vfit <- lmFit(v, design)
@@ -451,34 +464,18 @@ vfit <- contrasts.fit(vfit, contrasts=contr.matrix)
 efit <- eBayes(vfit)
 plotSA(efit, main="Final model: Mean-variance trend")
 ```
+:::
 
 Means (x-axis) and variances (y-axis) of each gene are plotted to show the dependence between the two before voom is applied to the data (left panel) and how the trend is removed after voom precision weights are applied to the data (right panel)
 
-
-
-
-::: {.content-visible when-format="revealjs"}
-
 ## Examining Differentially Expressed Genes:
-   Summary of DEG:
-
-:::
-
+Summary of Differentially expressed gene:
 ```{r}
 summary(decideTests(efit))
 
 ```
 
-
-::: {.content-visible when-format="revealjs"}
-
-## Examining Differentially Expressed Genes:
-
-
-:::
-
-Treat method - Method can be applied for stricter definition on significance based on t-statistics. This allows user to define a log-FC threshold. 
-
+Treat method - Method can be applied for stricter definition on significance based on t-statistics. This allows user to define a log-FC threshold
 
 ```{r}
 tfit <- treat(vfit, lfc=1)
@@ -487,42 +484,47 @@ summary(dt)
 ```
 
 
+::: {.content-visible when-format="revealjs"}
 
-## Venn Diagram:
+Extracting DE genes:
 
+```{r}
+tfit <- treat(vfit, lfc=1)
+dt <- decideTests(tfit)
+summary(dt)
 
-Venn diagram showing the number of genes DE in the comparison between basal versus LP only (left), basal versus ML only (right), and the number of genes that are DE in both comparisons (center)
+de.common <- which(dt[,1]!=0 & dt[,2]!=0)
+length(de.common)
 
-The number of genes that are not DE in either comparison are marked in the bottom-right.
+head(tfit$genes$SYMBOL[de.common], n=20)
+
+```
+
+ O - represents genes with levels unchanged
+ 1 - Up regulated genes
+-1 - Down regulated genes
+:::
 
 ::: {.content-visible when-format="revealjs"}
 
+Venn diagram showing the number of genes DE in the comparison between basal versus LP only (left), basal versus ML only (right), and the number of genes that are DE in both comparisons (center)
 
-:::
+The number of genes that are not DE in either comparison are marked in the bottom-right
+
 ```{r}
 vennDiagram(dt[,1:2], circle.col=c("turquoise", "salmon"))
 
 ```
 
-
-
-::: {.content-visible when-format="revealjs"}
-
-## Examining individual DE genes from top to bottom:
-
 :::
 
-- "topTreat"/ "topTable" - from toptreat or eBayes to list top DE genes.
+## Examining Individual DE Genes from Top to Bottom:
+
+- "topTreat"/ "topTable" - from toptreat or eBayes to list top DE genes
  
 - toptreat arranges DE genes chronologically in increasing order using log-FC, average log-CPM, moderated t-statistics, raw and adjusted p-value for each gene
 
 - n=Inf -> all genes
-
-::: {.content-visible when-format="revealjs"}
-
-## Examining individual DE genes from top to bottom:
-
-:::
 
 ```{r}
 basal.vs.lp <- topTreat(tfit, coef=1, n=Inf)
@@ -530,48 +532,48 @@ basal.vs.ml <- topTreat(tfit, coef=2, n=Inf)
 head(basal.vs.lp)
 ```
 
-## Graphical representation of DE gene results:
 
-- Mean-difference plots are ideally utlized to display log-FC from linear model fit against log-CPM values using "plotMD" function.
+## Useful Graphical Representations of Differential Expression Results
 
-- Glimma package offer interactive interface for MDplot by "glMDPlot".
+- `plotMD()` summarizes all genes by plotting log-fold change against average log-CPM, with DE genes highlighted
 
-- Glimma option allows brower viewing option - convenient for including them as linked files from an Rmarkdown.
-
-
+- `glMDPlot()` from **Glimma** adds an interactive MD plot so individual genes can be searched and inspected sample-by-sample
 
 ::: {.content-visible when-format="revealjs"}
 
-## MD plot:
+## Useful Graphical Representations of Differential Expression Results
 
 :::
+
 ```{r}
 plotMD(tfit, column=1, status=dt[,1], main=colnames(tfit)[1], 
        xlim=c(-8,13))
 ```
 
-
-
-## Graphical representation of DE gene results:
-
-- MDplot - allows user to visualize all genes or individual genes.
-
-- Heatmaps - Ideal option to visualize a subset of genes.
-
-- "heatmap.2"  from gplots package allows user to create heatmap for genes subset analysis.
-
+```{r}
+glMDPlot(tfit, coef=1, status=dt, main=colnames(tfit)[1],
+         side.main="ENTREZID", counts=lcpm, groups=group, launch=FALSE)
+```
 
 
 ::: {.content-visible when-format="revealjs"}
-
-## Heatmap:
-
+## Useful Graphical Representations of Differential Expression Results
 :::
 
+::::: {.columns}
+::: {.column width="50%"}
+::: {.smaller}
+- A heatmap of the top 100 DE genes shows whether samples cluster by biology and whether related groups share expression patterns
+- Focuses on the strongest DE genes and highlights sample clustering by cell type
+:::
+:::
+
+::: {.column width="50%"}
 ```{r}
-#| fig-width: 10
-#| fig-height: 7
-#| out-width: "100%"
+#| fig-width: 20
+#| fig-height: 23
+#| out-width: 100%
+#| fig-align: right
 library(gplots)
 basal.vs.lp.topgenes <- basal.vs.lp$ENTREZID[1:100]
 i <- which(v$genes$ENTREZID %in% basal.vs.lp.topgenes)
@@ -579,5 +581,19 @@ mycol <- colorpanel(1000,"blue","white","red")
 heatmap.2(lcpm[i,], scale="row",
    labRow=v$genes$SYMBOL[i], labCol=group, 
    col=mycol, trace="none", density.info="none", 
-   margin=c(8,6), lhei=c(2,10), dendrogram="column")
+   margin=c(6,6), cexRow=0.45, lhei=c(1.2,10), dendrogram="column")
 ```
+:::
+:::::
+
+
+
+## Results
+- Placeholder for our results slide
+
+## Conclusion
+- What interesting things / skills did you learn?
+- What challenges did you come across?
+- Main result 
+- Limitation
+- Next steps

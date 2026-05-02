@@ -69,7 +69,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="RNA123_analysis_files/libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="RNA123_analysis_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="RNA123_analysis_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="RNA123_analysis_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="RNA123_analysis_files/libs/bootstrap/bootstrap-0af74015e85f4e1b3eeb66793181d02e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -407,38 +407,41 @@ FALSE  TRUE
 </div>
 <p>An unsupervised clustering analysis can be performed to take a quick look at the magnitude of differential expression that we can expect to find in further analyses. It can also call out possible issues such as sample switches if any replicates or samples of the same grouping are far from each other. The limma function <strong>plotMDS</strong> can be used a create multi-dimensional scaling plots.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>lcpm <span class="ot">&lt;-</span> <span class="fu">cpm</span>(x, <span class="at">log=</span><span class="cn">TRUE</span>)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>col.group <span class="ot">&lt;-</span> group</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(col.group) <span class="ot">&lt;-</span>  <span class="fu">brewer.pal</span>(<span class="fu">nlevels</span>(col.group), <span class="st">"Set1"</span>)</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>col.group <span class="ot">&lt;-</span> <span class="fu">as.character</span>(col.group)</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>col.lane <span class="ot">&lt;-</span> lane</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(col.lane) <span class="ot">&lt;-</span>  <span class="fu">brewer.pal</span>(<span class="fu">nlevels</span>(col.lane), <span class="st">"Set2"</span>)</span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>col.lane <span class="ot">&lt;-</span> <span class="fu">as.character</span>(col.lane)</span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMDS</span>(lcpm, <span class="at">labels=</span>group, <span class="at">col=</span>col.group)</span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">"A. Sample groups"</span>)</span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMDS</span>(lcpm, <span class="at">labels=</span>lane, <span class="at">col=</span>col.lane, <span class="at">dim=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>))</span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">"B. Sequencing lanes"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">6.5</span>, <span class="fl">4.5</span>, <span class="dv">4</span>, <span class="dv">2</span>) <span class="sc">+</span> <span class="fl">0.1</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMDS</span>(lcpm, <span class="at">labels=</span>group, <span class="at">col=</span>col.group)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">"A. Sample groups"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="RNA123_analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="RNA123_analysis_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">6.5</span>, <span class="fl">4.5</span>, <span class="dv">4</span>, <span class="dv">2</span>) <span class="sc">+</span> <span class="fl">0.1</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMDS</span>(lcpm, <span class="at">labels=</span>lane, <span class="at">col=</span>col.lane, <span class="at">dim=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>))</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">"B. Sequencing lanes"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="RNA123_analysis_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Or, alternatively, the Glimma function <strong>glMDSPlot</strong> can be used to create an interactive plot in an html page.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glMDSPlot</span>(lcpm, <span class="at">labels=</span><span class="fu">paste</span>(group, lane, <span class="at">sep=</span><span class="st">"_"</span>), </span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">groups=</span>x<span class="sc">$</span>samples[,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>)], <span class="at">launch=</span><span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glMDSPlot</span>(lcpm, <span class="at">labels=</span><span class="fu">paste</span>(group, lane, <span class="at">sep=</span><span class="st">"_"</span>), </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">groups=</span>x<span class="sc">$</span>samples[,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>)], <span class="at">launch=</span><span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Differential expression analysis:</p>
 <p>Contrast Matrix</p>
 <p>The stats package function <strong>model.matrix</strong> is used to create a design matrix wherein categorical variables are transformed to numeric variables, so that the data can be fitted to regression models. Here the variables tested are sample group(cell type) and sequencing lane. The “~0+group” removes the intercept from the first factor, group, but not from the second factor, lane.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span><span class="dv">0</span><span class="sc">+</span>group<span class="sc">+</span>lane)</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(design) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"group"</span>, <span class="st">""</span>, <span class="fu">colnames</span>(design))</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>design</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span><span class="dv">0</span><span class="sc">+</span>group<span class="sc">+</span>lane)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(design) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"group"</span>, <span class="st">""</span>, <span class="fu">colnames</span>(design))</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>design</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Basal LP ML laneL006 laneL008
 1     0  1  0        0        0
@@ -462,12 +465,12 @@ attr(,"contrasts")$lane
 </div>
 <p>The limma function <strong>makeContrasts</strong> can be used to make pair-wise comparisons between factors.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>contr.matrix <span class="ot">&lt;-</span> <span class="fu">makeContrasts</span>(</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">BasalvsLP =</span> Basal<span class="sc">-</span>LP, </span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">BasalvsML =</span> Basal <span class="sc">-</span> ML, </span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">LPvsML =</span> LP <span class="sc">-</span> ML, </span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">levels =</span> <span class="fu">colnames</span>(design))</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>contr.matrix</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>contr.matrix <span class="ot">&lt;-</span> <span class="fu">makeContrasts</span>(</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">BasalvsLP =</span> Basal<span class="sc">-</span>LP, </span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">BasalvsML =</span> Basal <span class="sc">-</span> ML, </span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">LPvsML =</span> LP <span class="sc">-</span> ML, </span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">levels =</span> <span class="fu">colnames</span>(design))</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>contr.matrix</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          Contrasts
 Levels     BasalvsLP BasalvsML LPvsML
@@ -481,9 +484,9 @@ Levels     BasalvsLP BasalvsML LPvsML
 <p>Removing Heteroscedascity:</p>
 <p>Heteroscedascity occurs when the variance (measure of error) is not the same across the independent variables.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">voom</span>(x, design, <span class="at">plot=</span><span class="cn">TRUE</span>)</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>v</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">voom</span>(x, design, <span class="at">plot=</span><span class="cn">TRUE</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>v</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>An object of class "EList"
 $genes
@@ -526,17 +529,17 @@ Tags       JMS9-P7c  JMS9-P8c
 
 $weights
           [,1]      [,2]      [,3]      [,4]      [,5]      [,6]      [,7]
-[1,]  1.079413  1.332986 19.826915 20.273253  1.993686  1.395853 20.494977
-[2,]  1.170357  1.456380  4.804866  8.660025  3.612508  2.626870  8.760149
-[3,] 20.219073 25.573792 30.434759 28.528310 31.352260 25.743247 28.722497
-[4,] 26.947557 32.505933 33.583128 33.232125 34.231754 32.354158 33.334340
-[5,] 26.610864 28.501638 33.645479 33.206374 33.573492 31.996623 33.308490
+[1,]  1.031010  1.282577 20.143626 20.598915  1.950799  1.345475 20.825144
+[2,]  1.120826  1.406203  4.930805  8.761051  3.645647  2.601377  8.862788
+[3,] 20.543645 26.132254 31.033311 29.121837 31.978075 26.308447 29.316218
+[4,] 27.548060 33.178993 34.343505 33.948156 34.797458 33.021348 34.057882
+[5,] 27.203566 29.095135 34.416318 33.920517 34.332254 32.649789 34.030131
           [,8]      [,9]
-[1,]  1.107780  1.079413
-[2,]  3.211473  2.541942
-[3,] 21.200072 16.657930
-[4,] 30.348630 24.259801
-[5,] 25.171513 23.573305
+[1,]  1.058972  1.031010
+[2,]  3.214078  2.513545
+[3,] 21.548697 16.889080
+[4,] 30.944851 24.744809
+[5,] 25.707167 24.020893
 16619 more rows ...
 
 $design
@@ -557,25 +560,29 @@ attr(,"contrasts")$group
 [1] "contr.treatment"
 
 attr(,"contrasts")$lane
-[1] "contr.treatment"</code></pre>
+[1] "contr.treatment"
+
+
+$span
+[1] 0.4010438</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="RNA123_analysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="RNA123_analysis_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>vfit <span class="ot">&lt;-</span> <span class="fu">lmFit</span>(v, design)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>vfit <span class="ot">&lt;-</span> <span class="fu">contrasts.fit</span>(vfit, <span class="at">contrasts=</span>contr.matrix)</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>efit <span class="ot">&lt;-</span> <span class="fu">eBayes</span>(vfit)</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSA</span>(efit, <span class="at">main=</span><span class="st">"Final model: Mean-variance trend"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>vfit <span class="ot">&lt;-</span> <span class="fu">lmFit</span>(v, design)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>vfit <span class="ot">&lt;-</span> <span class="fu">contrasts.fit</span>(vfit, <span class="at">contrasts=</span>contr.matrix)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>efit <span class="ot">&lt;-</span> <span class="fu">eBayes</span>(vfit)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSA</span>(efit, <span class="at">main=</span><span class="st">"Final model: Mean-variance trend"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="RNA123_analysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="RNA123_analysis_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -583,36 +590,36 @@ attr(,"contrasts")$lane
 <p>Differential expression genes summary:</p>
 <p>The limma package contains several functions for linear modeling that fit a separate model to the expression values for each gene. The <strong>decideTests</strong> function can take the fitted model object and classify each gene as being significantly downregulated, upregulated, or not significant. A summary of these results is produced below.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">decideTests</span>(efit))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">decideTests</span>(efit))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       BasalvsLP BasalvsML LPvsML
-Down        4648      4927   3135
-NotSig      7113      7026  10972
-Up          4863      4671   2517</code></pre>
+Down        4646      4936   3141
+NotSig      7118      7008  10953
+Up          4860      4680   2530</code></pre>
 </div>
 </div>
 <p>Some studies require that the log-fold-changes be above a certain value to be considered significant. The “treat” method can be used to specify this minimum value. In the table below one can see that this specification does place considerably more genes in the Not Significant categories.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>tfit <span class="ot">&lt;-</span> <span class="fu">treat</span>(vfit, <span class="at">lfc=</span><span class="dv">1</span>)</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">decideTests</span>(tfit)</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>tfit <span class="ot">&lt;-</span> <span class="fu">treat</span>(vfit, <span class="at">lfc=</span><span class="dv">1</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">decideTests</span>(tfit)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       BasalvsLP BasalvsML LPvsML
-Down        1632      1777    224
-NotSig     12976     12790  16210
-Up          2016      2057    190</code></pre>
+Down        1633      1777    223
+NotSig     12977     12793  16211
+Up          2014      2054    190</code></pre>
 </div>
 </div>
 <p>The following code can be used to find genes that are DE in more than one group.The number of DE genes in common between groups can be easily summarized using <strong>vennDiagram.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>de.common <span class="ot">&lt;-</span> <span class="fu">which</span>(dt[,<span class="dv">1</span>]<span class="sc">!=</span><span class="dv">0</span> <span class="sc">&amp;</span> dt[,<span class="dv">2</span>]<span class="sc">!=</span><span class="dv">0</span>)</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(de.common)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>de.common <span class="ot">&lt;-</span> <span class="fu">which</span>(dt[,<span class="dv">1</span>]<span class="sc">!=</span><span class="dv">0</span> <span class="sc">&amp;</span> dt[,<span class="dv">2</span>]<span class="sc">!=</span><span class="dv">0</span>)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(de.common)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2784</code></pre>
+<pre><code>[1] 2782</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tfit<span class="sc">$</span>genes<span class="sc">$</span>SYMBOL[de.common], <span class="at">n=</span><span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tfit<span class="sc">$</span>genes<span class="sc">$</span>SYMBOL[de.common], <span class="at">n=</span><span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Xkr4"          "Rgs20"         "Cpa6"          "A830018L16Rik"
  [5] "Sulf1"         "Eya1"          "Msc"           "Sbspon"       
@@ -622,153 +629,154 @@ Up          2016      2057    190</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vennDiagram</span>(dt[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">circle.col=</span><span class="fu">c</span>(<span class="st">"turquoise"</span>, <span class="st">"salmon"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vennDiagram</span>(dt[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">circle.col=</span><span class="fu">c</span>(<span class="st">"turquoise"</span>, <span class="st">"salmon"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="RNA123_analysis_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="RNA123_analysis_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>The <strong>write.fit</strong> function will pull the results from the comparisons and write them to a file.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.fit</span>(tfit, dt, <span class="at">file=</span><span class="st">"results.txt"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.fit</span>(tfit, dt, <span class="at">file=</span><span class="st">"results.txt"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Individual DE genes:</p>
 <p>The <strong>topTreat</strong> (or <strong>topTable</strong> for results using eBayes statistics) function will show a list of the DE genes from smallest to largest adjusted p-value.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>basal.vs.lp <span class="ot">&lt;-</span> <span class="fu">topTreat</span>(tfit, <span class="at">coef=</span><span class="dv">1</span>, <span class="at">n=</span><span class="cn">Inf</span>)</span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>basal.vs.ml <span class="ot">&lt;-</span> <span class="fu">topTreat</span>(tfit, <span class="at">coef=</span><span class="dv">2</span>, <span class="at">n=</span><span class="cn">Inf</span>)</span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(basal.vs.lp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>basal.vs.lp <span class="ot">&lt;-</span> <span class="fu">topTreat</span>(tfit, <span class="at">coef=</span><span class="dv">1</span>, <span class="at">n=</span><span class="cn">Inf</span>)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>basal.vs.ml <span class="ot">&lt;-</span> <span class="fu">topTreat</span>(tfit, <span class="at">coef=</span><span class="dv">2</span>, <span class="at">n=</span><span class="cn">Inf</span>)</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(basal.vs.lp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       ENTREZID SYMBOL TXCHROM     logFC  AveExpr         t      P.Value
-12759     12759    Clu   chr14 -5.455444 8.856581 -33.55508 1.723731e-10
-53624     53624  Cldn7   chr11 -5.527356 6.295437 -31.97515 2.576972e-10
-242505   242505  Rasef    chr4 -5.935249 5.118259 -31.33407 3.081544e-10
-67451     67451   Pkp2   chr16 -5.738665 4.419170 -29.85616 4.575686e-10
-228543   228543   Rhov    chr2 -6.264208 5.485314 -29.07484 5.782844e-10
-70350     70350  Basp1   chr15 -6.084738 5.247023 -28.26649 7.267694e-10
+12759     12759    Clu   chr14 -5.456559 8.856581 -32.88053 1.983630e-10
+53624     53624  Cldn7   chr11 -5.528781 6.295437 -31.93142 2.535109e-10
+242505   242505  Rasef    chr4 -5.935277 5.118259 -31.36803 2.970972e-10
+67451     67451   Pkp2   chr16 -5.739040 4.419170 -29.92286 4.372689e-10
+228543   228543   Rhov    chr2 -6.266432 5.485314 -29.08206 5.620164e-10
+70350     70350  Basp1   chr15 -6.086556 5.247023 -28.23497 7.146411e-10
           adj.P.Val
-12759  1.707586e-06
-53624  1.707586e-06
-242505 1.707586e-06
-67451  1.739242e-06
-228543 1.739242e-06
-70350  1.739242e-06</code></pre>
+12759  1.646315e-06
+53624  1.646315e-06
+242505 1.646315e-06
+67451  1.672259e-06
+228543 1.672259e-06
+70350  1.672259e-06</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(basal.vs.ml)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(basal.vs.ml)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       ENTREZID  SYMBOL TXCHROM     logFC  AveExpr         t      P.Value
-242505   242505   Rasef    chr4 -6.534668 5.118259 -35.08270 1.226399e-10
-53624     53624   Cldn7   chr11 -5.495888 6.295437 -31.68918 2.774140e-10
-12521     12521    Cd82    chr2 -4.690834 7.069637 -31.43063 2.913572e-10
-20661     20661   Sort1    chr3 -4.931660 6.704459 -30.70113 3.558720e-10
-71740     71740 Nectin4    chr1 -5.581283 5.164967 -30.59775 3.718157e-10
-12759     12759     Clu   chr14 -4.686826 8.856581 -27.95760 7.687544e-10
+242505   242505   Rasef    chr4 -6.535590 5.118259 -35.09118 1.188811e-10
+53624     53624   Cldn7   chr11 -5.493752 6.295437 -31.59340 2.767043e-10
+12521     12521    Cd82    chr2 -4.692524 7.069637 -31.13119 3.069334e-10
+20661     20661   Sort1    chr3 -4.933007 6.704459 -30.52022 3.637643e-10
+71740     71740 Nectin4    chr1 -5.581078 5.164967 -30.57437 3.641458e-10
+15375     15375   Foxa1   chr12 -5.779284 5.623739 -27.98883 7.620830e-10
           adj.P.Val
-242505 1.236213e-06
-53624  1.236213e-06
-12521  1.236213e-06
-20661  1.236213e-06
-71740  1.236213e-06
-12759  1.480434e-06</code></pre>
+242505 1.210712e-06
+53624  1.210712e-06
+12521  1.210712e-06
+20661  1.210712e-06
+71740  1.210712e-06
+15375  1.429479e-06</code></pre>
 </div>
 </div>
 <p>Graphics for DE results:</p>
 <p>A mean-difference plot can be used to visually summarize the results for all genes. The <strong>plotMD</strong> function can display the log-FC values against the average log-CPM values. As with most plots, the Glimma package can also be used to create an interactive plot in a separate html page.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMD</span>(tfit, <span class="at">column=</span><span class="dv">1</span>, <span class="at">status=</span>dt[,<span class="dv">1</span>], <span class="at">main=</span><span class="fu">colnames</span>(tfit)[<span class="dv">1</span>], </span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">8</span>,<span class="dv">13</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMD</span>(tfit, <span class="at">column=</span><span class="dv">1</span>, <span class="at">status=</span>dt[,<span class="dv">1</span>], <span class="at">main=</span><span class="fu">colnames</span>(tfit)[<span class="dv">1</span>], </span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">8</span>,<span class="dv">13</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="RNA123_analysis_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="RNA123_analysis_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glMDPlot</span>(tfit, <span class="at">coef=</span><span class="dv">1</span>, <span class="at">status=</span>dt, <span class="at">main=</span><span class="fu">colnames</span>(tfit)[<span class="dv">1</span>],</span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">side.main=</span><span class="st">"ENTREZID"</span>, <span class="at">counts=</span>lcpm, <span class="at">groups=</span>group, <span class="at">launch=</span><span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glMDPlot</span>(tfit, <span class="at">coef=</span><span class="dv">1</span>, <span class="at">status=</span>dt, <span class="at">main=</span><span class="fu">colnames</span>(tfit)[<span class="dv">1</span>],</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">side.main=</span><span class="st">"ENTREZID"</span>, <span class="at">counts=</span>lcpm, <span class="at">groups=</span>group, <span class="at">launch=</span><span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Heat maps are very useful for visualizing portions of DE data. The <strong>heatmap.2</strong> function from the gplots package is used here to create a heatmap of the top 100 DE genes from the basal vs LP contrast analysis.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>basal.vs.lp.topgenes <span class="ot">&lt;-</span> basal.vs.lp<span class="sc">$</span>ENTREZID[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>]</span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">which</span>(v<span class="sc">$</span>genes<span class="sc">$</span>ENTREZID <span class="sc">%in%</span> basal.vs.lp.topgenes)</span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>mycol <span class="ot">&lt;-</span> <span class="fu">colorpanel</span>(<span class="dv">1000</span>,<span class="st">"blue"</span>,<span class="st">"white"</span>,<span class="st">"red"</span>)</span>
-<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="fu">heatmap.2</span>(lcpm[i,], <span class="at">scale=</span><span class="st">"row"</span>,</span>
-<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">labRow=</span>v<span class="sc">$</span>genes<span class="sc">$</span>SYMBOL[i], <span class="at">labCol=</span>group, </span>
-<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">col=</span>mycol, <span class="at">trace=</span><span class="st">"none"</span>, <span class="at">density.info=</span><span class="st">"none"</span>, </span>
-<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>   <span class="at">margin=</span><span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">4</span>), <span class="at">cexRow=</span><span class="fl">0.6</span>, <span class="at">lhei=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">10</span>), <span class="at">dendrogram=</span><span class="st">"column"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>basal.vs.lp.topgenes <span class="ot">&lt;-</span> basal.vs.lp<span class="sc">$</span>ENTREZID[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>]</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">which</span>(v<span class="sc">$</span>genes<span class="sc">$</span>ENTREZID <span class="sc">%in%</span> basal.vs.lp.topgenes)</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>mycol <span class="ot">&lt;-</span> <span class="fu">colorpanel</span>(<span class="dv">1000</span>,<span class="st">"blue"</span>,<span class="st">"white"</span>,<span class="st">"red"</span>)</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="fu">heatmap.2</span>(lcpm[i,], <span class="at">scale=</span><span class="st">"row"</span>,</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">labRow=</span>v<span class="sc">$</span>genes<span class="sc">$</span>SYMBOL[i], <span class="at">labCol=</span>group, </span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">col=</span>mycol, <span class="at">trace=</span><span class="st">"none"</span>, <span class="at">density.info=</span><span class="st">"none"</span>, </span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>   <span class="at">margin=</span><span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">4</span>), <span class="at">cexRow=</span><span class="fl">0.6</span>, <span class="at">lhei=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">10</span>), <span class="at">dendrogram=</span><span class="st">"column"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="RNA123_analysis_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="RNA123_analysis_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Gene set testing with camera</p>
+<p>Gene set testing with camera:</p>
+<p>The camera (Correlation Adjusted MEan Rank) method compares the DE values of our gene set to the same values of all other gene sets to determine their relative “rank” of importance. The aggregated gene set data is the c2 gene signatures collection from the Broad Institute’s Molecular Signatures Database (MSigDB).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">system.file</span>(<span class="st">"extdata"</span>, <span class="st">"mouse_c2_v5p1.rda"</span>, <span class="at">package =</span> <span class="st">"RNAseq123"</span>))</span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="fu">ids2indices</span>(Mm.c2,<span class="at">id=</span><span class="fu">rownames</span>(v))</span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>cam.BasalvsLP <span class="ot">&lt;-</span> <span class="fu">camera</span>(v,idx,design,<span class="at">contrast=</span>contr.matrix[,<span class="dv">1</span>])</span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cam.BasalvsLP,<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">system.file</span>(<span class="st">"extdata"</span>, <span class="st">"mouse_c2_v5p1.rda"</span>, <span class="at">package =</span> <span class="st">"RNAseq123"</span>))</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="fu">ids2indices</span>(Mm.c2,<span class="at">id=</span><span class="fu">rownames</span>(v))</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>cam.BasalvsLP <span class="ot">&lt;-</span> <span class="fu">camera</span>(v,idx,design,<span class="at">contrast=</span>contr.matrix[,<span class="dv">1</span>])</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cam.BasalvsLP,<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                            NGenes Direction       PValue
-LIM_MAMMARY_STEM_CELL_UP                       791        Up 1.768426e-18
-LIM_MAMMARY_STEM_CELL_DN                       683      Down 4.027711e-14
-ROSTY_CERVICAL_CANCER_PROLIFERATION_CLUSTER    170        Up 5.518131e-14
-LIM_MAMMARY_LUMINAL_PROGENITOR_UP               94      Down 2.737492e-13
-SOTIRIOU_BREAST_CANCER_GRADE_1_VS_3_UP         190        Up 5.155264e-13
+LIM_MAMMARY_STEM_CELL_UP                       791        Up 1.872243e-18
+LIM_MAMMARY_STEM_CELL_DN                       683      Down 3.825170e-14
+ROSTY_CERVICAL_CANCER_PROLIFERATION_CLUSTER    170        Up 5.181410e-14
+LIM_MAMMARY_LUMINAL_PROGENITOR_UP               94      Down 2.659067e-13
+SOTIRIOU_BREAST_CANCER_GRADE_1_VS_3_UP         190        Up 4.891258e-13
                                                      FDR
-LIM_MAMMARY_STEM_CELL_UP                    8.355813e-15
-LIM_MAMMARY_STEM_CELL_DN                    8.691057e-11
-ROSTY_CERVICAL_CANCER_PROLIFERATION_CLUSTER 8.691057e-11
-LIM_MAMMARY_LUMINAL_PROGENITOR_UP           3.233663e-10
-SOTIRIOU_BREAST_CANCER_GRADE_1_VS_3_UP      4.871724e-10</code></pre>
+LIM_MAMMARY_STEM_CELL_UP                    8.846348e-15
+LIM_MAMMARY_STEM_CELL_DN                    8.160720e-11
+ROSTY_CERVICAL_CANCER_PROLIFERATION_CLUSTER 8.160720e-11
+LIM_MAMMARY_LUMINAL_PROGENITOR_UP           3.141023e-10
+SOTIRIOU_BREAST_CANCER_GRADE_1_VS_3_UP      4.622239e-10</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>cam.BasalvsML <span class="ot">&lt;-</span> <span class="fu">camera</span>(v,idx,design,<span class="at">contrast=</span>contr.matrix[,<span class="dv">2</span>])</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cam.BasalvsML,<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>cam.BasalvsML <span class="ot">&lt;-</span> <span class="fu">camera</span>(v,idx,design,<span class="at">contrast=</span>contr.matrix[,<span class="dv">2</span>])</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cam.BasalvsML,<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                    NGenes Direction       PValue          FDR
-LIM_MAMMARY_STEM_CELL_UP               791        Up 1.676651e-22 7.922177e-19
-LIM_MAMMARY_STEM_CELL_DN               683      Down 7.790412e-18 1.840485e-14
-LIM_MAMMARY_LUMINAL_MATURE_DN          172        Up 9.744096e-16 1.534695e-12
-LIM_MAMMARY_LUMINAL_MATURE_UP          204      Down 1.151832e-12 1.360602e-09
-NAKAYAMA_SOFT_TISSUE_TUMORS_PCA2_UP    137        Up 2.240253e-12 1.880160e-09</code></pre>
+LIM_MAMMARY_STEM_CELL_UP               791        Up 1.737347e-22 8.208965e-19
+LIM_MAMMARY_STEM_CELL_DN               683      Down 7.496753e-18 1.771108e-14
+LIM_MAMMARY_LUMINAL_MATURE_DN          172        Up 9.718849e-16 1.530719e-12
+LIM_MAMMARY_LUMINAL_MATURE_UP          204      Down 1.131811e-12 1.336952e-09
+NAKAYAMA_SOFT_TISSUE_TUMORS_PCA2_UP    137        Up 2.201968e-12 1.790806e-09</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>cam.LPvsML <span class="ot">&lt;-</span> <span class="fu">camera</span>(v,idx,design,<span class="at">contrast=</span>contr.matrix[,<span class="dv">3</span>])</span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cam.LPvsML,<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>cam.LPvsML <span class="ot">&lt;-</span> <span class="fu">camera</span>(v,idx,design,<span class="at">contrast=</span>contr.matrix[,<span class="dv">3</span>])</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cam.LPvsML,<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                        NGenes Direction       PValue
-LIM_MAMMARY_LUMINAL_MATURE_DN              172        Up 6.733173e-14
-LIM_MAMMARY_LUMINAL_MATURE_UP              204      Down 9.967980e-14
-LIM_MAMMARY_LUMINAL_PROGENITOR_UP           94        Up 1.317692e-11
-REACTOME_RESPIRATORY_ELECTRON_TRANSPORT     94      Down 7.013195e-09
-REACTOME_RNA_POL_I_PROMOTER_OPENING         46      Down 2.037210e-08
+LIM_MAMMARY_LUMINAL_MATURE_DN              172        Up 6.144112e-14
+LIM_MAMMARY_LUMINAL_MATURE_UP              204      Down 1.012870e-13
+LIM_MAMMARY_LUMINAL_PROGENITOR_UP           94        Up 1.262744e-11
+REACTOME_RESPIRATORY_ELECTRON_TRANSPORT     94      Down 7.080990e-09
+REACTOME_RNA_POL_I_PROMOTER_OPENING         46      Down 2.141933e-08
                                                  FDR
-LIM_MAMMARY_LUMINAL_MATURE_DN           2.354935e-10
-LIM_MAMMARY_LUMINAL_MATURE_UP           2.354935e-10
-LIM_MAMMARY_LUMINAL_PROGENITOR_UP       2.075364e-08
-REACTOME_RESPIRATORY_ELECTRON_TRANSPORT 8.284337e-06
-REACTOME_RNA_POL_I_PROMOTER_OPENING     1.925163e-05</code></pre>
+LIM_MAMMARY_LUMINAL_MATURE_DN           2.392905e-10
+LIM_MAMMARY_LUMINAL_MATURE_UP           2.392905e-10
+LIM_MAMMARY_LUMINAL_PROGENITOR_UP       1.988822e-08
+REACTOME_RESPIRATORY_ELECTRON_TRANSPORT 8.364419e-06
+REACTOME_RNA_POL_I_PROMOTER_OPENING     2.024127e-05</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barcodeplot</span>(efit<span class="sc">$</span>t[,<span class="dv">3</span>], <span class="at">index=</span>idx<span class="sc">$</span>LIM_MAMMARY_LUMINAL_MATURE_UP, </span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">index2=</span>idx<span class="sc">$</span>LIM_MAMMARY_LUMINAL_MATURE_DN, <span class="at">main=</span><span class="st">"LPvsML"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barcodeplot</span>(efit<span class="sc">$</span>t[,<span class="dv">3</span>], <span class="at">index=</span>idx<span class="sc">$</span>LIM_MAMMARY_LUMINAL_MATURE_UP, </span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">index2=</span>idx<span class="sc">$</span>LIM_MAMMARY_LUMINAL_MATURE_DN, <span class="at">main=</span><span class="st">"LPvsML"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="RNA123_analysis_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="RNA123_analysis_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
