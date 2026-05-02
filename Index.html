@@ -161,61 +161,81 @@ Kate, Jessica, Kardam
 </section>
 <section id="introduction-2" class="slide level2">
 <h2>Introduction</h2>
-<p>This presentation is a worked example of how raw count data move through a standard Bioconductor RNA-seq workflow.</p>
+<p>This presentation is a worked example of how raw count data move through a standard Bioconductor RNA-seq workflow</p>
 
 <img data-src="Index_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
 <section id="experimental-data" class="slide level2">
 <h2>Experimental Data</h2>
 <ul>
 <li><p>“A pooled shRNA screen for regulators of primary mammary stem and progenitor cells identifies roles for Asap1 and Prox1”</p></li>
-<li><p>This experiment used RNA-seq-based expression profiling in mouse mammary stem cell (MaSC)-enriched basal cells to look for candidate regulatory genes.</p></li>
-<li><p>Mammary stem cells are often used in RNA-seq analyses as they are highly proliferative and have a high capacity for differentiation.</p></li>
+<li><p>This experiment used RNA-seq-based expression profiling in mouse mammary stem cell (MaSC)-enriched basal cells to look for candidate regulatory genes</p></li>
+<li><p>Mammary stem cells are often used in RNA-seq analyses as they are highly proliferative and have a high capacity for differentiation</p></li>
 </ul>
 </section>
 <section id="experimental-data-1" class="slide level2">
 <h2>Experimental Data</h2>
 <ul>
-<li><p>Regulatory genes produce proteins that turn expression on or off and are therefore important target genes for studying cancer as well as other developmental processes.</p></li>
-<li><p>Using retroviral aided knockdown experiments and RNA-seq, the researchers were able to propose that the Asap1 gene is a negative regulator.</p></li>
-<li><p>The gene count file used in this analysis was created by aligning reads with the mouse reference genome using the align function (Rsubread) followed by gene-level summarization using featureCounts.</p></li>
+<li><p>Regulatory genes produce proteins that turn expression on or off and are therefore important target genes for studying cancer as well as other developmental processes</p></li>
+<li><p>Using retroviral aided knockdown experiments and RNA-seq, the researchers were able to propose that the Asap1 gene is a negative regulator</p></li>
+<li><p>The gene count file used in this analysis was created by aligning reads with the mouse reference genome using the align function (Rsubread) followed by gene-level summarization using featureCounts</p></li>
 </ul>
 </section>
 <section id="data-packaging" class="slide level2">
 <h2>Data Packaging</h2>
 <ul>
-<li><p>We started with raw RNA-seq count files from GEO accession GSE63310 and selected 9 samples representing Basal, LP, and ML mammary cell populations.</p></li>
-<li><p>Using edgeR, we combined the individual count files into a single DGEList object, then added sample metadata such as biological group and sequencing lane. We also used Mus.musculus to attach gene annotations, including gene symbols and chromosome information.</p></li>
+<li><p>We started with raw RNA-seq count files from GEO accession GSE63310 and selected 9 samples representing Basal, LP, and ML mammary cell populations</p></li>
+<li><p>Using edgeR, we combined the individual count files into a single DGEList object, then added sample metadata such as biological group and sequencing lane. We also used Mus.musculus to attach gene annotations, including gene symbols and chromosome information</p></li>
 </ul>
 </section>
 <section id="data-packaging-1" class="slide level2">
 <h2>Data Packaging</h2>
-<p>Data packaging converts separate raw files into one structured, analysis-ready dataset.</p>
+<p>Data packaging converts separate raw files into one structured, analysis-ready dataset</p>
 </section>
 <section id="data-pre-processing" class="slide level2">
 <h2>Data Pre-Processing</h2>
 <ul>
-<li>Before comparing gene expression across groups, we transformed raw counts to CPM and log-CPM, filtered out genes with very low expression, and normalized the libraries using TMM normalization with edgeR.</li>
+<li>Why data pre-processing?</li>
+<li>Goal is to compare gene expression across groups</li>
+<li>The following steps can be performed to pre-process the data with this workflow:</li>
 </ul>
-
-<img data-src="Index_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section>
+<ol type="1">
+<li>Transform raw counts to CPM and log-CPM</li>
+<li>Filter out genes with very low expression</li>
+<li>Normalize libraries using TMM normalization using edgeR</li>
+</ol>
+</section>
 <section id="data-pre-processing-1" class="slide level2">
 <h2>Data Pre-Processing</h2>
 <ul>
-<li><p>We then used MDS plots to check whether samples clustered by biology rather than technical artifacts.</p></li>
-<li><p>This preprocessing step reduces noise, improves comparability across samples, and helps confirm that the data are ready for differential expression testing.</p></li>
+<li>Once raw counts were transformed to CPM and log-CPM, lowly expressed genes can be filtered out</li>
 </ul>
-</section>
+
+<img data-src="Index_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
 <section id="data-pre-processing-2" class="slide level2">
 <h2>Data Pre-Processing</h2>
-<p>Preprocessing removes uninformative genes, corrects library-size effects, and checks overall sample quality before modeling.</p>
+<ul>
+<li>Normalization of the libraries using TMM normalization with edgeR</li>
+</ul>
+
+<img data-src="Index_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section>
+<section id="data-pre-processing-3" class="slide level2">
+<h2>Data Pre-Processing</h2>
+<ul>
+<li><p>We then used MDS plots to check whether samples clustered by biology rather than technical artifacts</p></li>
+<li><p>This preprocessing step reduces noise, improves comparability across samples, and helps confirm that the data are ready for differential expression testing</p></li>
+</ul>
+</section>
+<section id="data-pre-processing-4" class="slide level2">
+<h2>Data Pre-Processing</h2>
+<p>Preprocessing removes uninformative genes, corrects library-size effects, and checks overall sample quality before modeling</p>
 </section>
 <section id="differential-gene-analysis" class="slide level2">
 <h2>Differential Gene Analysis</h2>
 <ul>
-<li>To determine which genes are expressed at different levels between three cell population profiled.</li>
+<li>To determine which genes are expressed at different levels between three cell population profiled</li>
 <li>linear model fitting (assuming normally distributed data)</li>
-<li>Intercept act as anchor point for comparision against baseline.</li>
-<li>Without intercept, absolute expression levels can be determined.</li>
+<li>Intercept act as anchor point for comparision against baseline</li>
+<li>Without intercept, absolute expression levels can be determined</li>
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
