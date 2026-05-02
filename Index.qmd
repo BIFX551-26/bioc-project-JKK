@@ -6,7 +6,7 @@ format:
   gfm:
     output-file: README.md
   revealjs:
-    slide-level: 4
+    slide-level: 2
     theme: [default, simple]
 execute:
   echo: false

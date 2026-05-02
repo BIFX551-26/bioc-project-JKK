@@ -138,17 +138,16 @@ Kate, Jessica, Kardam
 </div>
 
 </section>
-<section class="slide level4">
+<section class="slide level2">
 
 <p>Load needed packages:</p>
 <p>Load Dependencies for flowchart</p>
 </section>
-<section id="introduction" class="title-slide slide level2 center">
+<section id="introduction" class="slide level2">
 <h2>Introduction</h2>
 <p>RNAseq123 Workflow:</p>
 </section>
-
-<section id="experimental-data" class="title-slide slide level2 center">
+<section id="experimental-data" class="slide level2">
 <h2>Experimental Data</h2>
 <p>“A pooled shRNA screen for regulators of primary mammary stem and progenitor cells identifies roles for Asap1 and Prox1”</p>
 <p>This experiment used RNA-seq-based expression profiling in mouse mammary stem cell (MaSC)-enriched basal cells to look for candidate regulatory genes.</p>
@@ -157,21 +156,18 @@ Kate, Jessica, Kardam
 <p>Using retroviral aided knockdown experiments and RNA-seq, the researchers were able to propose that the Asap1 gene is a negative regulator.</p>
 <p>The gene count file used in this analysis was created by aligning reads with the mouse reference genome using the align function (Rsubread) followed by gene-level summarization using featureCounts.</p>
 </section>
-
-<section id="data-packaging" class="title-slide slide level2 center">
+<section id="data-packaging" class="slide level2">
 <h2>Data Packaging</h2>
 <ul>
 <li><p>We started with raw RNA-seq count files from GEO accession GSE63310 and selected 9 samples representing Basal, LP, and ML mammary cell populations.</p></li>
 <li><p>Using edgeR, we combined the individual count files into a single DGEList object, then added sample metadata such as biological group and sequencing lane. We also used Mus.musculus to attach gene annotations, including gene symbols and chromosome information.</p></li>
 </ul>
 </section>
-
-<section id="data-packaging-1" class="title-slide slide level2 center">
+<section id="data-packaging-1" class="slide level2">
 <h2>Data Packaging</h2>
 <p>Data packaging converts separate raw files into one structured, analysis-ready dataset.</p>
 </section>
-
-<section id="data-pre-processing" class="title-slide slide level2 center">
+<section id="data-pre-processing" class="slide level2">
 <h2>Data pre-processing</h2>
 <ul>
 <li><p>Before comparing gene expression across groups, we transformed raw counts to CPM and log-CPM, filtered out genes with very low expression, and normalized the libraries using TMM normalization with edgeR.</p></li>
@@ -179,13 +175,11 @@ Kate, Jessica, Kardam
 <li><p>This preprocessing step reduces noise, improves comparability across samples, and helps confirm that the data are ready for differential expression testing.</p></li>
 </ul>
 </section>
-
-<section id="data-pre-processing-1" class="title-slide slide level2 center">
+<section id="data-pre-processing-1" class="slide level2">
 <h2>Data pre-processing</h2>
 <p>Preprocessing removes uninformative genes, corrects library-size effects, and checks overall sample quality before modeling.</p>
 </section>
-
-<section id="differential-gene-analysis" class="title-slide slide level2 center">
+<section id="differential-gene-analysis" class="slide level2">
 <h2>Differential Gene Analysis:</h2>
 <ul>
 <li>To determine which genes are expressed at different levels between three cell population profiled.</li>
@@ -199,8 +193,7 @@ Kate, Jessica, Kardam
 <li><p>limma provides flexibility to perform interactive studies for ex. testing drug reaction in Lane 6 and Lane 8.</p></li>
 </ul>
 </section>
-
-<section id="heteroscedascity-and-voom-weights" class="title-slide slide level2 center">
+<section id="heteroscedascity-and-voom-weights" class="slide level2">
 <h2>Heteroscedascity and Voom weights:</h2>
 <ul>
 <li><p>Homoscedascity: In linear models, mean-variance relationship is assumed to be linear. Mean and variance changes equally. Exactly opposite is ‘Heteroscedascity’.</p></li>
@@ -212,8 +205,7 @@ Kate, Jessica, Kardam
 </ul>
 <p>Means (x-axis) and variances (y-axis) of each gene are plotted to show the dependence between the two before voom is applied to the data (left panel) and how the trend is removed after voom precision weights are applied to the data (right panel)</p>
 </section>
-
-<section id="examining-differentially-expressed-genes" class="title-slide slide level2 center">
+<section id="examining-differentially-expressed-genes" class="slide level2">
 <h2>Examining Differentially Expressed Genes:</h2>
 <p>Summary of Differentially expressed gene:</p>
 <p>Treat method - Method can be applied for stricter definition on significance based on t-statistics. This allows user to define a log-FC threshold.</p>
@@ -222,8 +214,7 @@ Kate, Jessica, Kardam
 <p>Venn diagram showing the number of genes DE in the comparison between basal versus LP only (left), basal versus ML only (right), and the number of genes that are DE in both comparisons (center)</p>
 <p>The number of genes that are not DE in either comparison are marked in the bottom-right.</p>
 </section>
-
-<section id="examining-individual-de-genes-from-top-to-bottom" class="title-slide slide level2 center">
+<section id="examining-individual-de-genes-from-top-to-bottom" class="slide level2">
 <h2>Examining individual DE genes from top to bottom:</h2>
 <ul>
 <li><p>“topTreat”/ “topTable” - from toptreat or eBayes to list top DE genes.</p></li>
@@ -231,8 +222,7 @@ Kate, Jessica, Kardam
 <li><p>n=Inf -&gt; all genes</p></li>
 </ul>
 </section>
-
-<section id="graphical-representation-of-de-gene-results" class="title-slide slide level2 center">
+<section id="graphical-representation-of-de-gene-results" class="slide level2">
 <h2>Graphical representation of DE gene results:</h2>
 <ul>
 <li><p>Mean-difference plots are ideally utlized to display log-FC from linear model fit against log-CPM values using “plotMD” function.</p></li>
@@ -243,7 +233,6 @@ Kate, Jessica, Kardam
 <p>Heatmaps - Ideal option to visualize a subset of genes.</p>
 <p>“heatmap.2” from gplots package allows user to create heatmap for genes subset analysis.</p>
 </section>
-
 <section id="librarygplots" class="title-slide slide level1 center">
 <h1>library(gplots)</h1>
 
