@@ -161,61 +161,81 @@ Kate, Jessica, Kardam
 </section>
 <section id="introduction-2" class="slide level2">
 <h2>Introduction</h2>
-<p>This presentation is a worked example of how raw count data move through a standard Bioconductor RNA-seq workflow.</p>
+<p>This presentation is a worked example of how raw count data move through a standard Bioconductor RNA-seq workflow</p>
 
 <img data-src="Index_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
 <section id="experimental-data" class="slide level2">
 <h2>Experimental Data</h2>
 <ul>
 <li><p>“A pooled shRNA screen for regulators of primary mammary stem and progenitor cells identifies roles for Asap1 and Prox1”</p></li>
-<li><p>This experiment used RNA-seq-based expression profiling in mouse mammary stem cell (MaSC)-enriched basal cells to look for candidate regulatory genes.</p></li>
-<li><p>Mammary stem cells are often used in RNA-seq analyses as they are highly proliferative and have a high capacity for differentiation.</p></li>
+<li><p>This experiment used RNA-seq-based expression profiling in mouse mammary stem cell (MaSC)-enriched basal cells to look for candidate regulatory genes</p></li>
+<li><p>Mammary stem cells are often used in RNA-seq analyses as they are highly proliferative and have a high capacity for differentiation</p></li>
 </ul>
 </section>
 <section id="experimental-data-1" class="slide level2">
 <h2>Experimental Data</h2>
 <ul>
-<li><p>Regulatory genes produce proteins that turn expression on or off and are therefore important target genes for studying cancer as well as other developmental processes.</p></li>
-<li><p>Using retroviral aided knockdown experiments and RNA-seq, the researchers were able to propose that the Asap1 gene is a negative regulator.</p></li>
-<li><p>The gene count file used in this analysis was created by aligning reads with the mouse reference genome using the align function (Rsubread) followed by gene-level summarization using featureCounts.</p></li>
+<li><p>Regulatory genes produce proteins that turn expression on or off and are therefore important target genes for studying cancer as well as other developmental processes</p></li>
+<li><p>Using retroviral aided knockdown experiments and RNA-seq, the researchers were able to propose that the Asap1 gene is a negative regulator</p></li>
+<li><p>The gene count file used in this analysis was created by aligning reads with the mouse reference genome using the align function (Rsubread) followed by gene-level summarization using featureCounts</p></li>
 </ul>
 </section>
 <section id="data-packaging" class="slide level2">
 <h2>Data Packaging</h2>
 <ul>
-<li><p>We started with raw RNA-seq count files from GEO accession GSE63310 and selected 9 samples representing Basal, LP, and ML mammary cell populations.</p></li>
-<li><p>Using edgeR, we combined the individual count files into a single DGEList object, then added sample metadata such as biological group and sequencing lane. We also used Mus.musculus to attach gene annotations, including gene symbols and chromosome information.</p></li>
+<li><p>We started with raw RNA-seq count files from GEO accession GSE63310 and selected 9 samples representing Basal, LP, and ML mammary cell populations</p></li>
+<li><p>Using edgeR, we combined the individual count files into a single DGEList object, then added sample metadata such as biological group and sequencing lane. We also used Mus.musculus to attach gene annotations, including gene symbols and chromosome information</p></li>
 </ul>
 </section>
 <section id="data-packaging-1" class="slide level2">
 <h2>Data Packaging</h2>
-<p>Data packaging converts separate raw files into one structured, analysis-ready dataset.</p>
+<p>Data packaging converts separate raw files into one structured, analysis-ready dataset</p>
 </section>
 <section id="data-pre-processing" class="slide level2">
 <h2>Data Pre-Processing</h2>
 <ul>
-<li>Before comparing gene expression across groups, we transformed raw counts to CPM and log-CPM, filtered out genes with very low expression, and normalized the libraries using TMM normalization with edgeR.</li>
+<li>Why data pre-processing?</li>
+<li>Goal is to compare gene expression across groups</li>
+<li>The following steps can be performed to pre-process the data with this workflow:</li>
 </ul>
-
-<img data-src="Index_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section>
+<ol type="1">
+<li>Transform raw counts to CPM and log-CPM</li>
+<li>Filter out genes with very low expression</li>
+<li>Normalize libraries using TMM normalization using edgeR</li>
+</ol>
+</section>
 <section id="data-pre-processing-1" class="slide level2">
 <h2>Data Pre-Processing</h2>
 <ul>
-<li><p>We then used MDS plots to check whether samples clustered by biology rather than technical artifacts.</p></li>
-<li><p>This preprocessing step reduces noise, improves comparability across samples, and helps confirm that the data are ready for differential expression testing.</p></li>
+<li>Once raw counts were transformed to CPM and log-CPM, lowly expressed genes can be filtered out</li>
 </ul>
-</section>
+
+<img data-src="Index_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
 <section id="data-pre-processing-2" class="slide level2">
 <h2>Data Pre-Processing</h2>
-<p>Preprocessing removes uninformative genes, corrects library-size effects, and checks overall sample quality before modeling.</p>
+<ul>
+<li>Normalization of the libraries using TMM normalization with edgeR</li>
+</ul>
+
+<img data-src="Index_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section>
+<section id="data-pre-processing-3" class="slide level2">
+<h2>Data Pre-Processing</h2>
+<ul>
+<li><p>We then used MDS plots to check whether samples clustered by biology rather than technical artifacts</p></li>
+<li><p>This preprocessing step reduces noise, improves comparability across samples, and helps confirm that the data are ready for differential expression testing</p></li>
+</ul>
+</section>
+<section id="data-pre-processing-4" class="slide level2">
+<h2>Data Pre-Processing</h2>
+<p>Preprocessing removes uninformative genes, corrects library-size effects, and checks overall sample quality before modeling</p>
 </section>
 <section id="differential-gene-analysis" class="slide level2">
 <h2>Differential Gene Analysis</h2>
 <ul>
-<li>To determine which genes are expressed at different levels between three cell population profiled.</li>
+<li>To determine which genes are expressed at different levels between three cell population profiled</li>
 <li>linear model fitting (assuming normally distributed data)</li>
-<li>Intercept act as anchor point for comparision against baseline.</li>
-<li>Without intercept, absolute expression levels can be determined.</li>
+<li>Intercept act as anchor point for comparision against baseline</li>
+<li>Without intercept, absolute expression levels can be determined</li>
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -243,9 +263,9 @@ attr(,"contrasts")$lane
 <section id="differential-gene-analysis-1" class="slide level2">
 <h2>Differential Gene Analysis</h2>
 <ul>
-<li><p>“makecontrast” function from limma package allows user to draw contrax matrix for pairwise comparisions.</p></li>
-<li><p>limma provides duplicateCorrelation to deal with technical replicates.</p></li>
-<li><p>limma provides flexibility to perform interactive studies for ex. testing drug reaction in Lane 6 and Lane 8.</p></li>
+<li><p>“makecontrast” function from limma package allows user to draw contrax matrix for pairwise comparisions</p></li>
+<li><p>limma provides duplicateCorrelation to deal with technical replicates</p></li>
+<li><p>limma provides flexibility to perform interactive studies for ex. testing drug reaction in Lane 6 and Lane 8</p></li>
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -262,17 +282,17 @@ Levels     BasalvsLP BasalvsML LPvsML
 <section id="heteroscedascity-and-voom-weights" class="slide level2">
 <h2>Heteroscedascity and Voom weights</h2>
 <ul>
-<li><p>Homoscedascity: In linear models, mean-variance relationship is assumed to be linear. Mean and variance changes equally. Exactly opposite is ‘Heteroscedascity’.</p></li>
-<li><p>In RNA-Seq count data, the Negative Binomial distribution assumes quadratic mean-variation relationship.</p></li>
+<li><p>Homoscedascity: In linear models, mean-variance relationship is assumed to be linear. Mean and variance changes equally. Exactly opposite is ‘Heteroscedascity’</p></li>
+<li><p>In RNA-Seq count data, the Negative Binomial distribution assumes quadratic mean-variation relationship</p></li>
 <li><p>Overdispersion observed due to large difference between house-keeping genes and highly expressed genes</p></li>
-<li><p>In limma, linear modelling is carried out on log-CPM values.</p></li>
+<li><p>In limma, linear modelling is carried out on log-CPM values</p></li>
 </ul>
 </section>
 <section id="heteroscedascity-and-voom-weights-1" class="slide level2">
 <h2>Heteroscedascity and Voom weights</h2>
 <ul>
 <li><p>“voom” function act as link to bridge limma(built for microarrays) to expression data. It addresses scale problem (calculates into CPM) and “normalize.method” argument to normalize library size and estimates mean-variance relationship (non-linear - overdispersion)</p></li>
-<li><p>“Voom weights” fixes the noise related to genes whereas Voomqualityweight addresses the noise generated from inter-sample variation.</p></li>
+<li><p>“Voom weights” fixes the noise related to genes whereas Voomqualityweight addresses the noise generated from inter-sample variation</p></li>
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -384,7 +404,7 @@ NotSig      7118      7008  10953
 Up          4860      4680   2530</code></pre>
 </div>
 </div>
-<p>Treat method - Method can be applied for stricter definition on significance based on t-statistics. This allows user to define a log-FC threshold.</p>
+<p>Treat method - Method can be applied for stricter definition on significance based on t-statistics. This allows user to define a log-FC threshold</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>       BasalvsLP BasalvsML LPvsML
@@ -414,13 +434,13 @@ Up          2014      2054    190</code></pre>
 </div>
 <p>O - represents genes with levels unchanged 1 - Up regulated genes -1 - Down regulated genes</p>
 <p>Venn diagram showing the number of genes DE in the comparison between basal versus LP only (left), basal versus ML only (right), and the number of genes that are DE in both comparisons (center)</p>
-<p>The number of genes that are not DE in either comparison are marked in the bottom-right.</p>
+<p>The number of genes that are not DE in either comparison are marked in the bottom-right</p>
 
 <img data-src="Index_files/figure-revealjs/unnamed-chunk-30-1.png" width="960" class="r-stretch"></section>
 <section id="examining-individual-de-genes-from-top-to-bottom" class="slide level2">
 <h2>Examining individual DE genes from top to bottom:</h2>
 <ul>
-<li><p>“topTreat”/ “topTable” - from toptreat or eBayes to list top DE genes.</p></li>
+<li><p>“topTreat”/ “topTable” - from toptreat or eBayes to list top DE genes</p></li>
 <li><p>toptreat arranges DE genes chronologically in increasing order using log-FC, average log-CPM, moderated t-statistics, raw and adjusted p-value for each gene</p></li>
 <li><p>n=Inf -&gt; all genes</p></li>
 </ul>
@@ -446,44 +466,37 @@ Up          2014      2054    190</code></pre>
 <section id="graphical-representation-of-de-gene-results" class="slide level2">
 <h2>Graphical representation of DE gene results:</h2>
 <ul>
-<li><p>Mean-difference plots are ideally utlized to display log-FC from linear model fit against log-CPM values using “plotMD” function.</p></li>
-<li><p>Glimma package offer interactive interface for MDplot by “glMDPlot”.</p></li>
-<li><p>Glimma option allows brower viewing option - convenient for including them as linked files from an Rmarkdown.</p></li>
+<li><p>Mean-difference plots are ideally utlized to display log-FC from linear model fit against log-CPM values using “plotMD” function</p></li>
+<li><p>Glimma package offer interactive interface for MDplot by “glMDPlot”</p></li>
+<li><p>Glimma option allows brower viewing option - convenient for including them as linked files from an Rmarkdown</p></li>
 </ul>
-
-<img data-src="Index_files/figure-revealjs/unnamed-chunk-32-1.png" width="960" class="r-stretch"><p>MDplot - allows user to visualize all genes or individual genes.</p>
-<p>Heatmaps - Ideal option to visualize a subset of genes.</p>
-<p>“heatmap.2” from gplots package allows user to create heatmap for genes subset analysis.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="Index_files/figure-revealjs/unnamed-chunk-32-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>MDplot - allows user to visualize all genes or individual genes</p>
+<p>Heatmaps - Ideal option to visualize a subset of genes</p>
+<p>“heatmap.2” from gplots package allows user to create heatmap for genes subset analysis</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="Index_files/figure-revealjs/unnamed-chunk-33-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="librarygplots" class="title-slide slide level1 center">
-<h1>library(gplots)</h1>
-
-</section>
-
-<section id="basal.vs.lp.topgenes---basal.vs.lpentrezid1100-i---whichvgenesentrezid-in-basal.vs.lp.topgenes-mycol---colorpanel1000bluewhitered-heatmap.2lcpmi-scalerow-labrowvgenessymboli-labcolgroup" class="title-slide slide level1 center">
-<h1>basal.vs.lp.topgenes &lt;- basal.vs.lp<span class="math inline">\(ENTREZID[1:100]
-# i &lt;- which(v\)</span>genes<span class="math inline">\(ENTREZID %in% basal.vs.lp.topgenes)
-# mycol &lt;- colorpanel(1000,"blue","white","red")
-# heatmap.2(lcpm[i,],   scale="row",
-#  labRow=v\)</span>genes$SYMBOL[i], labCol=group,</h1>
-
-</section>
-
-<section id="colmycol-tracenone-density.infonone" class="title-slide slide level1 center">
-<h1>col=mycol, trace=“none”, density.info=“none”,</h1>
-
-</section>
-
-<section>
-<section id="marginc86-lheic210-dendrogramcolumn" class="title-slide slide level1 center">
-<h1>margin=c(8,6), lhei=c(2,10), dendrogram=“column”)</h1>
-
-<img data-src="Index_files/figure-revealjs/unnamed-chunk-33-1.png" width="960" class="r-stretch"></section>
 <section id="conclusion" class="slide level2">
 <h2>Conclusion</h2>
 <p>What interesting things / skills did you learn? What challenges did you come across? - Main result - Limitation - Next steps</p>
 
-</section></section>
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

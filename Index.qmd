@@ -81,7 +81,7 @@ Goal: Demonstrate the RNAseq123 Bioconductor workflow
 :::
 
   This presentation is a worked example of how raw count data move through a standard
-  Bioconductor RNA-seq workflow.
+  Bioconductor RNA-seq workflow
 
 ```{r}
  #| output: true
@@ -104,9 +104,9 @@ ggflowchart(steps, colour = "green", family = "mono", text_size = 4, text_colour
 
 - “A pooled shRNA screen for regulators of primary mammary stem and progenitor cells identifies roles for Asap1 and Prox1”
 
-- This experiment used RNA-seq-based expression profiling in mouse mammary stem cell (MaSC)-enriched basal cells to look for candidate regulatory genes.
+- This experiment used RNA-seq-based expression profiling in mouse mammary stem cell (MaSC)-enriched basal cells to look for candidate regulatory genes
 
-- Mammary stem cells are often used in RNA-seq analyses as they are highly proliferative and have a high capacity for differentiation.
+- Mammary stem cells are often used in RNA-seq analyses as they are highly proliferative and have a high capacity for differentiation
 
 ::: {.content-visible when-format="revealjs"}
 
@@ -114,18 +114,18 @@ ggflowchart(steps, colour = "green", family = "mono", text_size = 4, text_colour
 
 :::
 
-- Regulatory genes produce proteins that turn expression on or off and are therefore important target genes for studying cancer as well as other developmental processes.
+- Regulatory genes produce proteins that turn expression on or off and are therefore important target genes for studying cancer as well as other developmental processes
 
-- Using retroviral aided knockdown experiments and RNA-seq, the researchers were able to propose that the Asap1 gene is a negative regulator. 
+- Using retroviral aided knockdown experiments and RNA-seq, the researchers were able to propose that the Asap1 gene is a negative regulator
 
-- The gene count file used in this analysis was created by aligning reads with the mouse reference genome using the align function (Rsubread) followed by gene-level summarization using featureCounts.
+- The gene count file used in this analysis was created by aligning reads with the mouse reference genome using the align function (Rsubread) followed by gene-level summarization using featureCounts
 
 ## Data Packaging 
 
 - We started with raw RNA-seq count files from GEO accession GSE63310 and selected 9 samples
-representing Basal, LP, and ML mammary cell populations.
+representing Basal, LP, and ML mammary cell populations
 
-- Using edgeR, we combined the individual count files into a single DGEList object, then added sample metadata such as biological group and sequencing lane. We also used Mus.musculus to attach gene annotations, including gene symbols and chromosome information.
+- Using edgeR, we combined the individual count files into a single DGEList object, then added sample metadata such as biological group and sequencing lane. We also used Mus.musculus to attach gene annotations, including gene symbols and chromosome information
 
 ::: {.content-visible when-format="revealjs"}
 
@@ -134,7 +134,7 @@ representing Basal, LP, and ML mammary cell populations.
 :::
 
 Data packaging converts separate raw files into one structured, analysis-ready
-dataset.
+dataset
 
 ```{r}
 url <- "https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE63310&format=file"
@@ -148,10 +148,21 @@ for(i in paste(files, ".gz", sep=""))
 ```
 
 ## Data Pre-Processing
+- Why data pre-processing?
+- Goal is to compare gene expression across groups
+- The following steps can be performed to pre-process the data with this workflow:
 
-- Before comparing gene expression across groups, we transformed raw counts to CPM and log-CPM, filtered
-out genes with very low expression, and normalized the libraries using TMM normalization with edgeR.
+1. Transform raw counts to CPM and log-CPM
+2. Filter out genes with very low expression
+3. Normalize libraries using TMM normalization using edgeR
 
+::: {.content-visible when-format="revealjs"}
+
+## Data Pre-Processing
+
+:::
+
+- Once raw counts were transformed to CPM and log-CPM, lowly expressed genes can be filtered out
 
 
 ```{r}
@@ -228,7 +239,6 @@ dim(x)
 ```
 
 ```{r}
-#| include: false
 lcpm.cutoff <- log2(10/M + 2/L)
 library(RColorBrewer)
 nsamples <- ncol(x)
@@ -267,6 +277,14 @@ x2$samples$norm.factors <- 1
 x2$counts[,1] <- ceiling(x2$counts[,1]*0.05)
 x2$counts[,2] <- x2$counts[,2]*5
 ```
+
+::: {.content-visible when-format="revealjs"}
+
+## Data Pre-Processing
+
+:::
+
+- Normalization of the libraries using TMM normalization with edgeR
 
 ```{r}
  #| results: "hide"
@@ -327,9 +345,9 @@ glMDSPlot(lcpm, labels=paste(group, lane, sep="_"),
 
 :::
 
-- We then used MDS plots to check whether samples clustered by biology rather than technical artifacts.
+- We then used MDS plots to check whether samples clustered by biology rather than technical artifacts
 
-- This preprocessing step reduces noise, improves comparability across samples, and helps confirm that the data are ready for differential expression testing.
+- This preprocessing step reduces noise, improves comparability across samples, and helps confirm that the data are ready for differential expression testing
 
 ::: {.content-visible when-format="revealjs"}
 
@@ -338,16 +356,16 @@ glMDSPlot(lcpm, labels=paste(group, lane, sep="_"),
 :::
 
 Preprocessing removes uninformative genes, corrects library-size effects, and checks
-overall sample quality before modeling.
+overall sample quality before modeling
 
 
 
 
 ## Differential Gene Analysis
-- To determine which genes are expressed at different levels between three cell population profiled.
+- To determine which genes are expressed at different levels between three cell population profiled
 - linear model fitting (assuming normally distributed data)
-- Intercept act as anchor point for comparision against baseline. 
-- Without intercept, absolute expression levels can be determined.
+- Intercept act as anchor point for comparision against baseline
+- Without intercept, absolute expression levels can be determined
 
 ```{r}
 design <- model.matrix(~0+group+lane)
@@ -364,11 +382,11 @@ design
 
 :::
 
-- "makecontrast" function from limma package allows user to draw contrax matrix for pairwise comparisions.
+- "makecontrast" function from limma package allows user to draw contrax matrix for pairwise comparisions
 
-- limma provides duplicateCorrelation to deal with technical replicates.
+- limma provides duplicateCorrelation to deal with technical replicates
 
-- limma provides flexibility to perform interactive studies for ex. testing drug reaction in Lane 6 and Lane 8.
+- limma provides flexibility to perform interactive studies for ex. testing drug reaction in Lane 6 and Lane 8
 
 ```{r}
 contr.matrix <- makeContrasts(
@@ -382,13 +400,13 @@ contr.matrix
 
 ## Heteroscedascity and Voom weights
 
-- Homoscedascity: In linear models, mean-variance relationship is assumed to be linear. Mean and variance changes equally. Exactly opposite is 'Heteroscedascity'. 
+- Homoscedascity: In linear models, mean-variance relationship is assumed to be linear. Mean and variance changes equally. Exactly opposite is 'Heteroscedascity'
 
-- In RNA-Seq count data, the Negative Binomial distribution assumes quadratic mean-variation relationship. 
+- In RNA-Seq count data, the Negative Binomial distribution assumes quadratic mean-variation relationship
 
 - Overdispersion observed due to large difference between house-keeping genes and highly expressed genes 
 
-- In limma, linear modelling is carried out on log-CPM values.
+- In limma, linear modelling is carried out on log-CPM values
 
 ::: {.content-visible when-format="revealjs"}
 
@@ -398,7 +416,7 @@ contr.matrix
 
 - "voom" function act as link to bridge limma(built for microarrays) to expression data. It addresses scale problem (calculates into CPM) and "normalize.method" argument to normalize library size and estimates mean-variance relationship (non-linear - overdispersion) 
 
-- "Voom weights" fixes the noise related to genes whereas Voomqualityweight addresses the noise generated from inter-sample variation.
+- "Voom weights" fixes the noise related to genes whereas Voomqualityweight addresses the noise generated from inter-sample variation
 
 
 ```{r}
@@ -428,7 +446,7 @@ summary(decideTests(efit))
 
 ```
 
-Treat method - Method can be applied for stricter definition on significance based on t-statistics. This allows user to define a log-FC threshold. 
+Treat method - Method can be applied for stricter definition on significance based on t-statistics. This allows user to define a log-FC threshold
 
 ```{r}
 tfit <- treat(vfit, lfc=1)
@@ -462,7 +480,7 @@ head(tfit$genes$SYMBOL[de.common], n=20)
 
 Venn diagram showing the number of genes DE in the comparison between basal versus LP only (left), basal versus ML only (right), and the number of genes that are DE in both comparisons (center)
 
-The number of genes that are not DE in either comparison are marked in the bottom-right.
+The number of genes that are not DE in either comparison are marked in the bottom-right
 
 ```{r}
 vennDiagram(dt[,1:2], circle.col=c("turquoise", "salmon"))
@@ -473,7 +491,7 @@ vennDiagram(dt[,1:2], circle.col=c("turquoise", "salmon"))
 
 ## Examining individual DE genes from top to bottom:
 
-- "topTreat"/ "topTable" - from toptreat or eBayes to list top DE genes.
+- "topTreat"/ "topTable" - from toptreat or eBayes to list top DE genes
  
 - toptreat arranges DE genes chronologically in increasing order using log-FC, average log-CPM, moderated t-statistics, raw and adjusted p-value for each gene
 
@@ -488,11 +506,11 @@ head(basal.vs.lp)
 
 ## Graphical representation of DE gene results:
 
-- Mean-difference plots are ideally utlized to display log-FC from linear model fit against log-CPM values using "plotMD" function.
+- Mean-difference plots are ideally utlized to display log-FC from linear model fit against log-CPM values using "plotMD" function
 
-- Glimma package offer interactive interface for MDplot by "glMDPlot".
+- Glimma package offer interactive interface for MDplot by "glMDPlot"
 
-- Glimma option allows brower viewing option - convenient for including them as linked files from an Rmarkdown.
+- Glimma option allows brower viewing option - convenient for including them as linked files from an Rmarkdown
 
 ```{r}
 plotMD(tfit, column=1, status=dt[,1], main=colnames(tfit)[1], 
@@ -502,11 +520,11 @@ plotMD(tfit, column=1, status=dt[,1], main=colnames(tfit)[1],
 
 ::: {.content-visible when-format="revealjs"}
 
-MDplot - allows user to visualize all genes or individual genes.
+MDplot - allows user to visualize all genes or individual genes
 
-Heatmaps - Ideal option to visualize a subset of genes.
+Heatmaps - Ideal option to visualize a subset of genes
 
-"heatmap.2"  from gplots package allows user to create heatmap for genes subset analysis.
+"heatmap.2"  from gplots package allows user to create heatmap for genes subset analysis
 
 :::
 

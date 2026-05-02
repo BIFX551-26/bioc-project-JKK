@@ -20,7 +20,7 @@ What the workflow covers:
 - visualization and interpretation
 
 This presentation is a worked example of how raw count data move through
-a standard Bioconductor RNA-seq workflow.
+a standard Bioconductor RNA-seq workflow
 
 ![](Index_files/figure-commonmark/unnamed-chunk-3-1.png)
 
@@ -31,65 +31,76 @@ a standard Bioconductor RNA-seq workflow.
 
 - This experiment used RNA-seq-based expression profiling in mouse
   mammary stem cell (MaSC)-enriched basal cells to look for candidate
-  regulatory genes.
+  regulatory genes
 
 - Mammary stem cells are often used in RNA-seq analyses as they are
-  highly proliferative and have a high capacity for differentiation.
+  highly proliferative and have a high capacity for differentiation
 
 <!-- -->
 
 - Regulatory genes produce proteins that turn expression on or off and
   are therefore important target genes for studying cancer as well as
-  other developmental processes.
+  other developmental processes
 
 - Using retroviral aided knockdown experiments and RNA-seq, the
   researchers were able to propose that the Asap1 gene is a negative
-  regulator.
+  regulator
 
 - The gene count file used in this analysis was created by aligning
   reads with the mouse reference genome using the align function
-  (Rsubread) followed by gene-level summarization using featureCounts.
+  (Rsubread) followed by gene-level summarization using featureCounts
 
 ## Data Packaging
 
 - We started with raw RNA-seq count files from GEO accession GSE63310
   and selected 9 samples representing Basal, LP, and ML mammary cell
-  populations.
+  populations
 
 - Using edgeR, we combined the individual count files into a single
   DGEList object, then added sample metadata such as biological group
   and sequencing lane. We also used Mus.musculus to attach gene
-  annotations, including gene symbols and chromosome information.
+  annotations, including gene symbols and chromosome information
 
 Data packaging converts separate raw files into one structured,
-analysis-ready dataset.
+analysis-ready dataset
 
 ## Data Pre-Processing
 
-- Before comparing gene expression across groups, we transformed raw
-  counts to CPM and log-CPM, filtered out genes with very low
-  expression, and normalized the libraries using TMM normalization with
-  edgeR.
+- Why data pre-processing?
+- Goal is to compare gene expression across groups
+- The following steps can be performed to pre-process the data with this
+  workflow:
+
+1.  Transform raw counts to CPM and log-CPM
+2.  Filter out genes with very low expression
+3.  Normalize libraries using TMM normalization using edgeR
+
+- Once raw counts were transformed to CPM and log-CPM, lowly expressed
+  genes can be filtered out
+
+![](Index_files/figure-commonmark/unnamed-chunk-15-1.png)
+
+- Normalization of the libraries using TMM normalization with edgeR
 
 ![](Index_files/figure-commonmark/unnamed-chunk-18-1.png)
 
 - We then used MDS plots to check whether samples clustered by biology
-  rather than technical artifacts.
+  rather than technical artifacts
 
 - This preprocessing step reduces noise, improves comparability across
   samples, and helps confirm that the data are ready for differential
-  expression testing.
+  expression testing
 
 Preprocessing removes uninformative genes, corrects library-size
-effects, and checks overall sample quality before modeling.
+effects, and checks overall sample quality before modeling
 
 ## Differential Gene Analysis
 
 - To determine which genes are expressed at different levels between
-  three cell population profiled.
+  three cell population profiled
 - linear model fitting (assuming normally distributed data)
-- Intercept act as anchor point for comparision against baseline.
-- Without intercept, absolute expression levels can be determined.
+- Intercept act as anchor point for comparision against baseline
+- Without intercept, absolute expression levels can be determined
 
 <!-- -->
 
@@ -113,12 +124,12 @@ effects, and checks overall sample quality before modeling.
     [1] "contr.treatment"
 
 - “makecontrast” function from limma package allows user to draw contrax
-  matrix for pairwise comparisions.
+  matrix for pairwise comparisions
 
-- limma provides duplicateCorrelation to deal with technical replicates.
+- limma provides duplicateCorrelation to deal with technical replicates
 
 - limma provides flexibility to perform interactive studies for ex.
-  testing drug reaction in Lane 6 and Lane 8.
+  testing drug reaction in Lane 6 and Lane 8
 
 <!-- -->
 
@@ -134,15 +145,15 @@ effects, and checks overall sample quality before modeling.
 
 - Homoscedascity: In linear models, mean-variance relationship is
   assumed to be linear. Mean and variance changes equally. Exactly
-  opposite is ‘Heteroscedascity’.
+  opposite is ‘Heteroscedascity’
 
 - In RNA-Seq count data, the Negative Binomial distribution assumes
-  quadratic mean-variation relationship.
+  quadratic mean-variation relationship
 
 - Overdispersion observed due to large difference between house-keeping
   genes and highly expressed genes
 
-- In limma, linear modelling is carried out on log-CPM values.
+- In limma, linear modelling is carried out on log-CPM values
 
 <!-- -->
 
@@ -153,7 +164,7 @@ effects, and checks overall sample quality before modeling.
 
 - “Voom weights” fixes the noise related to genes whereas
   Voomqualityweight addresses the noise generated from inter-sample
-  variation.
+  variation
 
 <!-- -->
 
@@ -253,7 +264,7 @@ Summary of Differentially expressed gene:
 
 Treat method - Method can be applied for stricter definition on
 significance based on t-statistics. This allows user to define a log-FC
-threshold.
+threshold
 
            BasalvsLP BasalvsML LPvsML
     Down        1633      1777    223
@@ -262,7 +273,7 @@ threshold.
 
 ## Examining individual DE genes from top to bottom:
 
-- “topTreat”/ “topTable” - from toptreat or eBayes to list top DE genes.
+- “topTreat”/ “topTable” - from toptreat or eBayes to list top DE genes
 
 - toptreat arranges DE genes chronologically in increasing order using
   log-FC, average log-CPM, moderated t-statistics, raw and adjusted
@@ -290,12 +301,12 @@ threshold.
 ## Graphical representation of DE gene results:
 
 - Mean-difference plots are ideally utlized to display log-FC from
-  linear model fit against log-CPM values using “plotMD” function.
+  linear model fit against log-CPM values using “plotMD” function
 
-- Glimma package offer interactive interface for MDplot by “glMDPlot”.
+- Glimma package offer interactive interface for MDplot by “glMDPlot”
 
 - Glimma option allows brower viewing option - convenient for including
-  them as linked files from an Rmarkdown.
+  them as linked files from an Rmarkdown
 
 ![](Index_files/figure-commonmark/unnamed-chunk-32-1.png)
 
