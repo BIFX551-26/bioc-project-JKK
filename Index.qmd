@@ -560,14 +560,20 @@ glMDPlot(tfit, coef=1, status=dt, main=colnames(tfit)[1],
 ## Useful Graphical Representations of Differential Expression Results
 :::
 
+::::: {.columns}
+::: {.column width="50%"}
+::: {.smaller}
 - A heatmap of the top 100 DE genes shows whether samples cluster by biology and whether related groups share expression patterns
 - Focuses on the strongest DE genes and highlights sample clustering by cell type
-
-::: {.content-visible when-format="revealjs"}
-## Useful Graphical Representations of DE Results
+:::
 :::
 
-```{r, fig.width=50, fig.height=75}
+::: {.column width="50%"}
+```{r}
+#| fig-width: 20
+#| fig-height: 23
+#| out-width: 100%
+#| fig-align: right
 library(gplots)
 basal.vs.lp.topgenes <- basal.vs.lp$ENTREZID[1:100]
 i <- which(v$genes$ENTREZID %in% basal.vs.lp.topgenes)
@@ -575,8 +581,10 @@ mycol <- colorpanel(1000,"blue","white","red")
 heatmap.2(lcpm[i,], scale="row",
    labRow=v$genes$SYMBOL[i], labCol=group, 
    col=mycol, trace="none", density.info="none", 
-   margin=c(6,4), cexRow=0.6, lhei=c(2,10), dendrogram="column")
+   margin=c(6,6), cexRow=0.45, lhei=c(1.2,10), dendrogram="column")
 ```
+:::
+:::::
 
 
 

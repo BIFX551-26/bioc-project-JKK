@@ -340,12 +340,29 @@ threshold
 
 ![](Index_files/figure-commonmark/unnamed-chunk-34-1.png)
 
+<div class="columns">
+
+<div class="column" width="50%">
+
+<div class="smaller">
+
 - A heatmap of the top 100 DE genes shows whether samples cluster by
   biology and whether related groups share expression patterns
 - Focuses on the strongest DE genes and highlights sample clustering by
   cell type
 
-![](Index_files/figure-commonmark/unnamed-chunk-36-1.png)
+</div>
+
+</div>
+
+<div class="column" width="50%">
+
+<img src="Index_files/figure-commonmark/unnamed-chunk-36-1.png"
+style="width:100.0%" data-fig-align="right" />
+
+</div>
+
+</div>
 
 ## Results
 
