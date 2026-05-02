@@ -1,5 +1,5 @@
 ---
-title: "RNA-seq analysis with RNASeq123 workflow"
+title: "RNA-seq analysis with RNAseq123 workflow"
 author: "Kate, Jessica, Kardam"
 bibliography: References- BIFX 551 BioConductor Project.bib
 format:
@@ -15,10 +15,8 @@ execute:
   message: false
 ---
 
-Load needed packages:
-
-
 ```{r}
+#load needed packages
 
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
   install.packages("BiocManager", repos = "https://cloud.r-project.org")
@@ -40,12 +38,9 @@ library(gplots)
 library(RNAseq123)
 ```
 
-
-
-
-Load Dependencies for flowchart
-
 ```{r}
+#load dependencies for flowchart 
+
 if (!requireNamespace("ggflowchart", quietly = TRUE)) {
    install.packages("ggflowchart", repos = "https://cloud.r-project.org")
  }
@@ -57,7 +52,36 @@ library(tibble)
 
 ## Introduction
 
-RNAseq123 Workflow:
+Goal: Demonstrate the RNAseq123 Bioconductor workflow
+
+  Why this dataset?
+
+   - Public mouse mammary cell RNA-seq counts from GSE63310
+   - Includes biologically distinct groups: Basal, LP, and ML
+   - Small, well-structured example for showing an end-to-end workflow
+
+::: {.content-visible when-format="revealjs"}
+
+## Introduction
+
+:::
+
+  What the workflow covers:
+
+   - data packaging
+   - filtering and normalization
+   - quality assessment
+   - differential expression analysis
+   - visualization and interpretation
+
+::: {.content-visible when-format="revealjs"}
+
+## Introduction
+
+:::
+
+  This presentation is a worked example of how raw count data move through a standard
+  Bioconductor RNA-seq workflow.
 
 ```{r}
 # Define steps
@@ -74,17 +98,23 @@ ggflowchart(steps, colour = "green", family = "mono", text_size = 4, text_colour
 
 ## Experimental Data
 
-“A pooled shRNA screen for regulators of primary mammary stem and progenitor cells identifies roles for Asap1 and Prox1”
+- “A pooled shRNA screen for regulators of primary mammary stem and progenitor cells identifies roles for Asap1 and Prox1”
 
-This experiment used RNA-seq-based expression profiling in mouse mammary stem cell (MaSC)-enriched basal cells to look for candidate regulatory genes.
+- This experiment used RNA-seq-based expression profiling in mouse mammary stem cell (MaSC)-enriched basal cells to look for candidate regulatory genes.
 
-Mammary stem cells are often used in RNA-seq analyses as they are highly proliferative and have a high capacity for differentiation.
+- Mammary stem cells are often used in RNA-seq analyses as they are highly proliferative and have a high capacity for differentiation.
 
-Regulatory genes produce proteins that turn expression on or off and are therefore important target genes for studying cancer as well as other developmental processes.
+::: {.content-visible when-format="revealjs"}
 
-Using retroviral aided knockdown experiments and RNA-seq, the researchers were able to propose that the Asap1 gene is a negative regulator. 
+## Experimental Data
 
-The gene count file used in this analysis was created by aligning reads with the mouse reference genome using the align function (Rsubread) followed by gene-level summarization using featureCounts.
+:::
+
+- Regulatory genes produce proteins that turn expression on or off and are therefore important target genes for studying cancer as well as other developmental processes.
+
+- Using retroviral aided knockdown experiments and RNA-seq, the researchers were able to propose that the Asap1 gene is a negative regulator. 
+
+- The gene count file used in this analysis was created by aligning reads with the mouse reference genome using the align function (Rsubread) followed by gene-level summarization using featureCounts.
 
 ## Data Packaging 
 
@@ -113,7 +143,7 @@ for(i in paste(files, ".gz", sep=""))
   R.utils::gunzip(i, overwrite=TRUE)
 ```
 
-## Data pre-processing
+## Data Pre-Processing
 
 - Before comparing gene expression across groups, we transformed raw counts to CPM and log-CPM, filtered
 out genes with very low expression, and normalized the libraries using TMM normalization with edgeR.
@@ -124,7 +154,7 @@ out genes with very low expression, and normalized the libraries using TMM norma
 
 ::: {.content-visible when-format="revealjs"}
 
-## Data pre-processing
+## Data Pre-Processing
 
 :::
 
@@ -273,7 +303,7 @@ glMDSPlot(lcpm, labels=paste(group, lane, sep="_"),
 
 
 
-## Differential Gene Analysis:
+## Differential Gene Analysis
 - To determine which genes are expressed at different levels between three cell population profiled.
 - linear model fitting (assuming normally distributed data)
 - Intercept act as anchor point for comparision against baseline. 
@@ -288,7 +318,11 @@ design
 
 
 
-:::{.content-visible when-format="revealjs"}
+::: {.content-visible when-format="revealjs"}
+
+## Differential Gene Analysis
+
+:::
 
 - "makecontrast" function from limma package allows user to draw contrax matrix for pairwise comparisions.
 
@@ -304,10 +338,9 @@ contr.matrix <- makeContrasts(
    levels = colnames(design))
 contr.matrix
 ```
-:::
 
 
-## Heteroscedascity and Voom weights:
+## Heteroscedascity and Voom weights
 
 - Homoscedascity: In linear models, mean-variance relationship is assumed to be linear. Mean and variance changes equally. Exactly opposite is 'Heteroscedascity'. 
 
@@ -316,6 +349,12 @@ contr.matrix
 - Overdispersion observed due to large difference between house-keeping genes and highly expressed genes 
 
 - In limma, linear modelling is carried out on log-CPM values.
+
+::: {.content-visible when-format="revealjs"}
+
+## Heteroscedascity and Voom weights
+
+:::
 
 - "voom" function act as link to bridge limma(built for microarrays) to expression data. It addresses scale problem (calculates into CPM) and "normalize.method" argument to normalize library size and estimates mean-variance relationship (non-linear - overdispersion) 
 
@@ -330,7 +369,7 @@ v
 ```
 
 
-:::{.content-visible when-format="revealjs"}
+::: {.content-visible when-format="revealjs"}
 
 ```{r}
 vfit <- lmFit(v, design)
@@ -358,7 +397,7 @@ summary(dt)
 ```
 
 
-:::{.content-visible when-format="revealjs"}
+::: {.content-visible when-format="revealjs"}
 
 Extracting DE genes:
 
@@ -379,7 +418,7 @@ head(tfit$genes$SYMBOL[de.common], n=20)
 -1 - Down regulated genes
 :::
 
-:::{.content-visible when-format="revealjs"}
+::: {.content-visible when-format="revealjs"}
 
 Venn diagram showing the number of genes DE in the comparison between basal versus LP only (left), basal versus ML only (right), and the number of genes that are DE in both comparisons (center)
 
@@ -421,7 +460,7 @@ plotMD(tfit, column=1, status=dt[,1], main=colnames(tfit)[1],
 ```
 
 
-:::{.content-visible when-format="revealjs"}
+::: {.content-visible when-format="revealjs"}
 
 MDplot - allows user to visualize all genes or individual genes.
 
@@ -440,7 +479,7 @@ Heatmaps - Ideal option to visualize a subset of genes.
 
 :::
 
-:::{.content-visible when-format="revealjs"}
+::: {.content-visible when-format="revealjs"}
 ```{r, fig.width=10, fig.height=14}
 library(gplots)
 basal.vs.lp.topgenes <- basal.vs.lp$ENTREZID[1:100]
@@ -453,3 +492,10 @@ heatmap.2(lcpm[i,], scale="row",
 ```
 
 :::
+
+## Conclusion
+What interesting things / skills did you learn?
+What challenges did you come across?
+ - Main result
+ - Limitation
+ - Next steps

@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.8.27">
 
   <meta name="author" content="Kate, Jessica, Kardam">
-  <title>RNA-seq analysis with RNASeq123 workflow</title>
+  <title>RNA-seq analysis with RNAseq123 workflow</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -127,7 +127,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">RNA-seq analysis with RNASeq123 workflow</h1>
+  <h1 class="title">RNA-seq analysis with RNAseq123 workflow</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -138,23 +138,46 @@ Kate, Jessica, Kardam
 </div>
 
 </section>
-<section class="slide level2">
-
-<p>Load needed packages:</p>
-<p>Load Dependencies for flowchart</p>
-</section>
 <section id="introduction" class="slide level2">
 <h2>Introduction</h2>
-<p>RNAseq123 Workflow:</p>
+<p>Goal: Demonstrate the RNAseq123 Bioconductor workflow</p>
+<p>Why this dataset?</p>
+<ul>
+<li>Public mouse mammary cell RNA-seq counts from GSE63310</li>
+<li>Includes biologically distinct groups: Basal, LP, and ML</li>
+<li>Small, well-structured example for showing an end-to-end workflow</li>
+</ul>
+</section>
+<section id="introduction-1" class="slide level2">
+<h2>Introduction</h2>
+<p>What the workflow covers:</p>
+<ul>
+<li>data packaging</li>
+<li>filtering and normalization</li>
+<li>quality assessment</li>
+<li>differential expression analysis</li>
+<li>visualization and interpretation</li>
+</ul>
+</section>
+<section id="introduction-2" class="slide level2">
+<h2>Introduction</h2>
+<p>This presentation is a worked example of how raw count data move through a standard Bioconductor RNA-seq workflow.</p>
 </section>
 <section id="experimental-data" class="slide level2">
 <h2>Experimental Data</h2>
-<p>“A pooled shRNA screen for regulators of primary mammary stem and progenitor cells identifies roles for Asap1 and Prox1”</p>
-<p>This experiment used RNA-seq-based expression profiling in mouse mammary stem cell (MaSC)-enriched basal cells to look for candidate regulatory genes.</p>
-<p>Mammary stem cells are often used in RNA-seq analyses as they are highly proliferative and have a high capacity for differentiation.</p>
-<p>Regulatory genes produce proteins that turn expression on or off and are therefore important target genes for studying cancer as well as other developmental processes.</p>
-<p>Using retroviral aided knockdown experiments and RNA-seq, the researchers were able to propose that the Asap1 gene is a negative regulator.</p>
-<p>The gene count file used in this analysis was created by aligning reads with the mouse reference genome using the align function (Rsubread) followed by gene-level summarization using featureCounts.</p>
+<ul>
+<li><p>“A pooled shRNA screen for regulators of primary mammary stem and progenitor cells identifies roles for Asap1 and Prox1”</p></li>
+<li><p>This experiment used RNA-seq-based expression profiling in mouse mammary stem cell (MaSC)-enriched basal cells to look for candidate regulatory genes.</p></li>
+<li><p>Mammary stem cells are often used in RNA-seq analyses as they are highly proliferative and have a high capacity for differentiation.</p></li>
+</ul>
+</section>
+<section id="experimental-data-1" class="slide level2">
+<h2>Experimental Data</h2>
+<ul>
+<li><p>Regulatory genes produce proteins that turn expression on or off and are therefore important target genes for studying cancer as well as other developmental processes.</p></li>
+<li><p>Using retroviral aided knockdown experiments and RNA-seq, the researchers were able to propose that the Asap1 gene is a negative regulator.</p></li>
+<li><p>The gene count file used in this analysis was created by aligning reads with the mouse reference genome using the align function (Rsubread) followed by gene-level summarization using featureCounts.</p></li>
+</ul>
 </section>
 <section id="data-packaging" class="slide level2">
 <h2>Data Packaging</h2>
@@ -168,7 +191,7 @@ Kate, Jessica, Kardam
 <p>Data packaging converts separate raw files into one structured, analysis-ready dataset.</p>
 </section>
 <section id="data-pre-processing" class="slide level2">
-<h2>Data pre-processing</h2>
+<h2>Data Pre-Processing</h2>
 <ul>
 <li><p>Before comparing gene expression across groups, we transformed raw counts to CPM and log-CPM, filtered out genes with very low expression, and normalized the libraries using TMM normalization with edgeR.</p></li>
 <li><p>We then used MDS plots to check whether samples clustered by biology rather than technical artifacts.</p></li>
@@ -176,17 +199,20 @@ Kate, Jessica, Kardam
 </ul>
 </section>
 <section id="data-pre-processing-1" class="slide level2">
-<h2>Data pre-processing</h2>
+<h2>Data Pre-Processing</h2>
 <p>Preprocessing removes uninformative genes, corrects library-size effects, and checks overall sample quality before modeling.</p>
 </section>
 <section id="differential-gene-analysis" class="slide level2">
-<h2>Differential Gene Analysis:</h2>
+<h2>Differential Gene Analysis</h2>
 <ul>
 <li>To determine which genes are expressed at different levels between three cell population profiled.</li>
 <li>linear model fitting (assuming normally distributed data)</li>
 <li>Intercept act as anchor point for comparision against baseline.</li>
 <li>Without intercept, absolute expression levels can be determined.</li>
 </ul>
+</section>
+<section id="differential-gene-analysis-1" class="slide level2">
+<h2>Differential Gene Analysis</h2>
 <ul>
 <li><p>“makecontrast” function from limma package allows user to draw contrax matrix for pairwise comparisions.</p></li>
 <li><p>limma provides duplicateCorrelation to deal with technical replicates.</p></li>
@@ -194,12 +220,17 @@ Kate, Jessica, Kardam
 </ul>
 </section>
 <section id="heteroscedascity-and-voom-weights" class="slide level2">
-<h2>Heteroscedascity and Voom weights:</h2>
+<h2>Heteroscedascity and Voom weights</h2>
 <ul>
 <li><p>Homoscedascity: In linear models, mean-variance relationship is assumed to be linear. Mean and variance changes equally. Exactly opposite is ‘Heteroscedascity’.</p></li>
 <li><p>In RNA-Seq count data, the Negative Binomial distribution assumes quadratic mean-variation relationship.</p></li>
 <li><p>Overdispersion observed due to large difference between house-keeping genes and highly expressed genes</p></li>
 <li><p>In limma, linear modelling is carried out on log-CPM values.</p></li>
+</ul>
+</section>
+<section id="heteroscedascity-and-voom-weights-1" class="slide level2">
+<h2>Heteroscedascity and Voom weights</h2>
+<ul>
 <li><p>“voom” function act as link to bridge limma(built for microarrays) to expression data. It addresses scale problem (calculates into CPM) and “normalize.method” argument to normalize library size and estimates mean-variance relationship (non-linear - overdispersion)</p></li>
 <li><p>“Voom weights” fixes the noise related to genes whereas Voomqualityweight addresses the noise generated from inter-sample variation.</p></li>
 </ul>
@@ -252,10 +283,16 @@ Kate, Jessica, Kardam
 
 </section>
 
+<section>
 <section id="marginc86-lheic210-dendrogramcolumn" class="title-slide slide level1 center">
 <h1>margin=c(8,6), lhei=c(2,10), dendrogram=“column”)</h1>
 
 </section>
+<section id="conclusion" class="slide level2">
+<h2>Conclusion</h2>
+<p>What interesting things / skills did you learn? What challenges did you come across? - Main result - Limitation - Next steps</p>
+
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

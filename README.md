@@ -1,37 +1,52 @@
-# RNA-seq analysis with RNASeq123 workflow
+# RNA-seq analysis with RNAseq123 workflow
 Kate, Jessica, Kardam
-
-Load needed packages:
-
-Load Dependencies for flowchart
 
 ## Introduction
 
-RNAseq123 Workflow:
+Goal: Demonstrate the RNAseq123 Bioconductor workflow
+
+Why this dataset?
+
+- Public mouse mammary cell RNA-seq counts from GSE63310
+- Includes biologically distinct groups: Basal, LP, and ML
+- Small, well-structured example for showing an end-to-end workflow
+
+What the workflow covers:
+
+- data packaging
+- filtering and normalization
+- quality assessment
+- differential expression analysis
+- visualization and interpretation
+
+This presentation is a worked example of how raw count data move through
+a standard Bioconductor RNA-seq workflow.
 
 ## Experimental Data
 
-“A pooled shRNA screen for regulators of primary mammary stem and
-progenitor cells identifies roles for Asap1 and Prox1”
+- “A pooled shRNA screen for regulators of primary mammary stem and
+  progenitor cells identifies roles for Asap1 and Prox1”
 
-This experiment used RNA-seq-based expression profiling in mouse mammary
-stem cell (MaSC)-enriched basal cells to look for candidate regulatory
-genes.
+- This experiment used RNA-seq-based expression profiling in mouse
+  mammary stem cell (MaSC)-enriched basal cells to look for candidate
+  regulatory genes.
 
-Mammary stem cells are often used in RNA-seq analyses as they are highly
-proliferative and have a high capacity for differentiation.
+- Mammary stem cells are often used in RNA-seq analyses as they are
+  highly proliferative and have a high capacity for differentiation.
 
-Regulatory genes produce proteins that turn expression on or off and are
-therefore important target genes for studying cancer as well as other
-developmental processes.
+<!-- -->
 
-Using retroviral aided knockdown experiments and RNA-seq, the
-researchers were able to propose that the Asap1 gene is a negative
-regulator.
+- Regulatory genes produce proteins that turn expression on or off and
+  are therefore important target genes for studying cancer as well as
+  other developmental processes.
 
-The gene count file used in this analysis was created by aligning reads
-with the mouse reference genome using the align function (Rsubread)
-followed by gene-level summarization using featureCounts.
+- Using retroviral aided knockdown experiments and RNA-seq, the
+  researchers were able to propose that the Asap1 gene is a negative
+  regulator.
+
+- The gene count file used in this analysis was created by aligning
+  reads with the mouse reference genome using the align function
+  (Rsubread) followed by gene-level summarization using featureCounts.
 
 ## Data Packaging
 
@@ -47,7 +62,7 @@ followed by gene-level summarization using featureCounts.
 Data packaging converts separate raw files into one structured,
 analysis-ready dataset.
 
-## Data pre-processing
+## Data Pre-Processing
 
 - Before comparing gene expression across groups, we transformed raw
   counts to CPM and log-CPM, filtered out genes with very low
@@ -64,7 +79,7 @@ analysis-ready dataset.
 Preprocessing removes uninformative genes, corrects library-size
 effects, and checks overall sample quality before modeling.
 
-## Differential Gene Analysis:
+## Differential Gene Analysis
 
 - To determine which genes are expressed at different levels between
   three cell population profiled.
@@ -72,7 +87,17 @@ effects, and checks overall sample quality before modeling.
 - Intercept act as anchor point for comparision against baseline.
 - Without intercept, absolute expression levels can be determined.
 
-## Heteroscedascity and Voom weights:
+<!-- -->
+
+- “makecontrast” function from limma package allows user to draw contrax
+  matrix for pairwise comparisions.
+
+- limma provides duplicateCorrelation to deal with technical replicates.
+
+- limma provides flexibility to perform interactive studies for ex.
+  testing drug reaction in Lane 6 and Lane 8.
+
+## Heteroscedascity and Voom weights
 
 - Homoscedascity: In linear models, mean-variance relationship is
   assumed to be linear. Mean and variance changes equally. Exactly
@@ -85,6 +110,8 @@ effects, and checks overall sample quality before modeling.
   genes and highly expressed genes
 
 - In limma, linear modelling is carried out on log-CPM values.
+
+<!-- -->
 
 - “voom” function act as link to bridge limma(built for microarrays) to
   expression data. It addresses scale problem (calculates into CPM) and
@@ -127,3 +154,8 @@ threshold.
 
 - Glimma option allows brower viewing option - convenient for including
   them as linked files from an Rmarkdown.
+
+## Conclusion
+
+What interesting things / skills did you learn? What challenges did you
+come across? - Main result - Limitation - Next steps
