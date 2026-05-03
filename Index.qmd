@@ -568,7 +568,7 @@ heatmap.2(lcpm[i,], scale="row",
 ```
 :::
 :::::
-
+::: {.content-visible when-format="revealjs"}
 ## Camera: Correlation Adjusted MEan RAnk gene set test
 
 - The camera (Correlation Adjusted MEan Rank) method compares the DE values of our gene set to the same values of all other gene sets to determine their relative "rank" of importance.
