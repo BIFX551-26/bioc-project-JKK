@@ -1,4 +1,4 @@
-# RNA-seq analysis with RNAseq123 workflow
+# RNA-Seq Analysis with RNAseq123 Workflow
 Kate, Jessica, Kardam
 
 ## Introduction
@@ -56,19 +56,19 @@ a standard Bioconductor RNA-seq workflow
   and selected 9 samples representing Basal, LP, and ML mammary cell
   populations
 
-- Using edgeR, we combined the individual count files into a single
+- Using **edgeR**, we combined the individual count files into a single
   DGEList object, then added sample metadata such as biological group
-  and sequencing lane. We also used Mus.musculus to attach gene
+  and sequencing lane. We also used **Mus.musculus** to attach gene
   annotations, including gene symbols and chromosome information
 
 <!-- -->
 
 - Data packaging converts separate raw files into one structured,
   analysis-ready dataset
-- edgeR: combines the raw count files into a DGEList
-- Mus.musculus: adds mouse gene annotations like symbols and chromosome
-  info
-- R.utils: unzips the downloaded .gz count files
+- **edgeR**: combines the raw count files into a DGEList
+- **Mus.musculus**: adds mouse gene annotations like symbols and
+  chromosome info
+- **R.utils**: unzips the downloaded .gz count files
 
 ## Data Pre-Processing
 
@@ -79,20 +79,21 @@ a standard Bioconductor RNA-seq workflow
 
 1.  Transform raw counts to CPM and log-CPM
 2.  Filter out genes with very low expression
-3.  Normalize libraries using TMM normalization using edgeR
+3.  Normalize libraries using TMM normalization using **edgeR**
 
 - Once raw counts were transformed to CPM and log-CPM, lowly expressed
   genes can be filtered out
 
 ![](Index_files/figure-commonmark/unnamed-chunk-15-1.png)
 
-- Normalization of the libraries using TMM normalization with edgeR
+- Normalization of the libraries using TMM normalization with **edgeR**
 
 ![](Index_files/figure-commonmark/unnamed-chunk-18-1.png)
 
-- We then used MDS plots to check whether samples clustered by biology
+- MDS plots are used to check whether samples clustered by biology
   rather than technical artifacts
-- limma::plotMDS is used as an unsupervised quality control step
+- `plotMDS()` from **limma** is used as an unsupervised quality control
+  step
 - This preprocessing step reduces noise, improves comparability across
   samples, and helps confirm that the data are ready for differential
   expression testing
@@ -108,14 +109,14 @@ a standard Bioconductor RNA-seq workflow
 
 <div class="column" width="50%">
 
-<img src="Index_files/figure-commonmark/unnamed-chunk-22-1.png"
+<img src="Index_files/figure-commonmark/unnamed-chunk-20-1.png"
 style="width:100.0%" />
 
 </div>
 
 <div class="column" width="50%">
 
-<img src="Index_files/figure-commonmark/unnamed-chunk-23-1.png"
+<img src="Index_files/figure-commonmark/unnamed-chunk-21-1.png"
 style="width:100.0%" />
 
 </div>
@@ -124,7 +125,7 @@ style="width:100.0%" />
 
 - Preprocessing removes uninformative genes, corrects library-size
   effects, and checks overall sample quality before modeling
-- Primarily performed with edgeR, and limma is used for QC
+- Primarily performed with **edgeR**, and **limma** is used for QC
 
 ## Differential Gene Analysis
 
@@ -155,12 +156,12 @@ style="width:100.0%" />
     attr(,"contrasts")$lane
     [1] "contr.treatment"
 
-- “makecontrast” function from limma package allows user to draw contrax
-  matrix for pairwise comparisions
+- ‘makecontrast()’ function from **limma** package allows user to draw
+  contrax matrix for pairwise comparisions
 
-- limma provides duplicateCorrelation to deal with technical replicates
+- Provides duplicate correlation to deal with technical replicates
 
-- limma provides flexibility to perform interactive studies for ex.
+- Also provides flexibility to perform interactive studies for ex.
   testing drug reaction in Lane 6 and Lane 8
 
 <!-- -->
@@ -185,7 +186,7 @@ style="width:100.0%" />
 - Overdispersion observed due to large difference between house-keeping
   genes and highly expressed genes
 
-- In limma, linear modelling is carried out on log-CPM values
+- In **limma**, linear modelling is carried out on log-CPM values
 
 <!-- -->
 
@@ -278,7 +279,7 @@ style="width:100.0%" />
     $span
     [1] 0.4010438
 
-![](Index_files/figure-commonmark/unnamed-chunk-27-1.png)
+![](Index_files/figure-commonmark/unnamed-chunk-25-1.png)
 
 Means (x-axis) and variances (y-axis) of each gene are plotted to show
 the dependence between the two before voom is applied to the data (left
@@ -332,13 +333,13 @@ threshold
 
 ## Useful Graphical Representations of Differential Expression Results
 
-- `plotMD()` summarizes all genes by plotting log-fold change against
-  average log-CPM, with DE genes highlighted
+- `plotMD()` from **limma** summarizes all genes by plotting log-fold
+  change against average log-CPM, with DE genes highlighted
 
 - `glMDPlot()` from **Glimma** adds an interactive MD plot so individual
   genes can be searched and inspected sample-by-sample
 
-![](Index_files/figure-commonmark/unnamed-chunk-34-1.png)
+![](Index_files/figure-commonmark/unnamed-chunk-32-1.png)
 
 <div class="columns">
 
@@ -357,7 +358,7 @@ threshold
 
 <div class="column" width="50%">
 
-<img src="Index_files/figure-commonmark/unnamed-chunk-36-1.png"
+<img src="Index_files/figure-commonmark/unnamed-chunk-34-1.png"
 style="width:100.0%" data-fig-align="right" />
 
 </div>

@@ -1,5 +1,5 @@
 ---
-title: "RNA-seq analysis with RNAseq123 workflow"
+title: "RNA-Seq Analysis with RNAseq123 Workflow"
 author: "Kate, Jessica, Kardam"
 bibliography: References- BIFX 551 BioConductor Project.bib
 format:
@@ -125,7 +125,7 @@ ggflowchart(steps, colour = "green", family = "mono", text_size = 4, text_colour
 - We started with raw RNA-seq count files from GEO accession GSE63310 and selected 9 samples
 representing Basal, LP, and ML mammary cell populations
 
-- Using edgeR, we combined the individual count files into a single DGEList object, then added sample metadata such as biological group and sequencing lane. We also used Mus.musculus to attach gene annotations, including gene symbols and chromosome information
+- Using **edgeR**, we combined the individual count files into a single DGEList object, then added sample metadata such as biological group and sequencing lane. We also used **Mus.musculus** to attach gene annotations, including gene symbols and chromosome information
 
 ::: {.content-visible when-format="revealjs"}
 
@@ -135,9 +135,9 @@ representing Basal, LP, and ML mammary cell populations
 
 - Data packaging converts separate raw files into one structured, analysis-ready
 dataset
-- edgeR: combines the raw count files into a DGEList
-- Mus.musculus: adds mouse gene annotations like symbols and chromosome info
-- R.utils: unzips the downloaded .gz count files
+- **edgeR**: combines the raw count files into a DGEList
+- **Mus.musculus**: adds mouse gene annotations like symbols and chromosome info
+- **R.utils**: unzips the downloaded .gz count files
 
 ```{r}
 url <- "https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE63310&format=file"
@@ -157,7 +157,7 @@ for(i in paste(files, ".gz", sep=""))
 
 1. Transform raw counts to CPM and log-CPM
 2. Filter out genes with very low expression
-3. Normalize libraries using TMM normalization using edgeR
+3. Normalize libraries using TMM normalization using **edgeR** 
 
 ::: {.content-visible when-format="revealjs"}
 
@@ -287,7 +287,7 @@ x2$counts[,2] <- x2$counts[,2]*5
 
 :::
 
-- Normalization of the libraries using TMM normalization with edgeR
+- Normalization of the libraries using TMM normalization with **edgeR**
 
 ```{r}
  #| results: "hide"
@@ -303,21 +303,6 @@ x2$counts[,2] <- x2$counts[,2]*5
  title(main="B. Example: Normalised data", ylab="Log-cpm")
 ```
 
-```{r}
-#combined this chunk and the one below it in the code block above
-#par(mfrow=c(1,2))
-#lcpm <- cpm(x2, log=TRUE)
-#boxplot(lcpm, las=2, col=col, main="")
-#title(main="A. Example: Unnormalised data",ylab="Log-cpm")
-#x2 <- calcNormFactors(x2)  
-#x2$samples$norm.factors
-```
-
-```{r}
-#lcpm <- cpm(x2, log=TRUE)
-#boxplot(lcpm, las=2, col=col, main="")
-#title(main="B. Example: Normalised data",ylab="Log-cpm")
-```
 
 
 ::: {.content-visible when-format="revealjs"}
@@ -326,8 +311,8 @@ x2$counts[,2] <- x2$counts[,2]*5
 
 :::
 
-- We then used MDS plots to check whether samples clustered by biology rather than technical artifacts
-- limma::plotMDS is used as an unsupervised quality control step
+- MDS plots are used to check whether samples clustered by biology rather than technical artifacts
+- `plotMDS()` from **limma**  is used as an unsupervised quality control step
 - This preprocessing step reduces noise, improves comparability across samples, and helps confirm that the data are ready for differential expression testing
 
 ::: {.content-visible when-format="revealjs"}
@@ -379,8 +364,6 @@ glMDSPlot(lcpm, labels=paste(group, lane, sep="_"),
 ```
 
 
-
-
 ::: {.content-visible when-format="revealjs"}
 
 ## Data Pre-Processing Overview
@@ -389,7 +372,7 @@ glMDSPlot(lcpm, labels=paste(group, lane, sep="_"),
 
 - Preprocessing removes uninformative genes, corrects library-size effects, and checks
 overall sample quality before modeling
-- Primarily performed with edgeR, and limma is used for QC
+- Primarily performed with **edgeR**, and **limma** is used for QC
 
 
 ## Differential Gene Analysis
@@ -411,11 +394,11 @@ design
 
 :::
 
-- "makecontrast" function from limma package allows user to draw contrax matrix for pairwise comparisions
+- 'makecontrast()' function from **limma** package allows user to draw contrax matrix for pairwise comparisions
 
-- limma provides duplicateCorrelation to deal with technical replicates
+- Provides duplicate correlation to deal with technical replicates
 
-- limma provides flexibility to perform interactive studies for ex. testing drug reaction in Lane 6 and Lane 8
+- Also provides flexibility to perform interactive studies for ex. testing drug reaction in Lane 6 and Lane 8
 
 ```{r}
 contr.matrix <- makeContrasts(
@@ -435,7 +418,7 @@ contr.matrix
 
 - Overdispersion observed due to large difference between house-keeping genes and highly expressed genes 
 
-- In limma, linear modelling is carried out on log-CPM values
+- In **limma**, linear modelling is carried out on log-CPM values
 
 ::: {.content-visible when-format="revealjs"}
 
@@ -535,7 +518,7 @@ head(basal.vs.lp)
 
 ## Useful Graphical Representations of Differential Expression Results
 
-- `plotMD()` summarizes all genes by plotting log-fold change against average log-CPM, with DE genes highlighted
+- `plotMD()` from **limma** summarizes all genes by plotting log-fold change against average log-CPM, with DE genes highlighted
 
 - `glMDPlot()` from **Glimma** adds an interactive MD plot so individual genes can be searched and inspected sample-by-sample
 

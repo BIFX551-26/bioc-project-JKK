@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.8.27">
 
   <meta name="author" content="Kate, Jessica, Kardam">
-  <title>RNA-seq analysis with RNAseq123 workflow</title>
+  <title>RNA-Seq Analysis with RNAseq123 Workflow</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -127,7 +127,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">RNA-seq analysis with RNAseq123 workflow</h1>
+  <h1 class="title">RNA-Seq Analysis with RNAseq123 Workflow</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -184,16 +184,16 @@ Kate, Jessica, Kardam
 <h2>Data Packaging</h2>
 <ul>
 <li><p>We started with raw RNA-seq count files from GEO accession GSE63310 and selected 9 samples representing Basal, LP, and ML mammary cell populations</p></li>
-<li><p>Using edgeR, we combined the individual count files into a single DGEList object, then added sample metadata such as biological group and sequencing lane. We also used Mus.musculus to attach gene annotations, including gene symbols and chromosome information</p></li>
+<li><p>Using <strong>edgeR</strong>, we combined the individual count files into a single DGEList object, then added sample metadata such as biological group and sequencing lane. We also used <strong>Mus.musculus</strong> to attach gene annotations, including gene symbols and chromosome information</p></li>
 </ul>
 </section>
 <section id="data-packaging-overview" class="slide level2">
 <h2>Data Packaging Overview</h2>
 <ul>
 <li>Data packaging converts separate raw files into one structured, analysis-ready dataset</li>
-<li>edgeR: combines the raw count files into a DGEList</li>
-<li>Mus.musculus: adds mouse gene annotations like symbols and chromosome info</li>
-<li>R.utils: unzips the downloaded .gz count files</li>
+<li><strong>edgeR</strong>: combines the raw count files into a DGEList</li>
+<li><strong>Mus.musculus</strong>: adds mouse gene annotations like symbols and chromosome info</li>
+<li><strong>R.utils</strong>: unzips the downloaded .gz count files</li>
 </ul>
 </section>
 <section id="data-pre-processing" class="slide level2">
@@ -206,7 +206,7 @@ Kate, Jessica, Kardam
 <ol type="1">
 <li>Transform raw counts to CPM and log-CPM</li>
 <li>Filter out genes with very low expression</li>
-<li>Normalize libraries using TMM normalization using edgeR</li>
+<li>Normalize libraries using TMM normalization using <strong>edgeR</strong></li>
 </ol>
 </section>
 <section id="data-pre-processing-1" class="slide level2">
@@ -219,15 +219,15 @@ Kate, Jessica, Kardam
 <section id="data-pre-processing-2" class="slide level2">
 <h2>Data Pre-Processing</h2>
 <ul>
-<li>Normalization of the libraries using TMM normalization with edgeR</li>
+<li>Normalization of the libraries using TMM normalization with <strong>edgeR</strong></li>
 </ul>
 
 <img data-src="Index_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section>
 <section id="data-pre-processing-3" class="slide level2">
 <h2>Data Pre-Processing</h2>
 <ul>
-<li>We then used MDS plots to check whether samples clustered by biology rather than technical artifacts</li>
-<li>limma::plotMDS is used as an unsupervised quality control step</li>
+<li>MDS plots are used to check whether samples clustered by biology rather than technical artifacts</li>
+<li><code>plotMDS()</code> from <strong>limma</strong> is used as an unsupervised quality control step</li>
 <li>This preprocessing step reduces noise, improves comparability across samples, and helps confirm that the data are ready for differential expression testing</li>
 </ul>
 </section>
@@ -243,7 +243,7 @@ Kate, Jessica, Kardam
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Index_files/figure-revealjs/unnamed-chunk-22-1.png" style="width:100.0%"></p>
+<p><img data-src="Index_files/figure-revealjs/unnamed-chunk-20-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -253,7 +253,7 @@ Kate, Jessica, Kardam
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Index_files/figure-revealjs/unnamed-chunk-23-1.png" style="width:100.0%"></p>
+<p><img data-src="Index_files/figure-revealjs/unnamed-chunk-21-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -264,7 +264,7 @@ Kate, Jessica, Kardam
 <h2>Data Pre-Processing Overview</h2>
 <ul>
 <li>Preprocessing removes uninformative genes, corrects library-size effects, and checks overall sample quality before modeling</li>
-<li>Primarily performed with edgeR, and limma is used for QC</li>
+<li>Primarily performed with <strong>edgeR</strong>, and <strong>limma</strong> is used for QC</li>
 </ul>
 </section>
 <section id="differential-gene-analysis" class="slide level2">
@@ -301,9 +301,9 @@ attr(,"contrasts")$lane
 <section id="differential-gene-analysis-1" class="slide level2">
 <h2>Differential Gene Analysis</h2>
 <ul>
-<li><p>“makecontrast” function from limma package allows user to draw contrax matrix for pairwise comparisions</p></li>
-<li><p>limma provides duplicateCorrelation to deal with technical replicates</p></li>
-<li><p>limma provides flexibility to perform interactive studies for ex. testing drug reaction in Lane 6 and Lane 8</p></li>
+<li><p>‘makecontrast()’ function from <strong>limma</strong> package allows user to draw contrax matrix for pairwise comparisions</p></li>
+<li><p>Provides duplicate correlation to deal with technical replicates</p></li>
+<li><p>Also provides flexibility to perform interactive studies for ex. testing drug reaction in Lane 6 and Lane 8</p></li>
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -323,7 +323,7 @@ Levels     BasalvsLP BasalvsML LPvsML
 <li><p>Homoscedascity: In linear models, mean-variance relationship is assumed to be linear. Mean and variance changes equally. Exactly opposite is ‘Heteroscedascity’</p></li>
 <li><p>In RNA-Seq count data, the Negative Binomial distribution assumes quadratic mean-variation relationship</p></li>
 <li><p>Overdispersion observed due to large difference between house-keeping genes and highly expressed genes</p></li>
-<li><p>In limma, linear modelling is carried out on log-CPM values</p></li>
+<li><p>In <strong>limma</strong>, linear modelling is carried out on log-CPM values</p></li>
 </ul>
 </section>
 <section id="heteroscedascity-and-voom-weights-1" class="slide level2">
@@ -415,7 +415,7 @@ $span
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Index_files/figure-revealjs/unnamed-chunk-27-1.png" width="960"></p>
+<p><img data-src="Index_files/figure-revealjs/unnamed-chunk-25-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -424,7 +424,7 @@ $span
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Index_files/figure-revealjs/unnamed-chunk-28-1.png" width="960"></p>
+<p><img data-src="Index_files/figure-revealjs/unnamed-chunk-26-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -474,7 +474,7 @@ Up          2014      2054    190</code></pre>
 <p>Venn diagram showing the number of genes DE in the comparison between basal versus LP only (left), basal versus ML only (right), and the number of genes that are DE in both comparisons (center)</p>
 <p>The number of genes that are not DE in either comparison are marked in the bottom-right</p>
 
-<img data-src="Index_files/figure-revealjs/unnamed-chunk-32-1.png" width="960" class="r-stretch"></section>
+<img data-src="Index_files/figure-revealjs/unnamed-chunk-30-1.png" width="960" class="r-stretch"></section>
 <section id="examining-individual-de-genes-from-top-to-bottom" class="slide level2">
 <h2>Examining Individual DE Genes from Top to Bottom:</h2>
 <ul>
@@ -504,14 +504,14 @@ Up          2014      2054    190</code></pre>
 <section id="useful-graphical-representations-of-differential-expression-results" class="slide level2">
 <h2>Useful Graphical Representations of Differential Expression Results</h2>
 <ul>
-<li><p><code>plotMD()</code> summarizes all genes by plotting log-fold change against average log-CPM, with DE genes highlighted</p></li>
+<li><p><code>plotMD()</code> from <strong>limma</strong> summarizes all genes by plotting log-fold change against average log-CPM, with DE genes highlighted</p></li>
 <li><p><code>glMDPlot()</code> from <strong>Glimma</strong> adds an interactive MD plot so individual genes can be searched and inspected sample-by-sample</p></li>
 </ul>
 </section>
 <section id="useful-graphical-representations-of-differential-expression-results-1" class="slide level2">
 <h2>Useful Graphical Representations of Differential Expression Results</h2>
 
-<img data-src="Index_files/figure-revealjs/unnamed-chunk-34-1.png" width="960" class="r-stretch"></section>
+<img data-src="Index_files/figure-revealjs/unnamed-chunk-32-1.png" width="960" class="r-stretch"></section>
 <section id="useful-graphical-representations-of-differential-expression-results-2" class="slide level2">
 <h2>Useful Graphical Representations of Differential Expression Results</h2>
 <div class="columns">
@@ -527,7 +527,7 @@ Up          2014      2054    190</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-right">
 <figure>
-<p><img data-src="Index_files/figure-revealjs/unnamed-chunk-36-1.png" class="quarto-figure quarto-figure-right" style="width:100.0%"></p>
+<p><img data-src="Index_files/figure-revealjs/unnamed-chunk-34-1.png" class="quarto-figure quarto-figure-right" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
