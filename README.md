@@ -300,6 +300,29 @@ threshold
     NotSig     12976     12790  16210
     Up          2016      2057    190
 
+    [1] 2784
+
+     [1] "Xkr4"          "Rgs20"         "Cpa6"          "A830018L16Rik"
+     [5] "Sulf1"         "Eya1"          "Msc"           "Sbspon"       
+     [9] "Pi15"          "Crispld1"      "Kcnq5"         "Rims1"        
+    [13] "Khdrbs2"       "Ptpn18"        "Prss39"        "Arhgef4"      
+    [17] "Cnga3"         "Cracdl"        "Aff3"          "Npas2"        
+
+- O - represents genes with levels unchanged
+- 1 - Up regulated genes
+- 1 - Down regulated genes
+
+## Extracting DE genes:
+
+Venn diagram showing the number of genes DE in the comparison between
+basal versus LP only (left), basal versus ML only (right), and the
+number of genes that are DE in both comparisons (center)
+
+The number of genes that are not DE in either comparison are marked in
+the bottom-right
+
+![](Index_files/figure-commonmark/unnamed-chunk-30-1.png)
+
 ## Examining Individual DE Genes from Top to Bottom:
 
 - “topTreat”/ “topTable” - from toptreat or eBayes to list top DE genes
@@ -374,14 +397,65 @@ style="width:100.0%" data-fig-align="right" />
   within-experiment testing, but great for exploratory analysis to find
   candidate genes for further study.
 
+<!-- -->
+
+                                                NGenes Direction       PValue
+    LIM_MAMMARY_STEM_CELL_UP                       791        Up 1.768426e-18
+    LIM_MAMMARY_STEM_CELL_DN                       683      Down 4.027711e-14
+    ROSTY_CERVICAL_CANCER_PROLIFERATION_CLUSTER    170        Up 5.518131e-14
+    LIM_MAMMARY_LUMINAL_PROGENITOR_UP               94      Down 2.737492e-13
+    SOTIRIOU_BREAST_CANCER_GRADE_1_VS_3_UP         190        Up 5.155264e-13
+                                                         FDR
+    LIM_MAMMARY_STEM_CELL_UP                    8.355813e-15
+    LIM_MAMMARY_STEM_CELL_DN                    8.691057e-11
+    ROSTY_CERVICAL_CANCER_PROLIFERATION_CLUSTER 8.691057e-11
+    LIM_MAMMARY_LUMINAL_PROGENITOR_UP           3.233663e-10
+    SOTIRIOU_BREAST_CANCER_GRADE_1_VS_3_UP      4.871724e-10
+
 ## Results
 
-- Placeholder for our results slide
+- The genes *Rasef* and *Cldn7* were both top DE genes for both the
+  BasalvsLP and BasalvsML comparisons. *Rasef* has been shown to act as
+  a tumor supressor, while the dysregulation of *Cldn7* in either
+  direction is associated with cancer risk and/or progression.
 
-## Conclusion
+## Conclusion:
 
-- What interesting things / skills did you learn?
-- What challenges did you come across?
-- Main result
-- Limitation
-- Next steps
+**What interesting things / skills did you learn?**
+
+    Skills learned:
+
+- To setup data from web to R/positron.
+- To organize multiple files into single matrix using only one function
+  from edgeR package.
+- Organizing gene info and annotations.
+- Filtering genes that holds biological importance.
+- Unsupervised clustering of samples.
+- Desgining model and contrast matrices.
+
+**Interesting points learned:**
+
+- filtering data improves the scopes of visualization.
+
+- filterByexp function that removes the genes with low expression
+  values. However, it does not filter the control whose expression value
+  could be near 0 or 0.
+
+- calcNormfactor using TMM function works on logic where over & under
+  expressed genes are ignored initially to plot a baseline. Once the
+  baseline is plotted, the genes are cross-references for accurate
+  comparison to avoid the compositional bias.
+
+- Heteroscedascity must be addressed to get results at actuals.
+
+- Stricter log-CPM values can be applied for sophisticated studies.
+
+## Conclusion:
+
+\*\* What challenges did you come across?\*\*
+
+- Several plots had to be resized to render properly
+
+3.  Main result
+4.  Limitation
+5.  Next steps

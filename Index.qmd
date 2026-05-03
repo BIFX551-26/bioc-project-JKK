@@ -581,13 +581,22 @@ heatmap.2(lcpm[i,], scale="row",
 
 - The aggregated gene set data is the c2 gene signatures collection from the Broad Institute's Molecular Signatures Database (MSigDB). 
 
-- This method is more of a meta-analysis, not ideal for focused within-experiment testing, but great for exploratory analysis to find candidate genes for further study.  
+- This method is more of a meta-analysis, not ideal for focused within-experiment testing, but great for exploratory analysis to find candidate genes for further study. 
+
+```{r}
+load(system.file("extdata", "mouse_c2_v5p1.rda", package = "RNAseq123"))
+idx <- ids2indices(Mm.c2,id=rownames(v))
+cam.BasalvsLP <- camera(v,idx,design,contrast=contr.matrix[,1])
+head(cam.BasalvsLP,5)
+```
+
 
 ## Results
-- Placeholder for our results slide
+
+- The genes *Rasef* and *Cldn7* were both top DE genes for both the BasalvsLP and BasalvsML comparisons. *Rasef* has been shown to act as a tumor supressor, while the dysregulation of *Cldn7* in either direction is associated with cancer risk and/or progression. 
 
 ## Conclusion:
-1. What interesting things / skills did you learn?
+**What interesting things / skills did you learn?**
     
     Skills learned:
   - To setup data from web to R/positron.
@@ -603,7 +612,7 @@ heatmap.2(lcpm[i,], scale="row",
 ## Conclusion:
 :::
 
-  Interesting points learned:
+  **Interesting points learned:**
 
 - filtering data improves the scopes of visualization.
 
@@ -618,7 +627,9 @@ heatmap.2(lcpm[i,], scale="row",
 
 ## Conclusion:
 
-2. What challenges did you come across?
+** What challenges did you come across?**
+
+- Several plots had to be resized to render properly
 3. Main result 
 4. Limitation
 5. Next steps
