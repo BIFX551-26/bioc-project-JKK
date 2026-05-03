@@ -586,7 +586,13 @@ heatmap.2(lcpm[i,], scale="row",
 :::
 :::::
 
+## Camera: Correlation Adjusted MEan RAnk gene set test
 
+- The camera (Correlation Adjusted MEan Rank) method compares the DE values of our gene set to the same values of all other gene sets to determine their relative "rank" of importance.
+
+- The aggregated gene set data is the c2 gene signatures collection from the Broad Institute's Molecular Signatures Database (MSigDB). 
+
+- This method is more of a meta-analysis, not ideal for focused within-experiment testing, but great for exploratory analysis to find candidate genes for further study.  
 
 ## Results
 - Placeholder for our results slide
