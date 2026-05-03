@@ -451,14 +451,10 @@ NotSig     12977     12793  16211
 Up          2014      2054    190</code></pre>
 </div>
 </div>
-<p>Extracting DE genes:</p>
+</section>
+<section id="extracting-de-genes" class="slide level2">
+<h2>Extracting DE genes:</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>       BasalvsLP BasalvsML LPvsML
-Down        1633      1777    223
-NotSig     12977     12793  16211
-Up          2014      2054    190</code></pre>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2782</code></pre>
 </div>
@@ -470,7 +466,14 @@ Up          2014      2054    190</code></pre>
 [17] "Cnga3"         "Cracdl"        "Aff3"          "Npas2"        </code></pre>
 </div>
 </div>
-<p>O - represents genes with levels unchanged 1 - Up regulated genes -1 - Down regulated genes</p>
+<ul>
+<li>O - represents genes with levels unchanged</li>
+<li>1 - Up regulated genes</li>
+<li>1 - Down regulated genes</li>
+</ul>
+</section>
+<section id="extracting-de-genes-1" class="slide level2">
+<h2>Extracting DE genes:</h2>
 <p>Venn diagram showing the number of genes DE in the comparison between basal versus LP only (left), basal versus ML only (right), and the number of genes that are DE in both comparisons (center)</p>
 <p>The number of genes that are not DE in either comparison are marked in the bottom-right</p>
 
@@ -533,6 +536,14 @@ Up          2014      2054    190</code></pre>
 </div>
 </div>
 </div></div>
+</section>
+<section id="camera-correlation-adjusted-mean-rank-gene-set-test" class="slide level2">
+<h2>Camera: Correlation Adjusted MEan RAnk gene set test</h2>
+<ul>
+<li><p>The camera (Correlation Adjusted MEan Rank) method compares the DE values of our gene set to the same values of all other gene sets to determine their relative “rank” of importance.</p></li>
+<li><p>The aggregated gene set data is the c2 gene signatures collection from the Broad Institute’s Molecular Signatures Database (MSigDB).</p></li>
+<li><p>This method is more of a meta-analysis, not ideal for focused within-experiment testing, but great for exploratory analysis to find candidate genes for further study.</p></li>
+</ul>
 </section>
 <section id="results" class="slide level2">
 <h2>Results</h2>
@@ -767,42 +778,80 @@ Up          2014      2054    190</code></pre>
       });
     </script>
     
+
     <script>
+
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
       // slide changes (different for each slide format).
+
       (function () {
+
         // dispatch for htmlwidgets
+
         function fireSlideEnter() {
+
           const event = window.document.createEvent("Event");
+
           event.initEvent("slideenter", true, true);
+
           window.document.dispatchEvent(event);
+
         }
+
+    
 
         function fireSlideChanged(previousSlide, currentSlide) {
+
           fireSlideEnter();
 
+    
+
           // dispatch for shiny
+
           if (window.jQuery) {
+
             if (previousSlide) {
+
               window.jQuery(previousSlide).trigger("hidden");
+
             }
+
             if (currentSlide) {
+
               window.jQuery(currentSlide).trigger("shown");
+
             }
+
           }
+
         }
+
+    
 
         // hookup for slidy
+
         if (window.w3c_slidy) {
+
           window.w3c_slidy.add_observer(function (slide_num) {
+
             // slide_num starts at position 1
+
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
           });
+
         }
 
+    
+
       })();
+
     </script>
+
+    
 
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {

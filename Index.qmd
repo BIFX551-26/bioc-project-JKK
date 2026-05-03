@@ -469,12 +469,10 @@ summary(dt)
 
 ::: {.content-visible when-format="revealjs"}
 
-Extracting DE genes:
+## Extracting DE genes:
 
+:::
 ```{r}
-tfit <- treat(vfit, lfc=1)
-dt <- decideTests(tfit)
-summary(dt)
 
 de.common <- which(dt[,1]!=0 & dt[,2]!=0)
 length(de.common)
@@ -483,23 +481,28 @@ head(tfit$genes$SYMBOL[de.common], n=20)
 
 ```
 
- O - represents genes with levels unchanged
- 1 - Up regulated genes
--1 - Down regulated genes
-:::
+ 
+ 
+- O - represents genes with levels unchanged
+- 1 - Up regulated genes
+- 1 - Down regulated genes
 
-::: {.content-visible when-format="revealjs"}
+
+## Extracting DE genes:
 
 Venn diagram showing the number of genes DE in the comparison between basal versus LP only (left), basal versus ML only (right), and the number of genes that are DE in both comparisons (center)
 
 The number of genes that are not DE in either comparison are marked in the bottom-right
 
+::: {.content-visible when-format="revealjs"}
+
+:::
 ```{r}
 vennDiagram(dt[,1:2], circle.col=c("turquoise", "salmon"))
 
 ```
 
-:::
+
 
 ## Examining Individual DE Genes from Top to Bottom:
 
