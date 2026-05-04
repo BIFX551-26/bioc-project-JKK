@@ -412,18 +412,24 @@ style="width:100.0%" data-fig-align="right" />
     LIM_MAMMARY_LUMINAL_PROGENITOR_UP           3.233663e-10
     SOTIRIOU_BREAST_CANCER_GRADE_1_VS_3_UP      4.871724e-10
 
-## Results
+## Experimental Results
 
 - The genes *Rasef* and *Cldn7* were both top DE genes for both the
   BasalvsLP and BasalvsML comparisons. *Rasef* has been shown to act as
   a tumor supressor, while the dysregulation of *Cldn7* in either
   direction is associated with cancer risk and/or progression.
 
+- The camera method was used to compare the results from this analysis
+  to an experiment by Lim *et al* 2010, which used Illumina microarrays
+  to study the same sorted mammory cell populations. The gene signatures
+  from the Lim *et al* study match those at the top of the list for each
+  of the camera contrasts.
+
 ## Conclusion:
 
 **What interesting things / skills did you learn?**
 
-    Skills learned:
+    **Skills learned:**
 
 - To setup data from web to R/positron.
 - To organize multiple files into single matrix using only one function
@@ -431,7 +437,7 @@ style="width:100.0%" data-fig-align="right" />
 - Organizing gene info and annotations.
 - Filtering genes that holds biological importance.
 - Unsupervised clustering of samples.
-- Desgining model and contrast matrices.
+- Designing model and contrast matrices.
 
 **Interesting points learned:**
 
@@ -450,12 +456,15 @@ style="width:100.0%" data-fig-align="right" />
 
 - Stricter log-CPM values can be applied for sophisticated studies.
 
+- Methods like camera can be used to do small-scale “meta-analyses”.
+
 ## Conclusion:
 
-\*\* What challenges did you come across?\*\*
+\*\* What challenges did you come across? \*\*
 
-- Several plots had to be resized to render properly
+- Several plots had to be resized to render properly.
 
-3.  Main result
-4.  Limitation
-5.  Next steps
+- Communicating effectively so that we did not overwrite each other’s
+  work on the github page.
+
+- BioConductor downtime.
