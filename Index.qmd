@@ -394,7 +394,7 @@ design
 
 :::
 
-- 'makecontrast()' function from **limma** package allows user to draw contrax matrix for pairwise comparisions
+- `makecontrast()` function from **limma** package allows user to draw contrax matrix for pairwise comparisions
 
 - Provides duplicate correlation to deal with technical replicates
 
@@ -412,7 +412,7 @@ contr.matrix
 
 ## Heteroscedascity and Voom weights
 
-- Homoscedascity: In linear models, mean-variance relationship is assumed to be linear. Mean and variance changes equally. Exactly opposite is 'Heteroscedascity'
+- In RNA-seq data, variance changes with the mean expression level (heteroscedasticity), so voom assigns weights to account for this mean-variance relationship.
 
 - In RNA-Seq count data, the Negative Binomial distribution assumes quadratic mean-variation relationship
 
@@ -504,13 +504,11 @@ vennDiagram(dt[,1:2], circle.col=c("turquoise", "salmon"))
 
 
 
-## Examining Individual DE Genes from Top to Bottom:
+## Ranking Differentially Expressed Genes
 
-- "topTreat"/ "topTable" - from toptreat or eBayes to list top DE genes
- 
-- toptreat arranges DE genes chronologically in increasing order using log-FC, average log-CPM, moderated t-statistics, raw and adjusted p-value for each gene
-
-- n=Inf -> all genes
+- `topTreat()` and `topTable()` are used to list the top differentially expressed genes from `treat()` and `eBayes()` results, respectively
+- `topTreat()` ranks genes by statistical significance and reports values such as log-FC, average log-CPM, moderated t-statistics, and raw and adjusted p-values for each gene
+- setting n = Inf returns all genes in the results table
 
 ```{r}
 basal.vs.lp <- topTreat(tfit, coef=1, n=Inf)

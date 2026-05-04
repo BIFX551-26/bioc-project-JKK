@@ -242,17 +242,17 @@ style="width:100.0%" />
 
     $weights
               [,1]      [,2]      [,3]      [,4]      [,5]      [,6]      [,7]
-    [1,]  1.079413  1.332986 19.826915 20.273253  1.993686  1.395853 20.494977
-    [2,]  1.170357  1.456380  4.804866  8.660025  3.612508  2.626870  8.760149
-    [3,] 20.219073 25.573792 30.434759 28.528310 31.352260 25.743247 28.722497
-    [4,] 26.947557 32.505933 33.583128 33.232125 34.231754 32.354158 33.334340
-    [5,] 26.610864 28.501638 33.645479 33.206374 33.573492 31.996623 33.308490
+    [1,]  1.031010  1.282577 20.143626 20.598915  1.950799  1.345475 20.825144
+    [2,]  1.120826  1.406203  4.930805  8.761051  3.645647  2.601377  8.862788
+    [3,] 20.543645 26.132254 31.033311 29.121837 31.978075 26.308447 29.316218
+    [4,] 27.548060 33.178993 34.343505 33.948156 34.797458 33.021348 34.057882
+    [5,] 27.203566 29.095135 34.416318 33.920517 34.332254 32.649789 34.030131
               [,8]      [,9]
-    [1,]  1.107780  1.079413
-    [2,]  3.211473  2.541942
-    [3,] 21.200072 16.657930
-    [4,] 30.348630 24.259801
-    [5,] 25.171513 23.573305
+    [1,]  1.058972  1.031010
+    [2,]  3.214078  2.513545
+    [3,] 21.548697 16.889080
+    [4,] 30.944851 24.744809
+    [5,] 25.707167 24.020893
     16619 more rows ...
 
     $design
@@ -275,6 +275,10 @@ style="width:100.0%" />
     attr(,"contrasts")$lane
     [1] "contr.treatment"
 
+
+    $span
+    [1] 0.4010438
+
 ![](Index_files/figure-commonmark/unnamed-chunk-25-1.png)
 
 Means (x-axis) and variances (y-axis) of each gene are plotted to show
@@ -287,20 +291,20 @@ applied to the data (right panel)
 Summary of Differentially expressed gene:
 
            BasalvsLP BasalvsML LPvsML
-    Down        4648      4927   3135
-    NotSig      7113      7026  10972
-    Up          4863      4671   2517
+    Down        4646      4936   3141
+    NotSig      7118      7008  10953
+    Up          4860      4680   2530
 
 Treat method - Method can be applied for stricter definition on
 significance based on t-statistics. This allows user to define a log-FC
 threshold
 
            BasalvsLP BasalvsML LPvsML
-    Down        1632      1777    224
-    NotSig     12976     12790  16210
-    Up          2016      2057    190
+    Down        1633      1777    223
+    NotSig     12977     12793  16211
+    Up          2014      2054    190
 
-    [1] 2784
+    [1] 2782
 
      [1] "Xkr4"          "Rgs20"         "Cpa6"          "A830018L16Rik"
      [5] "Sulf1"         "Eya1"          "Msc"           "Sbspon"       
@@ -336,19 +340,19 @@ the bottom-right
 <!-- -->
 
            ENTREZID SYMBOL TXCHROM     logFC  AveExpr         t      P.Value
-    12759     12759    Clu   chr14 -5.455444 8.856581 -33.55508 1.723731e-10
-    53624     53624  Cldn7   chr11 -5.527356 6.295437 -31.97515 2.576972e-10
-    242505   242505  Rasef    chr4 -5.935249 5.118259 -31.33407 3.081544e-10
-    67451     67451   Pkp2   chr16 -5.738665 4.419170 -29.85616 4.575686e-10
-    228543   228543   Rhov    chr2 -6.264208 5.485314 -29.07484 5.782844e-10
-    70350     70350  Basp1   chr15 -6.084738 5.247023 -28.26649 7.267694e-10
+    12759     12759    Clu   chr14 -5.456559 8.856581 -32.88053 1.983630e-10
+    53624     53624  Cldn7   chr11 -5.528781 6.295437 -31.93142 2.535109e-10
+    242505   242505  Rasef    chr4 -5.935277 5.118259 -31.36803 2.970972e-10
+    67451     67451   Pkp2   chr16 -5.739040 4.419170 -29.92286 4.372689e-10
+    228543   228543   Rhov    chr2 -6.266432 5.485314 -29.08206 5.620164e-10
+    70350     70350  Basp1   chr15 -6.086556 5.247023 -28.23497 7.146411e-10
               adj.P.Val
-    12759  1.707586e-06
-    53624  1.707586e-06
-    242505 1.707586e-06
-    67451  1.739242e-06
-    228543 1.739242e-06
-    70350  1.739242e-06
+    12759  1.646315e-06
+    53624  1.646315e-06
+    242505 1.646315e-06
+    67451  1.672259e-06
+    228543 1.672259e-06
+    70350  1.672259e-06
 
 ## Useful Graphical Representations of Differential Expression Results
 
@@ -400,17 +404,17 @@ style="width:100.0%" data-fig-align="right" />
 <!-- -->
 
                                                 NGenes Direction       PValue
-    LIM_MAMMARY_STEM_CELL_UP                       791        Up 1.768426e-18
-    LIM_MAMMARY_STEM_CELL_DN                       683      Down 4.027711e-14
-    ROSTY_CERVICAL_CANCER_PROLIFERATION_CLUSTER    170        Up 5.518131e-14
-    LIM_MAMMARY_LUMINAL_PROGENITOR_UP               94      Down 2.737492e-13
-    SOTIRIOU_BREAST_CANCER_GRADE_1_VS_3_UP         190        Up 5.155264e-13
+    LIM_MAMMARY_STEM_CELL_UP                       791        Up 1.872243e-18
+    LIM_MAMMARY_STEM_CELL_DN                       683      Down 3.825170e-14
+    ROSTY_CERVICAL_CANCER_PROLIFERATION_CLUSTER    170        Up 5.181410e-14
+    LIM_MAMMARY_LUMINAL_PROGENITOR_UP               94      Down 2.659067e-13
+    SOTIRIOU_BREAST_CANCER_GRADE_1_VS_3_UP         190        Up 4.891258e-13
                                                          FDR
-    LIM_MAMMARY_STEM_CELL_UP                    8.355813e-15
-    LIM_MAMMARY_STEM_CELL_DN                    8.691057e-11
-    ROSTY_CERVICAL_CANCER_PROLIFERATION_CLUSTER 8.691057e-11
-    LIM_MAMMARY_LUMINAL_PROGENITOR_UP           3.233663e-10
-    SOTIRIOU_BREAST_CANCER_GRADE_1_VS_3_UP      4.871724e-10
+    LIM_MAMMARY_STEM_CELL_UP                    8.846348e-15
+    LIM_MAMMARY_STEM_CELL_DN                    8.160720e-11
+    ROSTY_CERVICAL_CANCER_PROLIFERATION_CLUSTER 8.160720e-11
+    LIM_MAMMARY_LUMINAL_PROGENITOR_UP           3.141023e-10
+    SOTIRIOU_BREAST_CANCER_GRADE_1_VS_3_UP      4.622239e-10
 
 ## Experimental Results
 

@@ -544,46 +544,63 @@ Up          2014      2054    190</code></pre>
 <li><p>The aggregated gene set data is the c2 gene signatures collection from the Broad Institute’s Molecular Signatures Database (MSigDB).</p></li>
 <li><p>This method is more of a meta-analysis, not ideal for focused within-experiment testing, but great for exploratory analysis to find candidate genes for further study.</p></li>
 </ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                                            NGenes Direction       PValue
+LIM_MAMMARY_STEM_CELL_UP                       791        Up 1.872243e-18
+LIM_MAMMARY_STEM_CELL_DN                       683      Down 3.825170e-14
+ROSTY_CERVICAL_CANCER_PROLIFERATION_CLUSTER    170        Up 5.181410e-14
+LIM_MAMMARY_LUMINAL_PROGENITOR_UP               94      Down 2.659067e-13
+SOTIRIOU_BREAST_CANCER_GRADE_1_VS_3_UP         190        Up 4.891258e-13
+                                                     FDR
+LIM_MAMMARY_STEM_CELL_UP                    8.846348e-15
+LIM_MAMMARY_STEM_CELL_DN                    8.160720e-11
+ROSTY_CERVICAL_CANCER_PROLIFERATION_CLUSTER 8.160720e-11
+LIM_MAMMARY_LUMINAL_PROGENITOR_UP           3.141023e-10
+SOTIRIOU_BREAST_CANCER_GRADE_1_VS_3_UP      4.622239e-10</code></pre>
+</div>
+</div>
 </section>
-<section id="results" class="slide level2">
-<h2>Results</h2>
+<section id="experimental-results" class="slide level2">
+<h2>Experimental Results</h2>
 <ul>
-<li>Placeholder for our results slide</li>
+<li><p>The genes <em>Rasef</em> and <em>Cldn7</em> were both top DE genes for both the BasalvsLP and BasalvsML comparisons. <em>Rasef</em> has been shown to act as a tumor supressor, while the dysregulation of <em>Cldn7</em> in either direction is associated with cancer risk and/or progression.</p></li>
+<li><p>The camera method was used to compare the results from this analysis to an experiment by Lim <em>et al</em> 2010, which used Illumina microarrays to study the same sorted mammory cell populations. The gene signatures from the Lim <em>et al</em> study match those at the top of the list for each of the camera contrasts.</p></li>
 </ul>
 </section>
 <section id="conclusion" class="slide level2">
 <h2>Conclusion:</h2>
-<ol type="1">
-<li><p>What interesting things / skills did you learn?</p>
-<p>Skills learned:</p></li>
-</ol>
+<p><strong>What interesting things / skills did you learn?</strong></p>
+<pre><code>**Skills learned:**</code></pre>
 <ul>
 <li>To setup data from web to R/positron.</li>
 <li>To organize multiple files into single matrix using only one function from edgeR package.</li>
 <li>Organizing gene info and annotations.</li>
 <li>Filtering genes that holds biological importance.</li>
 <li>Unsupervised clustering of samples.</li>
-<li>Desgining model and contrast matrices.</li>
+<li>Designing model and contrast matrices.</li>
 </ul>
 </section>
 <section id="conclusion-1" class="slide level2">
 <h2>Conclusion:</h2>
-<p>Interesting facts learned:</p>
+<p><strong>Interesting points learned:</strong></p>
 <ul>
+<li><p>filtering data improves the scopes of visualization.</p></li>
 <li><p>filterByexp function that removes the genes with low expression values. However, it does not filter the control whose expression value could be near 0 or 0.</p></li>
 <li><p>calcNormfactor using TMM function works on logic where over &amp; under expressed genes are ignored initially to plot a baseline. Once the baseline is plotted, the genes are cross-references for accurate comparison to avoid the compositional bias.</p></li>
 <li><p>Heteroscedascity must be addressed to get results at actuals.</p></li>
 <li><p>Stricter log-CPM values can be applied for sophisticated studies.</p></li>
+<li><p>Methods like camera can be used to do small-scale “meta-analyses”.</p></li>
 </ul>
 </section>
 <section id="conclusion-2" class="slide level2">
 <h2>Conclusion:</h2>
-<ol start="2" type="1">
-<li>What challenges did you come across?</li>
-<li>Main result</li>
-<li>Limitation</li>
-<li>Next steps</li>
-</ol>
+<p>** What challenges did you come across? **</p>
+<ul>
+<li><p>Several plots had to be resized to render properly.</p></li>
+<li><p>Communicating effectively so that we did not overwrite each other’s work on the github page.</p></li>
+<li><p>BioConductor downtime.</p></li>
+</ul>
 
 </section>
     </div>
@@ -802,80 +819,42 @@ Up          2014      2054    190</code></pre>
       });
     </script>
     
-
     <script>
-
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-
       // slide changes (different for each slide format).
-
       (function () {
-
         // dispatch for htmlwidgets
-
         function fireSlideEnter() {
-
           const event = window.document.createEvent("Event");
-
           event.initEvent("slideenter", true, true);
-
           window.document.dispatchEvent(event);
-
         }
-
-    
 
         function fireSlideChanged(previousSlide, currentSlide) {
-
           fireSlideEnter();
 
-    
-
           // dispatch for shiny
-
           if (window.jQuery) {
-
             if (previousSlide) {
-
               window.jQuery(previousSlide).trigger("hidden");
-
             }
-
             if (currentSlide) {
-
               window.jQuery(currentSlide).trigger("shown");
-
             }
-
           }
-
         }
-
-    
 
         // hookup for slidy
-
         if (window.w3c_slidy) {
-
           window.w3c_slidy.add_observer(function (slide_num) {
-
             // slide_num starts at position 1
-
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-
           });
-
         }
 
-    
-
       })();
-
     </script>
-
-    
 
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
