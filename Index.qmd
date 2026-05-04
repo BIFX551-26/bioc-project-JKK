@@ -394,7 +394,7 @@ design
 
 :::
 
-- `makecontrast()` function from **limma** package allows user to draw contrax matrix for pairwise comparisions
+- `makecontrast()` function from **limma** package allows user to draw contrast matrix for pairwise comparisions
 
 - Provides duplicate correlation to deal with technical replicates
 
