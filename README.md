@@ -156,7 +156,7 @@ style="width:100.0%" />
     attr(,"contrasts")$lane
     [1] "contr.treatment"
 
-- ‘makecontrast()’ function from **limma** package allows user to draw
+- `makecontrast()` function from **limma** package allows user to draw
   contrax matrix for pairwise comparisions
 
 - Provides duplicate correlation to deal with technical replicates
@@ -176,9 +176,9 @@ style="width:100.0%" />
 
 ## Heteroscedascity and Voom weights
 
-- Homoscedascity: In linear models, mean-variance relationship is
-  assumed to be linear. Mean and variance changes equally. Exactly
-  opposite is ‘Heteroscedascity’
+- In RNA-seq data, variance changes with the mean expression level
+  (heteroscedasticity), so `voom()` assigns weights to account for this
+  mean-variance relationship
 
 - In RNA-Seq count data, the Negative Binomial distribution assumes
   quadratic mean-variation relationship
@@ -190,14 +190,14 @@ style="width:100.0%" />
 
 <!-- -->
 
-- “voom” function act as link to bridge limma(built for microarrays) to
-  expression data. It addresses scale problem (calculates into CPM) and
-  “normalize.method” argument to normalize library size and estimates
-  mean-variance relationship (non-linear - overdispersion)
+- `voom()` function act as link to bridge limma(built for microarrays)
+  to expression data. It addresses scale problem (calculates into CPM)
+  and “normalize.method” argument to normalize library size and
+  estimates mean-variance relationship (non-linear - overdispersion)
 
 - “Voom weights” fixes the noise related to genes whereas
-  Voomqualityweight addresses the noise generated from inter-sample
-  variation
+  `VoomWithQualityWeights()` addresses the noise generated from
+  inter-sample variation
 
 <!-- -->
 
@@ -286,7 +286,7 @@ the dependence between the two before voom is applied to the data (left
 panel) and how the trend is removed after voom precision weights are
 applied to the data (right panel)
 
-## Examining Differentially Expressed Genes:
+## Examining Differentially Expressed Genes
 
 Summary of Differentially expressed gene:
 
@@ -316,26 +316,26 @@ threshold
 - 1 - Up regulated genes
 - 1 - Down regulated genes
 
-## Extracting DE genes:
+## Extracting Differentially Expressed Genes
 
-Venn diagram showing the number of genes DE in the comparison between
-basal versus LP only (left), basal versus ML only (right), and the
-number of genes that are DE in both comparisons (center)
+- Venn diagram showing the number of genes DE in the comparison between
+  basal versus LP only (left), basal versus ML only (right), and the
+  number of genes that are DE in both comparisons (center)
 
-The number of genes that are not DE in either comparison are marked in
-the bottom-right
+- The number of genes that are not DE in either comparison are marked in
+  the bottom-right
 
-![](Index_files/figure-commonmark/unnamed-chunk-30-1.png)
+<img src="Index_files/figure-commonmark/unnamed-chunk-30-1.png"
+data-fig-align="center" />
 
-## Examining Individual DE Genes from Top to Bottom:
+## Ranking Differentially Expressed Genes
 
-- “topTreat”/ “topTable” - from toptreat or eBayes to list top DE genes
-
-- toptreat arranges DE genes chronologically in increasing order using
-  log-FC, average log-CPM, moderated t-statistics, raw and adjusted
-  p-value for each gene
-
-- n=Inf -\> all genes
+- `topTreat()` and `topTable()` are used to list the top differentially
+  expressed genes from `treat()` and `eBayes()` results, respectively
+- `topTreat()` ranks genes by statistical significance and reports
+  values such as log-FC, average log-CPM, moderated t-statistics, and
+  raw and adjusted p-values for each gene
+- setting n = Inf returns all genes in the results table
 
 <!-- -->
 

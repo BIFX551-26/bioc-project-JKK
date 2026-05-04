@@ -301,7 +301,7 @@ attr(,"contrasts")$lane
 <section id="differential-gene-analysis-1" class="slide level2">
 <h2>Differential Gene Analysis</h2>
 <ul>
-<li><p>‘makecontrast()’ function from <strong>limma</strong> package allows user to draw contrax matrix for pairwise comparisions</p></li>
+<li><p><code>makecontrast()</code> function from <strong>limma</strong> package allows user to draw contrax matrix for pairwise comparisions</p></li>
 <li><p>Provides duplicate correlation to deal with technical replicates</p></li>
 <li><p>Also provides flexibility to perform interactive studies for ex. testing drug reaction in Lane 6 and Lane 8</p></li>
 </ul>
@@ -320,7 +320,7 @@ Levels     BasalvsLP BasalvsML LPvsML
 <section id="heteroscedascity-and-voom-weights" class="slide level2">
 <h2>Heteroscedascity and Voom weights</h2>
 <ul>
-<li><p>Homoscedascity: In linear models, mean-variance relationship is assumed to be linear. Mean and variance changes equally. Exactly opposite is ‘Heteroscedascity’</p></li>
+<li><p>In RNA-seq data, variance changes with the mean expression level (heteroscedasticity), so <code>voom()</code> assigns weights to account for this mean-variance relationship</p></li>
 <li><p>In RNA-Seq count data, the Negative Binomial distribution assumes quadratic mean-variation relationship</p></li>
 <li><p>Overdispersion observed due to large difference between house-keeping genes and highly expressed genes</p></li>
 <li><p>In <strong>limma</strong>, linear modelling is carried out on log-CPM values</p></li>
@@ -329,8 +329,8 @@ Levels     BasalvsLP BasalvsML LPvsML
 <section id="heteroscedascity-and-voom-weights-1" class="slide level2">
 <h2>Heteroscedascity and Voom weights</h2>
 <ul>
-<li><p>“voom” function act as link to bridge limma(built for microarrays) to expression data. It addresses scale problem (calculates into CPM) and “normalize.method” argument to normalize library size and estimates mean-variance relationship (non-linear - overdispersion)</p></li>
-<li><p>“Voom weights” fixes the noise related to genes whereas Voomqualityweight addresses the noise generated from inter-sample variation</p></li>
+<li><p><code>voom()</code> function act as link to bridge limma(built for microarrays) to expression data. It addresses scale problem (calculates into CPM) and “normalize.method” argument to normalize library size and estimates mean-variance relationship (non-linear - overdispersion)</p></li>
+<li><p>“Voom weights” fixes the noise related to genes whereas <code>VoomWithQualityWeights()</code> addresses the noise generated from inter-sample variation</p></li>
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -432,7 +432,7 @@ $span
 <p>Means (x-axis) and variances (y-axis) of each gene are plotted to show the dependence between the two before voom is applied to the data (left panel) and how the trend is removed after voom precision weights are applied to the data (right panel)</p>
 </section>
 <section id="examining-differentially-expressed-genes" class="slide level2">
-<h2>Examining Differentially Expressed Genes:</h2>
+<h2>Examining Differentially Expressed Genes</h2>
 <p>Summary of Differentially expressed gene:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -452,8 +452,8 @@ Up          2014      2054    190</code></pre>
 </div>
 </div>
 </section>
-<section id="extracting-de-genes" class="slide level2">
-<h2>Extracting DE genes:</h2>
+<section id="extracting-differentially-expressed-genes" class="slide level2">
+<h2>Extracting Differentially Expressed Genes</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2782</code></pre>
@@ -472,18 +472,20 @@ Up          2014      2054    190</code></pre>
 <li>1 - Down regulated genes</li>
 </ul>
 </section>
-<section id="extracting-de-genes-1" class="slide level2">
-<h2>Extracting DE genes:</h2>
-<p>Venn diagram showing the number of genes DE in the comparison between basal versus LP only (left), basal versus ML only (right), and the number of genes that are DE in both comparisons (center)</p>
-<p>The number of genes that are not DE in either comparison are marked in the bottom-right</p>
-
-<img data-src="Index_files/figure-revealjs/unnamed-chunk-30-1.png" width="960" class="r-stretch"></section>
-<section id="examining-individual-de-genes-from-top-to-bottom" class="slide level2">
-<h2>Examining Individual DE Genes from Top to Bottom:</h2>
+<section id="extracting-differentially-expressed-genes-1" class="slide level2">
+<h2>Extracting Differentially Expressed Genes</h2>
 <ul>
-<li><p>“topTreat”/ “topTable” - from toptreat or eBayes to list top DE genes</p></li>
-<li><p>toptreat arranges DE genes chronologically in increasing order using log-FC, average log-CPM, moderated t-statistics, raw and adjusted p-value for each gene</p></li>
-<li><p>n=Inf -&gt; all genes</p></li>
+<li><p>Venn diagram showing the number of genes DE in the comparison between basal versus LP only (left), basal versus ML only (right), and the number of genes that are DE in both comparisons (center)</p></li>
+<li><p>The number of genes that are not DE in either comparison are marked in the bottom-right</p></li>
+</ul>
+
+<img data-src="Index_files/figure-revealjs/unnamed-chunk-30-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="ranking-differentially-expressed-genes" class="slide level2">
+<h2>Ranking Differentially Expressed Genes</h2>
+<ul>
+<li><code>topTreat()</code> and <code>topTable()</code> are used to list the top differentially expressed genes from <code>treat()</code> and <code>eBayes()</code> results, respectively</li>
+<li><code>topTreat()</code> ranks genes by statistical significance and reports values such as log-FC, average log-CPM, moderated t-statistics, and raw and adjusted p-values for each gene</li>
+<li>setting n = Inf returns all genes in the results table</li>
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
