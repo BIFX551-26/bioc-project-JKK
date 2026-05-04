@@ -1,0 +1,491 @@
+<rdf:RDF
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:z="http://www.zotero.org/namespaces/export#"
+ xmlns:bib="http://purl.org/net/biblio#"
+ xmlns:dcterms="http://purl.org/dc/terms/"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:link="http://purl.org/rss/1.0/modules/link/"
+ xmlns:foaf="http://xmlns.com/foaf/0.1/"
+ xmlns:prism="http://prismstandard.org/namespaces/1.2/basic/">
+    <bib:Data rdf:about="#item_1">
+       <z:itemType>computerProgram</z:itemType>
+    </bib:Data>
+    <bib:Document rdf:about="http://bioconductor.org/packages/RNAseq123/">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website><dc:title>Bioconductor</dc:title></z:Website>
+        </dcterms:isPartOf>
+        <link:link rdf:resource="#item_3"/>
+        <dc:title>RNAseq123</dc:title>
+        <dcterms:abstract>R package that supports the F1000Research workflow article on RNA-seq analysis using limma, Glimma and edgeR by Law et al. (2016).</dcterms:abstract>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://bioconductor.org/packages/RNAseq123/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2026-04-26 16:57:07</dcterms:dateSubmitted>
+        <z:language>en-US</z:language>
+    </bib:Document>
+    <z:Attachment rdf:about="#item_3">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Snapshot</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://bioconductor.org/packages/RNAseq123/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2026-04-26 16:57:11</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <bib:Data rdf:about="https://bioconductor.org/packages/RNAseq123">
+        <z:itemType>computerProgram</z:itemType>
+        <dc:publisher>
+            <foaf:Organization>
+               <foaf:name>Bioconductor</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <z:programmers>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Charity Law, Monther Alhamdoosh, Shian Su, Xueyi Dong, Luyi Tian, Gordon Smyth, Matthew Ritchie</foaf:surname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </z:programmers>
+        <dc:title>RNAseq123</dc:title>
+        <dc:identifier>DOI 10.18129/B9.BIOC.RNASEQ123</dc:identifier>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://bioconductor.org/packages/RNAseq123</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2026-04-26 16:59:10</dcterms:dateSubmitted>
+        <z:libraryCatalog>DOI.org (Datacite)</z:libraryCatalog>
+    </bib:Data>
+    <bib:Data rdf:about="https://bioconductor.org/packages/limma">
+        <z:itemType>computerProgram</z:itemType>
+        <dc:publisher>
+            <foaf:Organization>
+               <foaf:name>Bioconductor</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <z:programmers>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Gordon Smyth [Cre</foaf:surname>
+                        <foaf:givenName>Aut]</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </z:programmers>
+        <dc:title>limma</dc:title>
+        <dc:date>2017</dc:date>
+        <dc:identifier>DOI 10.18129/B9.BIOC.LIMMA</dc:identifier>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://bioconductor.org/packages/limma</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2026-04-26 17:00:09</dcterms:dateSubmitted>
+        <z:libraryCatalog>DOI.org (Datacite)</z:libraryCatalog>
+    </bib:Data>
+    <bib:Data rdf:about="https://bioconductor.org/packages/Glimma">
+        <z:itemType>computerProgram</z:itemType>
+        <dc:publisher>
+            <foaf:Organization>
+               <foaf:name>Bioconductor</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <z:programmers>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Shian Su</foaf:surname>
+                        <foaf:givenName>Matthew E. Ritchie</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </z:programmers>
+        <dc:title>Glimma</dc:title>
+        <dc:date>2017</dc:date>
+        <dc:identifier>DOI 10.18129/B9.BIOC.GLIMMA</dc:identifier>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://bioconductor.org/packages/Glimma</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2026-04-26 17:00:39</dcterms:dateSubmitted>
+        <z:libraryCatalog>DOI.org (Datacite)</z:libraryCatalog>
+    </bib:Data>
+    <bib:Data rdf:about="https://bioconductor.org/packages/edgeR">
+        <z:itemType>computerProgram</z:itemType>
+        <dc:publisher>
+            <foaf:Organization>
+               <foaf:name>Bioconductor</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <z:programmers>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Yunshun Chen &lt;Yuchen@Wehi. Edu.Au&gt;</foaf:surname>
+                        <foaf:givenName>Aaron Lun&lt;Alun@Wehi Edu Au&gt;</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </z:programmers>
+        <dc:title>edgeR</dc:title>
+        <dc:date>2017</dc:date>
+        <dc:identifier>DOI 10.18129/B9.BIOC.EDGER</dc:identifier>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://bioconductor.org/packages/edgeR</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2026-04-26 17:01:06</dcterms:dateSubmitted>
+        <z:libraryCatalog>DOI.org (Datacite)</z:libraryCatalog>
+    </bib:Data>
+    <bib:Article rdf:about="https://bmccancer.biomedcentral.com/articles/10.1186/s12885-015-1187-z">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:1471-2407"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sheridan</foaf:surname>
+                        <foaf:givenName>Julie M</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ritchie</foaf:surname>
+                        <foaf:givenName>Matthew E</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Best</foaf:surname>
+                        <foaf:givenName>Sarah A</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Jiang</foaf:surname>
+                        <foaf:givenName>Kun</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Beck</foaf:surname>
+                        <foaf:givenName>Tamara J</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Vaillant</foaf:surname>
+                        <foaf:givenName>François</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Liu</foaf:surname>
+                        <foaf:givenName>Kevin</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Dickins</foaf:surname>
+                        <foaf:givenName>Ross A</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Smyth</foaf:surname>
+                        <foaf:givenName>Gordon K</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Lindeman</foaf:surname>
+                        <foaf:givenName>Geoffrey J</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Visvader</foaf:surname>
+                        <foaf:givenName>Jane E</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_9"/>
+        <dc:title>A pooled shRNA screen for regulators of primary mammary stem and progenitor cells identifies roles for Asap1 and Prox1</dc:title>
+        <dc:date>12/2015</dc:date>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://bmccancer.biomedcentral.com/articles/10.1186/s12885-015-1187-z</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2026-04-26 17:05:10</dcterms:dateSubmitted>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <bib:pages>221</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:1471-2407">
+        <dc:identifier>DOI 10.1186/s12885-015-1187-z</dc:identifier>
+        <prism:volume>15</prism:volume>
+        <dc:title>BMC Cancer</dc:title>
+        <dc:identifier>ISSN 1471-2407</dc:identifier>
+        <prism:number>1</prism:number>
+        <dcterms:alternative>BMC Cancer</dcterms:alternative>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_9">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Full Text</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://bmccancer.biomedcentral.com/counter/pdf/10.1186/s12885-015-1187-z</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2026-04-26 17:05:12</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://academic.oup.com/nargab/article/doi/10.1093/nargab/lqab116/6478883">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:2631-9268"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kariyawasam</foaf:surname>
+                        <foaf:givenName>Hasaru</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Su</foaf:surname>
+                        <foaf:givenName>Shian</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Voogd</foaf:surname>
+                        <foaf:givenName>Oliver</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ritchie</foaf:surname>
+                        <foaf:givenName>Matthew E</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Law</foaf:surname>
+                        <foaf:givenName>Charity W</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_11"/>
+        <dc:title>Dashboard-style interactive plots for RNA-seq analysis are R Markdown ready with &lt;i&gt;Glimma&lt;/i&gt; 2.0</dc:title>
+        <dcterms:abstract>Abstract
+            Glimma 1.0 introduced intuitive, point-and-click interactive graphics for differential gene expression analysis. Here, we present a major update to Glimma that brings improved interactivity and reproducibility using high-level visualization frameworks for R and JavaScript. Glimma 2.0 plots are now readily embeddable in R Markdown, thus allowing users to create reproducible reports containing interactive graphics. The revamped multidimensional scaling plot features dashboard-style controls allowing the user to dynamically change the colour, shape and size of sample points according to different experimental conditions. Interactivity was enhanced in the MA-style plot for comparing differences to average expression, which now supports selecting multiple genes, export options to PNG, SVG or CSV formats and includes a new volcano plot function. Feature-rich and user-friendly, Glimma makes exploring data for gene expression analysis more accessible and intuitive and is available on Bioconductor and GitHub.</dcterms:abstract>
+        <dc:date>2021-10-04</dc:date>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://academic.oup.com/nargab/article/doi/10.1093/nargab/lqab116/6478883</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2026-04-26 17:05:30</dcterms:dateSubmitted>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:rights>https://creativecommons.org/licenses/by/4.0/</dc:rights>
+        <bib:pages>lqab116</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:2631-9268">
+        <dc:identifier>DOI 10.1093/nargab/lqab116</dc:identifier>
+        <prism:volume>3</prism:volume>
+        <dc:title>NAR Genomics and Bioinformatics</dc:title>
+        <dc:identifier>ISSN 2631-9268</dc:identifier>
+        <prism:number>4</prism:number>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_11">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Full Text</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://academic.oup.com/nargab/article-pdf/3/4/lqab116/41881638/lqab116.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2026-04-26 17:05:32</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://academic.oup.com/nar/article/40/17/e133/2411151">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:1362-4962,%200305-1048"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wu</foaf:surname>
+                        <foaf:givenName>Di</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Smyth</foaf:surname>
+                        <foaf:givenName>Gordon K.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_13"/>
+        <dc:title>Camera: a competitive gene set test accounting for inter-gene correlation</dc:title>
+        <dc:date>2012-09-01</dc:date>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://academic.oup.com/nar/article/40/17/e133/2411151</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2026-05-02 00:53:58</dcterms:dateSubmitted>
+        <z:shortTitle>Camera</z:shortTitle>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:rights>http://creativecommons.org/licenses/by-nc/3.0</dc:rights>
+        <bib:pages>e133-e133</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:1362-4962,%200305-1048">
+        <dc:identifier>DOI 10.1093/nar/gks461</dc:identifier>
+        <prism:volume>40</prism:volume>
+        <dc:title>Nucleic Acids Research</dc:title>
+        <dc:identifier>ISSN 1362-4962, 0305-1048</dc:identifier>
+        <prism:number>17</prism:number>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_13">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Full Text</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://academic.oup.com/nar/article-pdf/40/17/e133/25348216/gks461.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2026-05-02 00:53:59</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="https://www.gsea-msigdb.org/gsea/msigdb">
+        <z:itemType>standard</z:itemType>
+        <dc:title>Molecular Signatures Database</dc:title>
+        <dc:date>2004-2026</dc:date>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://www.gsea-msigdb.org/gsea/msigdb</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2026-05-01</dcterms:dateSubmitted>
+        <z:authority>Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.</z:authority>
+    </rdf:Description>
+    <bib:Article rdf:about="http://www.spandidos-publications.com/10.3892/ijmm.2026.5781">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:1107-3756,%201791-244X"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Lai</foaf:surname>
+                        <foaf:givenName>Xiuping</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Yan</foaf:surname>
+                        <foaf:givenName>Yan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sun</foaf:surname>
+                        <foaf:givenName>Lu</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Lei</foaf:surname>
+                        <foaf:givenName>Zili</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Yang</foaf:surname>
+                        <foaf:givenName>Yanhong</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_17"/>
+        <dc:title>CLDN7: Epithelial gatekeeper from physiology to pathology‑roles in cancer and epithelial‑related diseases (Review)</dc:title>
+        <dc:date>2026-03-03</dc:date>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://www.spandidos-publications.com/10.3892/ijmm.2026.5781</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2026-05-03 17:58:24</dcterms:dateSubmitted>
+        <z:shortTitle>CLDN7</z:shortTitle>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <bib:pages>1-13</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:1107-3756,%201791-244X">
+        <dc:identifier>DOI 10.3892/ijmm.2026.5781</dc:identifier>
+        <prism:volume>57</prism:volume>
+        <dc:title>International Journal of Molecular Medicine</dc:title>
+        <dc:identifier>ISSN 1107-3756, 1791-244X</dc:identifier>
+        <prism:number>5</prism:number>
+        <dcterms:alternative>Int J Mol Med</dcterms:alternative>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_17">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Full Text</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.spandidos-publications.com/10.3892/ijmm.2026.5781/download</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2026-05-03 17:58:27</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="https://www.genecards.org/cgi-bin/carddisp.pl?gene=RASEF">
+        <z:itemType>standard</z:itemType>
+        <dc:title>RASEF Gene - RAS And EF-Hand Domain Containing</dc:title>
+        <dc:date>Jan 15, 2026</dc:date>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.genecards.org/cgi-bin/carddisp.pl?gene=RASEF</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2026-05-03</dcterms:dateSubmitted>
+        <z:authority>The GeneCards human gene database</z:authority>
+    </rdf:Description>
+    <z:Collection rdf:about="#collection_1">
+        <dc:title>BIFX 551 BioConductor Project</dc:title>
+        <dcterms:hasPart rdf:resource="#item_1"/>
+        <dcterms:hasPart rdf:resource="http://bioconductor.org/packages/RNAseq123/"/>
+        <dcterms:hasPart rdf:resource="https://bioconductor.org/packages/RNAseq123"/>
+        <dcterms:hasPart rdf:resource="https://bioconductor.org/packages/limma"/>
+        <dcterms:hasPart rdf:resource="https://bioconductor.org/packages/Glimma"/>
+        <dcterms:hasPart rdf:resource="https://bioconductor.org/packages/edgeR"/>
+        <dcterms:hasPart rdf:resource="https://bmccancer.biomedcentral.com/articles/10.1186/s12885-015-1187-z"/>
+        <dcterms:hasPart rdf:resource="https://academic.oup.com/nargab/article/doi/10.1093/nargab/lqab116/6478883"/>
+        <dcterms:hasPart rdf:resource="https://academic.oup.com/nar/article/40/17/e133/2411151"/>
+        <dcterms:hasPart rdf:resource="https://www.gsea-msigdb.org/gsea/msigdb"/>
+        <dcterms:hasPart rdf:resource="http://www.spandidos-publications.com/10.3892/ijmm.2026.5781"/>
+        <dcterms:hasPart rdf:resource="https://www.genecards.org/cgi-bin/carddisp.pl?gene=RASEF"/>
+    </z:Collection>
+</rdf:RDF>

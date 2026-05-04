@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE en-export SYSTEM 'http://xml.evernote.com/pub/evernote-export.dtd'>
+<en-export application='Zotero' version='9.0.1'>
+<note>
+    <title>[Untitled]</title>
+    <content>
+        <![CDATA[<?xml version='1.0' encoding='UTF-8'?><!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'>
+        <en-note>
+        </en-note>]]>
+    </content>
+    <created>20260426T165614Z</created>
+    <updated>20260426T165614Z</updated>
+    <note-attributes>
+        <source>web.clip</source>
+        <source-url>undefined</source-url>
+    </note-attributes>
+</note>
+<note>
+    <title>RNAseq123</title>
+    <content>
+        <![CDATA[<?xml version='1.0' encoding='UTF-8'?><!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'>
+        <en-note>
+        </en-note>]]>
+    </content>
+    <created>20260426T165707Z</created>
+    <updated>20260426T165707Z</updated>
+    <note-attributes>
+        <source>web.clip</source>
+        <source-url>http://bioconductor.org/packages/RNAseq123/</source-url>
+    </note-attributes>
+</note>
+<note>
+    <title>RNAseq123</title>
+    <content>
+        <![CDATA[<?xml version='1.0' encoding='UTF-8'?><!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'>
+        <en-note>
+        </en-note>]]>
+    </content>
+    <created>20260426T165910Z</created>
+    <updated>20260426T165910Z</updated>
+    <note-attributes>
+        <source>web.clip</source>
+        <source-url>https://bioconductor.org/packages/RNAseq123</source-url>
+    </note-attributes>
+</note>
+<note>
+    <title>limma</title>
+    <content>
+        <![CDATA[<?xml version='1.0' encoding='UTF-8'?><!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'>
+        <en-note>
+        </en-note>]]>
+    </content>
+    <created>20260426T170009Z</created>
+    <updated>20260426T170009Z</updated>
+    <note-attributes>
+        <source>web.clip</source>
+        <source-url>https://bioconductor.org/packages/limma</source-url>
+    </note-attributes>
+</note>
+<note>
+    <title>Glimma</title>
+    <content>
+        <![CDATA[<?xml version='1.0' encoding='UTF-8'?><!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'>
+        <en-note>
+        </en-note>]]>
+    </content>
+    <created>20260426T170039Z</created>
+    <updated>20260426T170039Z</updated>
+    <note-attributes>
+        <source>web.clip</source>
+        <source-url>https://bioconductor.org/packages/Glimma</source-url>
+    </note-attributes>
+</note>
+<note>
+    <title>edgeR</title>
+    <content>
+        <![CDATA[<?xml version='1.0' encoding='UTF-8'?><!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'>
+        <en-note>
+        </en-note>]]>
+    </content>
+    <created>20260426T170106Z</created>
+    <updated>20260426T170106Z</updated>
+    <note-attributes>
+        <source>web.clip</source>
+        <source-url>https://bioconductor.org/packages/edgeR</source-url>
+    </note-attributes>
+</note>
+<note>
+    <title>A pooled shRNA screen for regulators of primary mammary stem and progenitor cells identifies roles for Asap1 and Prox1</title>
+    <content>
+        <![CDATA[<?xml version='1.0' encoding='UTF-8'?><!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'>
+        <en-note>
+        </en-note>]]>
+    </content>
+    <created>20260426T170510Z</created>
+    <updated>20260426T170510Z</updated>
+    <note-attributes>
+        <source>web.clip</source>
+        <source-url>https://bmccancer.biomedcentral.com/articles/10.1186/s12885-015-1187-z</source-url>
+    </note-attributes>
+</note>
+<note>
+    <title>Dashboard-style interactive plots for RNA-seq analysis are R Markdown ready with &amp;lt;i&amp;gt;Glimma&amp;lt;/i&amp;gt; 2.0</title>
+    <content>
+        <![CDATA[<?xml version='1.0' encoding='UTF-8'?><!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'>
+        <en-note>
+        </en-note>]]>
+    </content>
+    <created>20260426T170530Z</created>
+    <updated>20260426T170530Z</updated>
+    <note-attributes>
+        <source>web.clip</source>
+        <source-url>https://academic.oup.com/nargab/article/doi/10.1093/nargab/lqab116/6478883</source-url>
+    </note-attributes>
+</note>
+<note>
+    <title>Camera: a competitive gene set test accounting for inter-gene correlation</title>
+    <content>
+        <![CDATA[<?xml version='1.0' encoding='UTF-8'?><!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'>
+        <en-note>
+        </en-note>]]>
+    </content>
+    <created>20260502T005358Z</created>
+    <updated>20260502T005358Z</updated>
+    <note-attributes>
+        <source>web.clip</source>
+        <source-url>https://academic.oup.com/nar/article/40/17/e133/2411151</source-url>
+    </note-attributes>
+</note>
+<note>
+    <title>Molecular Signatures Database</title>
+    <content>
+        <![CDATA[<?xml version='1.0' encoding='UTF-8'?><!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'>
+        <en-note>
+        </en-note>]]>
+    </content>
+    <created>20260502T005626Z</created>
+    <updated>20260502T005842Z</updated>
+    <note-attributes>
+        <source>web.clip</source>
+        <source-url>https://www.gsea-msigdb.org/gsea/msigdb</source-url>
+    </note-attributes>
+</note>
+<note>
+    <title>CLDN7: Epithelial gatekeeper from physiology to pathology‑roles in cancer and epithelial‑related diseases (Review)</title>
+    <content>
+        <![CDATA[<?xml version='1.0' encoding='UTF-8'?><!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'>
+        <en-note>
+        </en-note>]]>
+    </content>
+    <created>20260503T175824Z</created>
+    <updated>20260503T175824Z</updated>
+    <note-attributes>
+        <source>web.clip</source>
+        <source-url>http://www.spandidos-publications.com/10.3892/ijmm.2026.5781</source-url>
+    </note-attributes>
+</note>
+<note>
+    <title>RASEF Gene - RAS And EF-Hand Domain Containing</title>
+    <content>
+        <![CDATA[<?xml version='1.0' encoding='UTF-8'?><!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'>
+        <en-note>
+        </en-note>]]>
+    </content>
+    <created>20260503T180508Z</created>
+    <updated>20260503T180752Z</updated>
+    <note-attributes>
+        <source>web.clip</source>
+        <source-url>https://www.genecards.org/cgi-bin/carddisp.pl?gene=RASEF</source-url>
+    </note-attributes>
+</note>
+</en-export>

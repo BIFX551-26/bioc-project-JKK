@@ -581,6 +581,8 @@ heatmap.2(lcpm[i,], scale="row",
 
 - The aggregated gene set data is the c2 gene signatures collection from the Broad Institute's Molecular Signatures Database (MSigDB). 
 
+## Camera: Correlation Adjusted MEan RAnk gene set test
+
 - This method is more of a meta-analysis, not ideal for focused within-experiment testing, but great for exploratory analysis to find candidate genes for further study. 
 
 ```{r}
@@ -638,6 +640,35 @@ head(cam.BasalvsLP,5)
 - Communicating effectively so that we did not overwrite each other's work on the github page.
 
 - BioConductor downtime.
- 
+
+
+
+## References:{.smaller}
+
+- Bioconductor. “RNAseq123.” Accessed April 26, 2026. http://bioconductor.org/packages/RNAseq123/.
+
+- Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California. Molecular Signatures Database. 2026 2004. https://www.gsea-msigdb.org/gsea/msigdb.
+
+- Charity Law, Monther Alhamdoosh, Shian Su, Xueyi Dong, Luyi Tian, Gordon Smyth, Matthew Ritchie. RNAseq123. Bioconductor, n.d. https://doi.org/10.18129/B9.BIOC.RNASEQ123.
+
+- Gordon Smyth [Cre, Aut]. Limma. Bioconductor, released 2017. https://doi.org/10.18129/B9.BIOC.LIMMA.
+
+- Kariyawasam, Hasaru, Shian Su, Oliver Voogd, Matthew E. Ritchie, and Charity W. Law. “Dashboard-Style Interactive Plots for RNA-Seq Analysis Are R Markdown Ready with Glimma 2.0.” NAR Genomics and Bioinformatics 3, no. 4 (2021): lqab116. https://doi.org/10.1093/nargab/lqab116.
+
+
+
+## References:{.smaller}
+
+- Lai, Xiuping, Yan Yan, Lu Sun, Zili Lei, and Yanhong Yang. “CLDN7: Epithelial Gatekeeper from Physiology to Pathology‑roles in Cancer and Epithelial‑related Diseases (Review).” International Journal of Molecular Medicine 57, no. 5 (2026): 1–13. https://doi.org/10.3892/ijmm.2026.5781.
+
+- Sheridan, Julie M., Matthew E. Ritchie, Sarah A. Best, et al. “A Pooled shRNA Screen for Regulators of Primary Mammary Stem and Progenitor Cells Identifies Roles for Asap1 and Prox1.” BMC Cancer 15, no. 1 (2015): 221. https://doi.org/10.1186/s12885-015-1187-z.
+
+- Shian Su, Matthew E. Ritchie. Glimma. Bioconductor, released 2017. https://doi.org/10.18129/B9.BIOC.GLIMMA.
+
+- The GeneCards human gene database. RASEF Gene - RAS And EF-Hand Domain Containing. January 15, 2026. https://www.genecards.org/cgi-bin/carddisp.pl?gene=RASEF.
+
+- Wu, Di, and Gordon K. Smyth. “Camera: A Competitive Gene Set Test Accounting for Inter-Gene Correlation.” Nucleic Acids Research 40, no. 17 (2012): e133–e133. https://doi.org/10.1093/nar/gks461.
+
+- Yunshun Chen <Yuchen@Wehi. Edu.Au>, Aaron Lun<Alun@Wehi Edu Au>. edgeR. Bioconductor, released 2017. https://doi.org/10.18129/B9.BIOC.EDGER.
 
 
