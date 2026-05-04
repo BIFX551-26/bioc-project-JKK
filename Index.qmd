@@ -428,6 +428,8 @@ contr.matrix
 
 - "voom" function act as link to bridge limma(built for microarrays) to expression data. It addresses scale problem (calculates into CPM) and "normalize.method" argument to normalize library size and estimates mean-variance relationship (non-linear - overdispersion) 
 
+- "voom" function - a visual check for filtering performed upstream. If insufficient, a drop in variance level at low end of expression scale. Adjusting threshold is recommended. 
+
 - "Voom weights" fixes the noise related to genes whereas Voomqualityweight addresses the noise generated from inter-sample variation
 
 

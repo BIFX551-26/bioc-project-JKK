@@ -301,7 +301,7 @@ attr(,"contrasts")$lane
 <section id="differential-gene-analysis-1" class="slide level2">
 <h2>Differential Gene Analysis</h2>
 <ul>
-<li><p>‘makecontrast()’ function from <strong>limma</strong> package allows user to draw contrax matrix for pairwise comparisions</p></li>
+<li><p><code>makecontrast()</code> function from <strong>limma</strong> package allows user to draw contrast matrix for pairwise comparisions</p></li>
 <li><p>Provides duplicate correlation to deal with technical replicates</p></li>
 <li><p>Also provides flexibility to perform interactive studies for ex. testing drug reaction in Lane 6 and Lane 8</p></li>
 </ul>
@@ -320,7 +320,7 @@ Levels     BasalvsLP BasalvsML LPvsML
 <section id="heteroscedascity-and-voom-weights" class="slide level2">
 <h2>Heteroscedascity and Voom weights</h2>
 <ul>
-<li><p>Homoscedascity: In linear models, mean-variance relationship is assumed to be linear. Mean and variance changes equally. Exactly opposite is ‘Heteroscedascity’</p></li>
+<li><p>In RNA-seq data, variance changes with the mean expression level (heteroscedasticity), so voom assigns weights to account for this mean-variance relationship.</p></li>
 <li><p>In RNA-Seq count data, the Negative Binomial distribution assumes quadratic mean-variation relationship</p></li>
 <li><p>Overdispersion observed due to large difference between house-keeping genes and highly expressed genes</p></li>
 <li><p>In <strong>limma</strong>, linear modelling is carried out on log-CPM values</p></li>
@@ -478,12 +478,12 @@ Up          2014      2054    190</code></pre>
 <p>The number of genes that are not DE in either comparison are marked in the bottom-right</p>
 
 <img data-src="Index_files/figure-revealjs/unnamed-chunk-30-1.png" width="960" class="r-stretch"></section>
-<section id="examining-individual-de-genes-from-top-to-bottom" class="slide level2">
-<h2>Examining Individual DE Genes from Top to Bottom:</h2>
+<section id="ranking-differentially-expressed-genes" class="slide level2">
+<h2>Ranking Differentially Expressed Genes</h2>
 <ul>
-<li><p>“topTreat”/ “topTable” - from toptreat or eBayes to list top DE genes</p></li>
-<li><p>toptreat arranges DE genes chronologically in increasing order using log-FC, average log-CPM, moderated t-statistics, raw and adjusted p-value for each gene</p></li>
-<li><p>n=Inf -&gt; all genes</p></li>
+<li><code>topTreat()</code> and <code>topTable()</code> are used to list the top differentially expressed genes from <code>treat()</code> and <code>eBayes()</code> results, respectively</li>
+<li><code>topTreat()</code> ranks genes by statistical significance and reports values such as log-FC, average log-CPM, moderated t-statistics, and raw and adjusted p-values for each gene</li>
+<li>setting n = Inf returns all genes in the results table</li>
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -819,42 +819,80 @@ SOTIRIOU_BREAST_CANCER_GRADE_1_VS_3_UP      4.622239e-10</code></pre>
       });
     </script>
     
+
     <script>
+
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
       // slide changes (different for each slide format).
+
       (function () {
+
         // dispatch for htmlwidgets
+
         function fireSlideEnter() {
+
           const event = window.document.createEvent("Event");
+
           event.initEvent("slideenter", true, true);
+
           window.document.dispatchEvent(event);
+
         }
+
+    
 
         function fireSlideChanged(previousSlide, currentSlide) {
+
           fireSlideEnter();
 
+    
+
           // dispatch for shiny
+
           if (window.jQuery) {
+
             if (previousSlide) {
+
               window.jQuery(previousSlide).trigger("hidden");
+
             }
+
             if (currentSlide) {
+
               window.jQuery(currentSlide).trigger("shown");
+
             }
+
           }
+
         }
+
+    
 
         // hookup for slidy
+
         if (window.w3c_slidy) {
+
           window.w3c_slidy.add_observer(function (slide_num) {
+
             // slide_num starts at position 1
+
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
           });
+
         }
 
+    
+
       })();
+
     </script>
+
+    
 
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
