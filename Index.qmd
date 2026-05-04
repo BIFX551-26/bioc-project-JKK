@@ -422,7 +422,7 @@ contr.matrix
 
 ::: {.content-visible when-format="revealjs"}
 
-## Heteroscedascity and Voom weights
+## Heteroscedascity and Voom weights{.smaller}
 
 :::
 
@@ -575,13 +575,11 @@ heatmap.2(lcpm[i,], scale="row",
 
 :::
 
-## Camera: Correlation Adjusted MEan RAnk gene set test
+## Camera: Correlation Adjusted MEan RAnk gene set test {.smaller}
 
 - The camera (Correlation Adjusted MEan Rank) method compares the DE values of our gene set to the same values of all other gene sets to determine their relative "rank" of importance.
 
 - The aggregated gene set data is the c2 gene signatures collection from the Broad Institute's Molecular Signatures Database (MSigDB). 
-
-## Camera: Correlation Adjusted MEan RAnk gene set test
 
 - This method is more of a meta-analysis, not ideal for focused within-experiment testing, but great for exploratory analysis to find candidate genes for further study. 
 
@@ -593,7 +591,9 @@ head(cam.BasalvsLP,5)
 ```
 
 
-## Experimental Results
+## Experimental Results{.smaller}
+
+- Examining differential expression in different types of mammory cells can be an effective method to discover candidate regulatory genes.
 
 - The genes *Rasef* and *Cldn7* were both top DE genes for both the BasalvsLP and BasalvsML comparisons. *Rasef* has been shown to act as a tumor supressor, while the dysregulation of *Cldn7* in either direction is associated with cancer risk and/or progression. 
 
@@ -602,7 +602,7 @@ head(cam.BasalvsLP,5)
 ## Conclusion:
 **What interesting things / skills did you learn?**
     
-    **Skills learned:**
+    **Skills Learned**
   - To setup data from web to R/positron.
   - To organize multiple files into single matrix using only one function from edgeR package.
   - Organizing gene info and annotations.
@@ -613,7 +613,7 @@ head(cam.BasalvsLP,5)
 
 ::: {.content-visible when-format="revealjs"}
 
-## Conclusion:
+## Conclusion:{.smaller}
 :::
 
   **Interesting points learned:**
@@ -633,7 +633,7 @@ head(cam.BasalvsLP,5)
 
 ## Conclusion:
 
-** What challenges did you come across? **
+**What challenges did you come across?**
 
 - Several plots had to be resized to render properly.
 
