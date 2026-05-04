@@ -577,11 +577,11 @@ heatmap.2(lcpm[i,], scale="row",
 
 ## Camera: Correlation Adjusted MEan RAnk gene set test {.smaller}
 
-- The camera (Correlation Adjusted MEan Rank) method compares the DE values of our gene set to the same values of all other gene sets to determine their relative "rank" of importance.
+- The camera (Correlation Adjusted MEan Rank) method compares the DE values of our gene set to the same values of all other gene sets to determine their relative "rank" of importance
 
-- The aggregated gene set data is the c2 gene signatures collection from the Broad Institute's Molecular Signatures Database (MSigDB). 
+- The aggregated gene set data is the c2 gene signatures collection from the Broad Institute's Molecular Signatures Database (MSigDB)
 
-- This method is more of a meta-analysis, not ideal for focused within-experiment testing, but great for exploratory analysis to find candidate genes for further study. 
+- This method is more of a meta-analysis, not ideal for focused within-experiment testing, but great for exploratory analysis to find candidate genes for further study
 
 ```{r}
 load(system.file("extdata", "mouse_c2_v5p1.rda", package = "RNAseq123"))
@@ -599,27 +599,27 @@ head(cam.BasalvsLP,5)
 
 - The camera method was used to compare the results from this analysis to an experiment by Lim *et al* 2010, which used Illumina microarrays to study the same sorted mammory cell populations. The gene signatures from the Lim *et al* study match those at the top of the list for each of the camera contrasts. 
 
-## Conclusion:
+## Conclusion
 **What interesting skills did you learn?**
     
-  - To setup data from web to R/positron.
-  - To organize multiple files into single matrix using only one function from edgeR package.
-  - Organizing gene info and annotations.
-  - Filtering genes that holds biological importance.
-  - Unsupervised clustering of samples.
-  - Designing model and contrast matrices.
+  - To setup data from web to R/positron
+  - To organize multiple files into single matrix using only one function from **edgeR** package
+  - Organizing gene info and annotations
+  - Filtering genes that holds biological importance
+  - Unsupervised clustering of samples
+  - Designing model and contrast matrices
   
 
 ::: {.content-visible when-format="revealjs"}
 
-## Conclusion:{.smaller}
+## Conclusion{.smaller}
 :::
 
   **Interesting points learned:**
 
 - filtering data improves the scopes of visualization
 
-- filterByexp function that removes the genes with low expression values. However, it does not filter the control whose expression value could be near 0 or 0
+- `filterByexp()` function that removes the genes with low expression values. However, it does not filter the control whose expression value could be near 0 or 0
 
 - calcNormfactor using TMM function works on logic where over & under expressed genes are ignored initially to plot a baseline. Once the baseline is plotted, the genes are cross-references for accurate comparison to avoid the compositional bias
 
@@ -630,7 +630,7 @@ head(cam.BasalvsLP,5)
 - Methods like camera can be used to do small-scale "meta-analyses"
 
 
-## Conclusion:
+## Conclusion
 
 **What challenges did you come across?**
 
@@ -642,7 +642,7 @@ head(cam.BasalvsLP,5)
 
 
 
-## References:{.smaller}
+## References{.smaller}
 
 - Bioconductor. “RNAseq123.” Accessed April 26, 2026. http://bioconductor.org/packages/RNAseq123/.
 
@@ -656,7 +656,7 @@ head(cam.BasalvsLP,5)
 
 
 
-## References:{.smaller}
+## References{.smaller}
 
 - Lai, Xiuping, Yan Yan, Lu Sun, Zili Lei, and Yanhong Yang. “CLDN7: Epithelial Gatekeeper from Physiology to Pathology‑roles in Cancer and Epithelial‑related Diseases (Review).” International Journal of Molecular Medicine 57, no. 5 (2026): 1–13. https://doi.org/10.3892/ijmm.2026.5781.
 

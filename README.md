@@ -291,7 +291,7 @@ the dependence between the two before voom is applied to the data (left
 panel) and how the trend is removed after voom precision weights are
 applied to the data (right panel)
 
-## Examining Differentially Expressed Genes:
+## Examining Differentially Expressed Genes
 
 Summary of Differentially expressed gene:
 
@@ -321,7 +321,7 @@ threshold
 - 1 - Up regulated genes
 - 1 - Down regulated genes
 
-## Extracting DE genes
+## Extracting Differentially Expressed Genes
 
 - Venn diagram showing the number of genes DE in the comparison between
   basal versus LP only (left), basal versus ML only (right), and the
@@ -396,14 +396,14 @@ style="width:100.0%" data-fig-align="right" />
 
 - The camera (Correlation Adjusted MEan Rank) method compares the DE
   values of our gene set to the same values of all other gene sets to
-  determine their relative “rank” of importance.
+  determine their relative “rank” of importance
 
 - The aggregated gene set data is the c2 gene signatures collection from
-  the Broad Institute’s Molecular Signatures Database (MSigDB).
+  the Broad Institute’s Molecular Signatures Database (MSigDB)
 
 - This method is more of a meta-analysis, not ideal for focused
   within-experiment testing, but great for exploratory analysis to find
-  candidate genes for further study.
+  candidate genes for further study
 
 <!-- -->
 
@@ -436,51 +436,49 @@ style="width:100.0%" data-fig-align="right" />
   from the Lim *et al* study match those at the top of the list for each
   of the camera contrasts.
 
-## Conclusion:
+## Conclusion
 
-**What interesting things / skills did you learn?**
+**What interesting skills did you learn?**
 
-    **Skills Learned**
-
-- To setup data from web to R/positron.
+- To setup data from web to R/positron
 - To organize multiple files into single matrix using only one function
-  from edgeR package.
-- Organizing gene info and annotations.
-- Filtering genes that holds biological importance.
-- Unsupervised clustering of samples.
-- Designing model and contrast matrices.
+  from **edgeR** package
+- Organizing gene info and annotations
+- Filtering genes that holds biological importance
+- Unsupervised clustering of samples
+- Designing model and contrast matrices
 
 **Interesting points learned:**
 
-- filtering data improves the scopes of visualization.
+- filtering data improves the scopes of visualization
 
-- filterByexp function that removes the genes with low expression
+- `filterByexp()` function that removes the genes with low expression
   values. However, it does not filter the control whose expression value
-  could be near 0 or 0.
+  could be near 0 or 0
 
 - calcNormfactor using TMM function works on logic where over & under
   expressed genes are ignored initially to plot a baseline. Once the
   baseline is plotted, the genes are cross-references for accurate
-  comparison to avoid the compositional bias.
+  comparison to avoid the compositional bias
 
-- Heteroscedascity must be addressed to get results at actuals.
+- Heteroscedascity must be addressed to get results at actuals
 
-- Stricter log-CPM values can be applied for sophisticated studies.
+- Stricter log-CPM values can be applied for sophisticated studies
 
-- Methods like camera can be used to do small-scale “meta-analyses”.
+- Methods like camera can be used to do small-scale “meta-analyses”
 
-## Conclusion:
+## Conclusion
 
 **What challenges did you come across?**
 
-- Several plots had to be resized to render properly.
+- Several plots had to be resized to render properly
 
 - Communicating effectively so that we did not overwrite each other’s
-  work on the github page.
+  work on the github page
 
-- BioConductor downtime.
+- BioConductor downtime
 
-## References:
+## References
 
 - Bioconductor. “RNAseq123.” Accessed April 26, 2026.
   http://bioconductor.org/packages/RNAseq123/.
@@ -502,7 +500,7 @@ style="width:100.0%" data-fig-align="right" />
   Bioinformatics 3, no. 4 (2021): lqab116.
   https://doi.org/10.1093/nargab/lqab116.
 
-## References:
+## References
 
 - Lai, Xiuping, Yan Yan, Lu Sun, Zili Lei, and Yanhong Yang. “CLDN7:
   Epithelial Gatekeeper from Physiology to Pathology‑roles in Cancer and
