@@ -190,18 +190,19 @@ style="width:100.0%" />
 
 <!-- -->
 
-- “voom” function act as link to bridge limma(built for microarrays) to
-  expression data. It addresses scale problem (calculates into CPM) and
-  “normalize.method” argument to normalize library size and estimates
-  mean-variance relationship (non-linear - overdispersion)
+- `voom()` function act as link to bridge **limma** (built for
+  microarrays) to expression data. It addresses scale problem
+  (calculates into CPM) and “normalize.method” argument to normalize
+  library size and estimates mean-variance relationship (non-linear -
+  overdispersion)
 
-- “voom” function - a visual check for filtering performed upstream. If
-  insufficient, a drop in variance level at low end of expression scale.
-  Adjusting threshold is recommended.
+- `voom()` function - a visual check for filtering performed upstream.
+  If insufficient, a drop in variance level at low end of expression
+  scale. Adjusting threshold is recommended.
 
 - “Voom weights” fixes the noise related to genes whereas
-  Voomqualityweight addresses the noise generated from inter-sample
-  variation
+  `voomWithQualityWeights()` addresses the noise generated from
+  inter-sample variation
 
 <!-- -->
 
@@ -320,14 +321,14 @@ threshold
 - 1 - Up regulated genes
 - 1 - Down regulated genes
 
-## Extracting DE genes:
+## Extracting DE genes
 
-Venn diagram showing the number of genes DE in the comparison between
-basal versus LP only (left), basal versus ML only (right), and the
-number of genes that are DE in both comparisons (center)
+- Venn diagram showing the number of genes DE in the comparison between
+  basal versus LP only (left), basal versus ML only (right), and the
+  number of genes that are DE in both comparisons (center)
 
-The number of genes that are not DE in either comparison are marked in
-the bottom-right
+- The number of genes that are not DE in either comparison are marked in
+  the bottom-right
 
 ![](Index_files/figure-commonmark/unnamed-chunk-30-1.png)
 
@@ -421,6 +422,9 @@ style="width:100.0%" data-fig-align="right" />
 
 ## Experimental Results
 
+- Examining differential expression in different types of mammory cells
+  can be an effective method to discover candidate regulatory genes.
+
 - The genes *Rasef* and *Cldn7* were both top DE genes for both the
   BasalvsLP and BasalvsML comparisons. *Rasef* has been shown to act as
   a tumor supressor, while the dysregulation of *Cldn7* in either
@@ -436,7 +440,7 @@ style="width:100.0%" data-fig-align="right" />
 
 **What interesting things / skills did you learn?**
 
-    **Skills learned:**
+    **Skills Learned**
 
 - To setup data from web to R/positron.
 - To organize multiple files into single matrix using only one function
@@ -467,7 +471,7 @@ style="width:100.0%" data-fig-align="right" />
 
 ## Conclusion:
 
-\*\* What challenges did you come across? \*\*
+**What challenges did you come across?**
 
 - Several plots had to be resized to render properly.
 
