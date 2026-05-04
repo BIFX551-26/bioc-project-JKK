@@ -52,7 +52,7 @@ library(tibble)
 
 ## Introduction
 
-Goal: Demonstrate the RNAseq123 Bioconductor workflow
+Goal is to demonstrate the RNAseq123 Bioconductor workflow
 
   Why this dataset?
 
@@ -376,8 +376,8 @@ overall sample quality before modeling
 
 
 ## Differential Gene Analysis
-- To determine which genes are expressed at different levels between three cell population profiled
-- linear model fitting (assuming normally distributed data)
+- Goal is to determine which genes are expressed at different levels between three cell population profiled
+- Linear model fitting is used on normalized data
 - Intercept act as anchor point for comparision against baseline
 - Without intercept, absolute expression levels can be determined
 
