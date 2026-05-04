@@ -3,7 +3,7 @@ Kate, Jessica, Kardam
 
 ## Introduction
 
-Goal: Demonstrate the RNAseq123 Bioconductor workflow
+Goal is to demonstrate the RNAseq123 Bioconductor workflow
 
 Why this dataset?
 
@@ -129,9 +129,9 @@ style="width:100.0%" />
 
 ## Differential Gene Analysis
 
-- To determine which genes are expressed at different levels between
-  three cell population profiled
-- linear model fitting (assuming normally distributed data)
+- Goal is to determine which genes are expressed at different levels
+  between three cell population profiled
+- Linear model fitting is used on normalized data
 - Intercept act as anchor point for comparision against baseline
 - Without intercept, absolute expression levels can be determined
 
@@ -157,7 +157,7 @@ style="width:100.0%" />
     [1] "contr.treatment"
 
 - `makecontrast()` function from **limma** package allows user to draw
-  contrax matrix for pairwise comparisions
+  contrast matrix for pairwise comparisions
 
 - Provides duplicate correlation to deal with technical replicates
 
@@ -177,8 +177,8 @@ style="width:100.0%" />
 ## Heteroscedascity and Voom weights
 
 - In RNA-seq data, variance changes with the mean expression level
-  (heteroscedasticity), so `voom()` assigns weights to account for this
-  mean-variance relationship
+  (heteroscedasticity), so voom assigns weights to account for this
+  mean-variance relationship.
 
 - In RNA-Seq count data, the Negative Binomial distribution assumes
   quadratic mean-variation relationship
@@ -190,14 +190,18 @@ style="width:100.0%" />
 
 <!-- -->
 
-- `voom()` function act as link to bridge limma(built for microarrays)
-  to expression data. It addresses scale problem (calculates into CPM)
-  and “normalize.method” argument to normalize library size and
-  estimates mean-variance relationship (non-linear - overdispersion)
+- “voom” function act as link to bridge limma(built for microarrays) to
+  expression data. It addresses scale problem (calculates into CPM) and
+  “normalize.method” argument to normalize library size and estimates
+  mean-variance relationship (non-linear - overdispersion)
+
+- “voom” function - a visual check for filtering performed upstream. If
+  insufficient, a drop in variance level at low end of expression scale.
+  Adjusting threshold is recommended.
 
 - “Voom weights” fixes the noise related to genes whereas
-  `VoomWithQualityWeights()` addresses the noise generated from
-  inter-sample variation
+  Voomqualityweight addresses the noise generated from inter-sample
+  variation
 
 <!-- -->
 
@@ -286,7 +290,7 @@ the dependence between the two before voom is applied to the data (left
 panel) and how the trend is removed after voom precision weights are
 applied to the data (right panel)
 
-## Examining Differentially Expressed Genes
+## Examining Differentially Expressed Genes:
 
 Summary of Differentially expressed gene:
 
@@ -316,17 +320,16 @@ threshold
 - 1 - Up regulated genes
 - 1 - Down regulated genes
 
-## Extracting Differentially Expressed Genes
+## Extracting DE genes:
 
-- Venn diagram showing the number of genes DE in the comparison between
-  basal versus LP only (left), basal versus ML only (right), and the
-  number of genes that are DE in both comparisons (center)
+Venn diagram showing the number of genes DE in the comparison between
+basal versus LP only (left), basal versus ML only (right), and the
+number of genes that are DE in both comparisons (center)
 
-- The number of genes that are not DE in either comparison are marked in
-  the bottom-right
+The number of genes that are not DE in either comparison are marked in
+the bottom-right
 
-<img src="Index_files/figure-commonmark/unnamed-chunk-30-1.png"
-data-fig-align="center" />
+![](Index_files/figure-commonmark/unnamed-chunk-30-1.png)
 
 ## Ranking Differentially Expressed Genes
 

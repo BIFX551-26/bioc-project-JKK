@@ -426,11 +426,11 @@ contr.matrix
 
 :::
 
-- "voom" function act as link to bridge limma(built for microarrays) to expression data. It addresses scale problem (calculates into CPM) and "normalize.method" argument to normalize library size and estimates mean-variance relationship (non-linear - overdispersion) 
+- `voom()` function act as link to bridge **limma** (built for microarrays) to expression data. It addresses scale problem (calculates into CPM) and "normalize.method" argument to normalize library size and estimates mean-variance relationship (non-linear - overdispersion) 
 
-- "voom" function - a visual check for filtering performed upstream. If insufficient, a drop in variance level at low end of expression scale. Adjusting threshold is recommended. 
+- `voom()` function - a visual check for filtering performed upstream. If insufficient, a drop in variance level at low end of expression scale. Adjusting threshold is recommended. 
 
-- "Voom weights" fixes the noise related to genes whereas Voomqualityweight addresses the noise generated from inter-sample variation
+- "Voom weights" fixes the noise related to genes whereas `voomWithQualityWeights()` addresses the noise generated from inter-sample variation
 
 
 ```{r}
@@ -490,11 +490,11 @@ head(tfit$genes$SYMBOL[de.common], n=20)
 - 1 - Down regulated genes
 
 
-## Extracting DE genes:
+## Extracting DE genes
 
-Venn diagram showing the number of genes DE in the comparison between basal versus LP only (left), basal versus ML only (right), and the number of genes that are DE in both comparisons (center)
+- Venn diagram showing the number of genes DE in the comparison between basal versus LP only (left), basal versus ML only (right), and the number of genes that are DE in both comparisons (center)
 
-The number of genes that are not DE in either comparison are marked in the bottom-right
+- The number of genes that are not DE in either comparison are marked in the bottom-right
 
 ::: {.content-visible when-format="revealjs"}
 

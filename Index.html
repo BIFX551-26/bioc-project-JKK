@@ -140,7 +140,7 @@ Kate, Jessica, Kardam
 </section>
 <section id="introduction" class="slide level2">
 <h2>Introduction</h2>
-<p>Goal: Demonstrate the RNAseq123 Bioconductor workflow</p>
+<p>Goal is to demonstrate the RNAseq123 Bioconductor workflow</p>
 <p>Why this dataset?</p>
 <ul>
 <li>Public mouse mammary cell RNA-seq counts from GSE63310</li>
@@ -270,8 +270,8 @@ Kate, Jessica, Kardam
 <section id="differential-gene-analysis" class="slide level2">
 <h2>Differential Gene Analysis</h2>
 <ul>
-<li>To determine which genes are expressed at different levels between three cell population profiled</li>
-<li>linear model fitting (assuming normally distributed data)</li>
+<li>Goal is to determine which genes are expressed at different levels between three cell population profiled</li>
+<li>Linear model fitting is used on normalized data</li>
 <li>Intercept act as anchor point for comparision against baseline</li>
 <li>Without intercept, absolute expression levels can be determined</li>
 </ul>
@@ -330,6 +330,7 @@ Levels     BasalvsLP BasalvsML LPvsML
 <h2>Heteroscedascity and Voom weights</h2>
 <ul>
 <li><p>“voom” function act as link to bridge limma(built for microarrays) to expression data. It addresses scale problem (calculates into CPM) and “normalize.method” argument to normalize library size and estimates mean-variance relationship (non-linear - overdispersion)</p></li>
+<li><p>“voom” function - a visual check for filtering performed upstream. If insufficient, a drop in variance level at low end of expression scale. Adjusting threshold is recommended.</p></li>
 <li><p>“Voom weights” fixes the noise related to genes whereas Voomqualityweight addresses the noise generated from inter-sample variation</p></li>
 </ul>
 <div class="cell">
@@ -819,80 +820,42 @@ SOTIRIOU_BREAST_CANCER_GRADE_1_VS_3_UP      4.622239e-10</code></pre>
       });
     </script>
     
-
     <script>
-
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-
       // slide changes (different for each slide format).
-
       (function () {
-
         // dispatch for htmlwidgets
-
         function fireSlideEnter() {
-
           const event = window.document.createEvent("Event");
-
           event.initEvent("slideenter", true, true);
-
           window.document.dispatchEvent(event);
-
         }
-
-    
 
         function fireSlideChanged(previousSlide, currentSlide) {
-
           fireSlideEnter();
 
-    
-
           // dispatch for shiny
-
           if (window.jQuery) {
-
             if (previousSlide) {
-
               window.jQuery(previousSlide).trigger("hidden");
-
             }
-
             if (currentSlide) {
-
               window.jQuery(currentSlide).trigger("shown");
-
             }
-
           }
-
         }
-
-    
 
         // hookup for slidy
-
         if (window.w3c_slidy) {
-
           window.w3c_slidy.add_observer(function (slide_num) {
-
             // slide_num starts at position 1
-
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-
           });
-
         }
 
-    
-
       })();
-
     </script>
-
-    
 
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
